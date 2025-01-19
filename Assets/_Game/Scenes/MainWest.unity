@@ -17374,8 +17374,20 @@ PrefabInstance:
       value: Bullet
       objectReference: {fileID: 0}
     - target: {fileID: 5758077716707523436, guid: bd79f4c38b2c6d44eb357883faf6d3b4, type: 3}
+      propertyPath: forwardSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758077716707523436, guid: bd79f4c38b2c6d44eb357883faf6d3b4, type: 3}
+      propertyPath: lateralSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758077716707523436, guid: bd79f4c38b2c6d44eb357883faf6d3b4, type: 3}
+      propertyPath: mouseSensitivity
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758077716707523436, guid: bd79f4c38b2c6d44eb357883faf6d3b4, type: 3}
       propertyPath: gravityMultiplier
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5758077716707523436, guid: bd79f4c38b2c6d44eb357883faf6d3b4, type: 3}
       propertyPath: initialForwardSpeed

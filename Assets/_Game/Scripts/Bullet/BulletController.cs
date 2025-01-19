@@ -7,68 +7,80 @@ namespace _Game.Scripts.Bullet
     public class BulletController : MonoBehaviour
     {
         [Header("Movement Settings")]
-        [Tooltip("Starting forward speed. Keep very low for dramatic slow-motion.")]
-        public float initialForwardSpeed = 0.3f;
+        [Tooltip("Forward speed in world -X direction.")]
+        public float forwardSpeed = 20f;
 
-        [Tooltip("Horizontal movement speed for steering left/right.")]
-        public float lateralSpeed = 0.3f;
+        [Tooltip("Side movement speed in world Z.")]
+        public float lateralSpeed = 1.0f;
 
-        [Tooltip("Scales gravity pulling the bullet down. Lower = slower fall.")]
+        [Tooltip("Mouse X sensitivity for side movement.")]
+        public float mouseSensitivity = 2.0f;
+
+        [Tooltip("Gravity multiplier (lower = slower fall).")]
         public float gravityMultiplier = 0.02f;
-
-        [Tooltip("Minimum forward speed so bullet doesn't stall.")]
-        public float minForwardSpeed = 0.2f;
 
         [Header("Collision Boosts")]
         [Tooltip("Extra forward speed gained on enemy collision.")]
         public float collisionSpeedBoost = 0.3f;
 
-        [Tooltip("Additional upward force on collision with enemy.")]
+        [Tooltip("Additional upward force on collision.")]
         public float collisionUpwardBoost = 0.3f;
 
         private Rigidbody _rb;
-        private Vector3 _velocity;
+
+        // store the bullet's upward velocity (gravity), 
+        // plus a separate "side" velocity. forward is kept constant by default.
+        private float _verticalVelocity;
+        private float _sideVelocity;   // movement along the world Z-axis
+
         private bool _isBulletFrozen;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
             _rb.useGravity = false;
-            _rb.interpolation = RigidbodyInterpolation.Interpolate; // smoother movement
-
-            // We assume your bullet is oriented so that "forward" is negative X in world space.
-            // So we push it along negative X:
-            _velocity = Vector3.left * initialForwardSpeed;
+            _rb.interpolation = RigidbodyInterpolation.Interpolate;
+            
+            _sideVelocity = 0f;
+            _verticalVelocity = 0f;
         }
 
         private void Update()
         {
-            // If frozen, don't update logic
             if (_isBulletFrozen) return;
 
-            // Basic left/right steering via horizontal input
+            // 1) keyboard input (A/D or Left/Right arrows)
             float horizontalInput = Input.GetAxis("Horizontal");
 
-            // Add side-to-side lateral velocity
-            Vector3 lateral = transform.right * (horizontalInput * lateralSpeed);
-            _velocity += lateral * Time.deltaTime;
+            // 2) mouse X input
+            float mouseInput = Input.GetAxis("Mouse X") * mouseSensitivity;
 
-            // Enforce a minimum forward speed
-            float currentSpeed = _velocity.magnitude;
-            if (currentSpeed < minForwardSpeed)
-            {
-                _velocity = _velocity.normalized * minForwardSpeed;
-            }
+            // combined lateral input
+            float totalLateralInput = horizontalInput + mouseInput;
 
-            // Apply manual gravity
-            _velocity += Physics.gravity * (gravityMultiplier * Time.deltaTime);
+            // accumulate side velocity
+            // maybe diirect mapping? do: _sideVelocity = totalLateralInput * lateralSpeed;
+            _sideVelocity += (totalLateralInput * lateralSpeed) * Time.deltaTime;
+            
+            _verticalVelocity += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
         }
 
         private void FixedUpdate()
         {
             if (_isBulletFrozen) return;
-            
-            _rb.linearVelocity = _velocity;
+
+            // Forward along negative X in WORLD space
+            Vector3 forwardVelocity = new Vector3(-forwardSpeed, 0f, 0f);
+
+            // Side movement along the WORLD Z axis
+            Vector3 sideVelocity = new Vector3(0f, 0f, _sideVelocity);
+
+            // Vertical velocity in the WORLD Y axis
+            Vector3 verticalVelocity = new Vector3(0f, _verticalVelocity, 0f);
+
+            // Sum
+            Vector3 totalVelocity = forwardVelocity + sideVelocity + verticalVelocity;
+            _rb.linearVelocity = totalVelocity;
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -77,17 +89,19 @@ namespace _Game.Scripts.Bullet
             
             if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
-                // Distinguish between boss or normal enemy
                 if (collision.gameObject.CompareTag("Boss"))
                 {
                     GameManager.instance.OnBossHit();
                 }
                 else
                 {
-                    _velocity += _velocity.normalized * collisionSpeedBoost;
-                    
-                    _velocity += Vector3.up * collisionUpwardBoost;
-                    
+                    // Boost forward speed
+                    forwardSpeed += collisionSpeedBoost;
+
+                    // Lift bullet upward
+                    _verticalVelocity += collisionUpwardBoost;
+
+                    // Damage the enemy
                     var enemy = collision.gameObject.GetComponent<_Game.Scripts.Enemies.Enemy>();
                     if (enemy != null) enemy.TakeDamage(1);
 
@@ -96,6 +110,7 @@ namespace _Game.Scripts.Bullet
             }
             else
             {
+                // Run ends
                 GameManager.instance.OnBulletDestroyed();
                 FreezeBullet();
             }
@@ -107,7 +122,7 @@ namespace _Game.Scripts.Bullet
             _rb.angularVelocity = Vector3.zero;
             _rb.isKinematic = true;
             _rb.detectCollisions = false;
-            
+
             _isBulletFrozen = true;
             enabled = false;
         }
