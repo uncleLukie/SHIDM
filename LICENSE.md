@@ -3,13 +3,13 @@
 This repository is licensed under the following terms:
 
 ## Code
-All source code files contained within this repository are licensed under the MIT License. You are free to use, modify, and distribute the code in personal, educational, or commercial projects, provided the following conditions are met:
+All source code files contained within this repository are licensed under the MIT License (with exception to plugin or library code). You are free to use, modify, and distribute the code in personal, educational, or commercial projects, provided the following conditions are met:
 
 1. You must include a copy of this license in any substantial portions of the software.
 2. The code is provided "as is," without warranty of any kind, express or implied.
 
-## Assets and Prefabs
-All assets, including but not limited to prefabs, textures, models, audio files, and animations, are NOT included under the same license as the code.
+## Assets, Plugins, Libraries and Prefabs
+All assets, including but not limited to prefabs, textures, models, audio files, and animations, are NOT included under the same license as the code. All librarys and plugins are copyrighted and must not be redistributed in any way.
 
 ### Restrictions on Assets:
 1. You are **NOT permitted** to use any of the assets in this repository for commercial purposes.
