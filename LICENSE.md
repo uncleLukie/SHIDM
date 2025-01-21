@@ -11,9 +11,9 @@ All source code files contained within this repository are licensed under the MI
 ## Assets, Plugins, Libraries and Prefabs
 All assets, including but not limited to prefabs, textures, models, audio files, and animations, are NOT included under the same license as the code. All librarys and plugins are copyrighted and must not be redistributed in any way.
 
-### Restrictions on Assets:
-1. You are **NOT permitted** to use any of the assets in this repository for commercial purposes.
-2. You are **NOT permitted** to modify, distribute, or use the assets in personal or educational projects without explicit permission from the copyright holder.
+### Restrictions
+1. You are **NOT permitted** to use any of the assets, plugins or libraries in this repository for commercial purposes.
+2. You are **NOT permitted** to modify, distribute, or use the assets, plugins, libraries in personal or educational projects without explicit permission from the copyright holder.
 3. The assets are provided only for use within this project and may not be repurposed for other projects, this includes forks of this project where you must remove/replace them with your own assets.
 
 If you wish to use the assets or have any questions regarding licensing, please contact the repository owner directly.
