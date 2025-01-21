@@ -17687,14 +17687,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: pistol-bullet
       objectReference: {fileID: 0}
-    - target: {fileID: 5758077716707523436, guid: bd79f4c38b2c6d44eb357883faf6d3b4, type: 3}
-      propertyPath: mouseSensitivity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7925002721555941327, guid: bd79f4c38b2c6d44eb357883faf6d3b4, type: 3}
-      propertyPath: IgnoreTimeScale
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

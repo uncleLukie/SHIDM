@@ -270,10 +270,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 15
   lateralSpeed: 8
-  mouseSensitivity: 1.5
+  mouseSensitivity: 2
   gravityMultiplier: 0.1
   collisionSpeedBoost: 5
   collisionUpwardBoost: 2
+  bloodFXPrefab: {fileID: 130776, guid: a74b976a3f009444e9fc971b209b29db, type: 3}
 --- !u!1 &8811127397419622758
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowDebugText: 0
   ShowCameraFrustum: 1
-  IgnoreTimeScale: 1
+  IgnoreTimeScale: 0
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
   UpdateMethod: 2

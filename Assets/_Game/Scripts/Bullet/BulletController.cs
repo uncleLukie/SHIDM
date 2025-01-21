@@ -16,6 +16,10 @@ namespace _Game.Scripts.Bullet
         public float collisionSpeedBoost = 0.3f;
         public float collisionUpwardBoost = 0.3f;
 
+        [Header("Effects")]
+        [Tooltip("The blood effect prefab to spawn at the collision point.")]
+        public GameObject bloodFXPrefab;
+
         private Rigidbody _rb;
         private float _verticalVelocity;
         private float _sideVelocity;
@@ -58,6 +62,8 @@ namespace _Game.Scripts.Bullet
 
             if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
+                SpawnBloodFX(other);
+
                 // Boss logic
                 if (other.CompareTag("Boss"))
                 {
@@ -67,12 +73,10 @@ namespace _Game.Scripts.Bullet
                 {
                     forwardSpeed += collisionSpeedBoost;
                     _verticalVelocity += collisionUpwardBoost;
-
-                    // Check if it's a People_WanderScript from Polyperfect
+                    
                     var wanderNpc = other.GetComponent<Polyperfect.People.People_WanderScript>();
                     if (wanderNpc != null)
                     {
-                        // Kill the NPC via their built-in flow
                         wanderNpc.Die();
                         GameManager.instance.IncrementScore();
                     }
@@ -86,6 +90,25 @@ namespace _Game.Scripts.Bullet
             }
         }
 
+        private void SpawnBloodFX(Collider other)
+        {
+            if (bloodFXPrefab != null)
+            {
+                // Get the collision point
+                Vector3 collisionPoint = other.ClosestPoint(transform.position);
+
+                // Calculate rotation based on bullet's velocity
+                Vector3 bulletDirection = _rb.linearVelocity.normalized;
+                Quaternion bloodRotation = Quaternion.LookRotation(bulletDirection);
+
+                // Instantiate the blood effect at the collision point with the calculated rotation
+                Instantiate(bloodFXPrefab, collisionPoint, bloodRotation);
+            }
+            else
+            {
+                Debug.LogWarning("BloodFXPrefab is not assigned in the BulletController!");
+            }
+        }
 
         private void FreezeBullet()
         {
