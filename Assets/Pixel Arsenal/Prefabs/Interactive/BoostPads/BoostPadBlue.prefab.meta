@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4477816fbc1822c47b43c10e9570c5ae
+timeCreated: 1476715860
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/BoostPads/BoostPadBlue.prefab
+  uploadId: 686388

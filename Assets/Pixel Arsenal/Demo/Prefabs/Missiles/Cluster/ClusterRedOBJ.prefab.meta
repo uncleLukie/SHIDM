@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 36742e0ef5e3cad42a306fcd9587ce54
+timeCreated: 1475687017
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Cluster/ClusterRedOBJ.prefab
+  uploadId: 686388

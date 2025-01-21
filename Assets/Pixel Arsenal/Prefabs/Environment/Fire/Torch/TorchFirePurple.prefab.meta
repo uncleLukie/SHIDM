@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 75d77478b35c83e41a5cd0c177c493fb
+timeCreated: 1477162325
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Fire/Torch/TorchFirePurple.prefab
+  uploadId: 686388

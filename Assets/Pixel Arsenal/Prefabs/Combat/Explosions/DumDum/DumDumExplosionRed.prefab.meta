@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 226c71abc3247404fbd84624b5172c8a
+timeCreated: 1555973355
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/DumDum/DumDumExplosionRed.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c7d7e599a6a9d594aad46e0d29fd7406
+timeCreated: 1476893068
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Sparkle/SparklePurple.prefab
+  uploadId: 686388

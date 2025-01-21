@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 292812426ea39354180fc126cef0280a
+timeCreated: 1476891782
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Setup/FatLaserBeam/YellowFatLaserEnd.prefab
+  uploadId: 686388

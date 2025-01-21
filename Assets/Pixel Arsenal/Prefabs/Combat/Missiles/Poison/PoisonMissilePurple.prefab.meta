@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8fc780f62f1ff7e4d9e5633feeed2b6a
+timeCreated: 1476292193
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Poison/PoisonMissilePurple.prefab
+  uploadId: 686388

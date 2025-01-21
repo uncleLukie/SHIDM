@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b98a7db0f1032b54bb87999a8139269d
+timeCreated: 1556810260
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Misc/Camera.prefab
+  uploadId: 686388

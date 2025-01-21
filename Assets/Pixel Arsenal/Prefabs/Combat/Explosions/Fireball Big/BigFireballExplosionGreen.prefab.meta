@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d3531a04ce036e94db0dc45a1dd3a483
+timeCreated: 1476197836
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fireball Big/BigFireballExplosionGreen.prefab
+  uploadId: 686388

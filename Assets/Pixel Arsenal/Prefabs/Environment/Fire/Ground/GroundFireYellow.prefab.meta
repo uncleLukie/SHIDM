@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0c978490b3d958c40a147b05d6f22517
+timeCreated: 1477161281
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Fire/Ground/GroundFireYellow.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7e4e4155143185e46b8c126b3002d2e3
+timeCreated: 1480789577
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Flamethrower/Fat/FatFlameThrowerModular.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b982cfeb839bad54888d1388d5ab8633
+timeCreated: 1476813183
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Setup/LaserBeam/RedLaserBeam.prefab
+  uploadId: 686388

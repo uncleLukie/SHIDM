@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0fac869b60fed0d4d971d924b63b9aeb
+timeCreated: 1476813183
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Setup/LaserBeam/YellowLaserBeam.prefab
+  uploadId: 686388

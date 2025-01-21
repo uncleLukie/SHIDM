@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 737705baee936f741a68fb499b6d2e5c
+timeCreated: 1476890970
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Setup/FatLaserBeam/RedFatLaserEnd.prefab
+  uploadId: 686388

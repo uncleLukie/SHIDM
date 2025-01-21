@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2eaee09e36ee9b547afd52621663202e
+timeCreated: 1475711252
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Plasma/PlasmaMissileGreen.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 54f5cce64f7769144903141dd0009741
+timeCreated: 1480789295
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/BoostPads/ReverseBoostPadModular.prefab
+  uploadId: 686388

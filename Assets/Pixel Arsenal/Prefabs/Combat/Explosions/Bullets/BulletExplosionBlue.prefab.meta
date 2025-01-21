@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c107beed1c6528e4c94b29fc1620ab9b
+timeCreated: 1476042829
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Bullets/BulletExplosionBlue.prefab
+  uploadId: 686388

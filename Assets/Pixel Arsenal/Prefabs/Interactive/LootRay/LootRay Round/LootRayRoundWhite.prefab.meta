@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2b3d6cdd00da2b64e94d823262786677
+timeCreated: 1555891342
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/LootRay/LootRay Round/LootRayRoundWhite.prefab
+  uploadId: 686388

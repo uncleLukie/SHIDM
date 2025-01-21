@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 55c29fb3de56492458c67eac3012e611
+timeCreated: 1480792616
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Bullets/BulletExplosionModular.prefab
+  uploadId: 686388

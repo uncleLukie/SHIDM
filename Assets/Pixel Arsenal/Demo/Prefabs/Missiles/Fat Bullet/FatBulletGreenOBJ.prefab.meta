@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cb68771a55230024b89420962bc596df
+timeCreated: 1476115566
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Fat Bullet/FatBulletGreenOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 366be7f37d7ed55409eadb8c3e39521f
+timeCreated: 1477061251
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Spiky/MuzzleFlashSpikyPurple.prefab
+  uploadId: 686388

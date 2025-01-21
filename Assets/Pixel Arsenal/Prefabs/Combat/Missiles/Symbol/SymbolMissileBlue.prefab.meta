@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0badbb577e321ff41857e14eff51adf7
+timeCreated: 1477313192
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Symbol/SymbolMissileBlue.prefab
+  uploadId: 686388

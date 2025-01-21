@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a826e589fb8f2e444bdc2adb9d2f786c
+timeCreated: 1480789238
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/BoostPads/BoostPadModular.prefab
+  uploadId: 686388

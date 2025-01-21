@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5b4d6a3108e59fb4f896cade1adffbbc
+timeCreated: 1476383586
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Sparkle/SparkleMissileGreenOBJ.prefab
+  uploadId: 686388

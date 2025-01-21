@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 26200e0148d96694bba0886668daabdb
+timeCreated: 1476227851
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Laser Bolt/LaserYellow.prefab
+  uploadId: 686388

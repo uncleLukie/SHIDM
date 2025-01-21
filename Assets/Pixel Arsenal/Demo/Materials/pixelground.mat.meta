@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9109ed1e4a4491d43a5da1e2cfee959f
+timeCreated: 1473799904
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Materials/pixelground.mat
+  uploadId: 686388

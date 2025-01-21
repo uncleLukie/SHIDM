@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 44025687509c82747b8dcfa24446f6a6
+timeCreated: 1477161073
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Fire/Ground/GroundFireBlue.prefab
+  uploadId: 686388

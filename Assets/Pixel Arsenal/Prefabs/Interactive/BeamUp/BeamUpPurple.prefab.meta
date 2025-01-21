@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6d923f1a81bdcdd47a3dc9b43eddbfc4
+timeCreated: 1476477295
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/BeamUp/BeamUpPurple.prefab
+  uploadId: 686388

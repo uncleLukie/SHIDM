@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d8899553ad8fb284faef94a23380f66f
+timeCreated: 1475931258
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Frost/FrostMissile.prefab
+  uploadId: 686388

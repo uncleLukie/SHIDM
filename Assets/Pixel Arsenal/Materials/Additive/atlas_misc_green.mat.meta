@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9dc8083cdb2e0af4b935fe30c4fce647
+timeCreated: 1477011357
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Additive/atlas_misc_green.mat
+  uploadId: 686388

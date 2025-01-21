@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: edb69083b0f86974bbe13022cd8ab019
+timeCreated: 1512955845
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Laser Big/MuzzleFlashLaserBigRed.prefab
+  uploadId: 686388

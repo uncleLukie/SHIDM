@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dcc803728a9f0ec4c83dba45ffbeaeb5
+timeCreated: 1468765621
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Fireball/FireballRed.prefab
+  uploadId: 686388

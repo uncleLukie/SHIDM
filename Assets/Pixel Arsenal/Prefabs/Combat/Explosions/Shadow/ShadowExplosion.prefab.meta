@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7b9883f2ef214304099a2db953add551
+timeCreated: 1477315240
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Shadow/ShadowExplosion.prefab
+  uploadId: 686388

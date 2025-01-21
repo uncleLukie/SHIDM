@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 457ecaabb933c2a43a20e907e6b5e049
+timeCreated: 1474293356
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fireball Big/BigFireballExplosionRed.prefab
+  uploadId: 686388

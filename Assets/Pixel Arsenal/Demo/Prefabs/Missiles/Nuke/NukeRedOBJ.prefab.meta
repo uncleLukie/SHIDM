@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 968dc5cb5655e1e4c8c5052de5fb5ca7
+timeCreated: 1556373792
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Nuke/NukeRedOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 673a16924084b404d9070dc7c323284d
+timeCreated: 1476112189
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Acid/AcidExplosionRed.prefab
+  uploadId: 686388

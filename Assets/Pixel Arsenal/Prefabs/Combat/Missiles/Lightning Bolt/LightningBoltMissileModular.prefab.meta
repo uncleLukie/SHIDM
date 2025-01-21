@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ac5df17466c26a242a75461c2ec4f647
+timeCreated: 1480822938
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Lightning Bolt/LightningBoltMissileModular.prefab
+  uploadId: 686388

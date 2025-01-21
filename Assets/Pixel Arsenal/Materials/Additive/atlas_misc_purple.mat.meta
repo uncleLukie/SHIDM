@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c85a27cbd401b7b43911ed0515b3fb19
+timeCreated: 1477056609
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Additive/atlas_misc_purple.mat
+  uploadId: 686388

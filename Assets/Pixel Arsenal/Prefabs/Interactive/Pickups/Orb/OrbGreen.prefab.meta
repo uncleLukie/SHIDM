@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 377eb9a2f082b7242917d0025e19815d
+timeCreated: 1476550079
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Pickups/Orb/OrbGreen.prefab
+  uploadId: 686388

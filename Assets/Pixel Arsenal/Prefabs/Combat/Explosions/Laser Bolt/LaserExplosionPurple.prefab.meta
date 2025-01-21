@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9d7b9cd8cd165034a9fc35ad6772a09e
+timeCreated: 1476227911
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Laser Bolt/LaserExplosionPurple.prefab
+  uploadId: 686388

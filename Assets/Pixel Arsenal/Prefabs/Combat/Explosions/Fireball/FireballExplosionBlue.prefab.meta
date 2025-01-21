@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 785af3d919cb31c4f81a0bf9b5d311f4
+timeCreated: 1476195695
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fireball/FireballExplosionBlue.prefab
+  uploadId: 686388

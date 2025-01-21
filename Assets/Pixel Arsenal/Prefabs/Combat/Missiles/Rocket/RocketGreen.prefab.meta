@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: afc09a50c081c5a4a89fdc995ebcd45f
+timeCreated: 1476379693
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Rocket/RocketGreen.prefab
+  uploadId: 686388

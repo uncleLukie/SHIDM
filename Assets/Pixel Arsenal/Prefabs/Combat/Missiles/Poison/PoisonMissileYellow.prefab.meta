@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2098de490c9c06e459b1f65abdfef4db
+timeCreated: 1476298887
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Poison/PoisonMissileYellow.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: aa48595a2911955448627fb66640b56f
+timeCreated: 1476645990
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Portal/PortalGreen.prefab
+  uploadId: 686388

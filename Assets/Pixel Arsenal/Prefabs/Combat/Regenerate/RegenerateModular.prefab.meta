@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3c59686e2b6e7cc45845e3ef48b1f8ad
+timeCreated: 1480791420
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Regenerate/RegenerateModular.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7c3602b19c7755d43ad1b6a29cb7b643
+timeCreated: 1476188613
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Fat Missile/FatMissileYellowOBJ.prefab
+  uploadId: 686388

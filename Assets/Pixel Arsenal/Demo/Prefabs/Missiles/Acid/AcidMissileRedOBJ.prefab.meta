@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2f7ffd6060019a141acb040fdf23d1dc
+timeCreated: 1476112193
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Acid/AcidMissileRedOBJ.prefab
+  uploadId: 686388

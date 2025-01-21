@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 547f7269fcf965b4e80c5ae93cd7e4b5
+timeCreated: 1475522177
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fat Missile/FatExplosionRed.prefab
+  uploadId: 686388

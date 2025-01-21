@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 44858ee143f098d45adc238c2ad254c5
+timeCreated: 1476232190
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Glitter/GlitterExplosionYellow.prefab
+  uploadId: 686388

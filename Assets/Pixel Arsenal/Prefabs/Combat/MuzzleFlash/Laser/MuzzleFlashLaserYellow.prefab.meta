@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ecf225dfd7816624db565eb220c42b76
+timeCreated: 1512955250
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Laser/MuzzleFlashLaserYellow.prefab
+  uploadId: 686388

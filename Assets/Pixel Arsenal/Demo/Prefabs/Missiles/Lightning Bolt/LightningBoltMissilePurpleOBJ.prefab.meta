@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 25d235f50aa0aec4eb5966fc1dd47911
+timeCreated: 1476280456
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Lightning Bolt/LightningBoltMissilePurpleOBJ.prefab
+  uploadId: 686388

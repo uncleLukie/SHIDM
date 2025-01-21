@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 52d867d0feb9a7f4789c5f3ef6e20b02
+timeCreated: 1475708158
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/AlphaBlend/atlas_retro_AB.mat
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c64dfab7291c2e14083a12379c471775
+timeCreated: 1476106177
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Bullets/BulletGreenOBJ.prefab
+  uploadId: 686388

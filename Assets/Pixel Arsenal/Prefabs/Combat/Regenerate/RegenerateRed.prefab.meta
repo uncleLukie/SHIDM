@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: edc12c27f4be55148887b73ba6acb877
+timeCreated: 1476554452
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Regenerate/RegenerateRed.prefab
+  uploadId: 686388

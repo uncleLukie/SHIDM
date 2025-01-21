@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 474af2c10253abc4da224f42c43ef144
+timeCreated: 1555554907
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Nuke/NukeExplosionBlue.prefab
+  uploadId: 686388

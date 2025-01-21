@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b8c04dc3fcbd50242a694b4740838018
+timeCreated: 1476381542
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Sparkle/SparkleMissileYellow.prefab
+  uploadId: 686388

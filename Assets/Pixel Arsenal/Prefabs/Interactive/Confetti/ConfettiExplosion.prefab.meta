@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4619056c9e5453246a75804c5cbfbcd5
+timeCreated: 1556411473
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Confetti/ConfettiExplosion.prefab
+  uploadId: 686388

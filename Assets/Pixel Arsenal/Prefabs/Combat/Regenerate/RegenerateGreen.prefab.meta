@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 542217a6f1ba35148b50838203a21226
+timeCreated: 1476554455
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Regenerate/RegenerateGreen.prefab
+  uploadId: 686388

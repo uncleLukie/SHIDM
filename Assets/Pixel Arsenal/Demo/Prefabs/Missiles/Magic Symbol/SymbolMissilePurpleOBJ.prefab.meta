@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e111553001d2eb840bfda45b62c8d768
+timeCreated: 1477314562
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Magic Symbol/SymbolMissilePurpleOBJ.prefab
+  uploadId: 686388

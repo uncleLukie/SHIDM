@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a0b8a0c7ea1b607489bf5d8dfd1232a0
+timeCreated: 1480793505
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fat Missile/FatExplosionModular.prefab
+  uploadId: 686388

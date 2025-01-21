@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ed4fef5d7b148b24b813b51ed2d4d42d
+timeCreated: 1475678465
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Laser Bolt/LaserBlueOBJ.prefab
+  uploadId: 686388

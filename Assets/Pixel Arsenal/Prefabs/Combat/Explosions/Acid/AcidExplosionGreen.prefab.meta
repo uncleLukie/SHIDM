@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 340e086ee1a0d2748ab058ba3023b8a0
+timeCreated: 1475881153
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Acid/AcidExplosionGreen.prefab
+  uploadId: 686388

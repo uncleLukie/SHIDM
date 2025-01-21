@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a0693bbf5600f284fa4ecd6d6c054b41
+timeCreated: 1555891153
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/LootRay/LootRay Square/LootRaySquareRed.prefab
+  uploadId: 686388

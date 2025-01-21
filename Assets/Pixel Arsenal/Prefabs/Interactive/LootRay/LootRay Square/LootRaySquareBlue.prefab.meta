@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c7f987de64a947d4f94cba2c5aa357c6
+timeCreated: 1555890640
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/LootRay/LootRay Square/LootRaySquareBlue.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bbdcb8704862fe84e8c133ab2a4f5919
+timeCreated: 1556232664
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/DumDum Bullet/DumDumBulletBlue.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cf9c6e3284f65394085cccc38e48f6ff
+timeCreated: 1476646188
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Portal/PortalYellow.prefab
+  uploadId: 686388

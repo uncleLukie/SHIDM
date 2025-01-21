@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 46c201925a438a243a1987ff16e711aa
+timeCreated: 1476276798
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Lightning Ball/v1/LightningBallExplosionYellow.prefab
+  uploadId: 686388

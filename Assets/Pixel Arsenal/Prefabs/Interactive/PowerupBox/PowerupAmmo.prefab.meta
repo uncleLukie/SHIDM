@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 73dbd756270593a4e9af95c7a0b25eaa
+timeCreated: 1476635426
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/PowerupBox/PowerupAmmo.prefab
+  uploadId: 686388

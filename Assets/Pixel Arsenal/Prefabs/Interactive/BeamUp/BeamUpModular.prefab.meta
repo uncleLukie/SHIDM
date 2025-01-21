@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7c5a98bca19e0ac4795f66e24920cf7d
+timeCreated: 1480789173
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/BeamUp/BeamUpModular.prefab
+  uploadId: 686388

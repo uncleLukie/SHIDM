@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7a7786216d8def941a879505f64a418d
+timeCreated: 1555890933
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/LootRay/LootRay Square/LootRaySquareGreen.prefab
+  uploadId: 686388

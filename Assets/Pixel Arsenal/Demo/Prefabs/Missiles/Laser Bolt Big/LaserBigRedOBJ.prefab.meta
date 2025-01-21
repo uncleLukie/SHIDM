@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 02471b0008fe1e3488df0864925230c0
+timeCreated: 1491839701
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Laser Bolt Big/LaserBigRedOBJ.prefab
+  uploadId: 686388

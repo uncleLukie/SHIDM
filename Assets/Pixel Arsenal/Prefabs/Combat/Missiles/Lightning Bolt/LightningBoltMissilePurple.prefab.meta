@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: adf2f08d11706ab43820f5a8ca0f1094
+timeCreated: 1476280335
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Lightning Bolt/LightningBoltMissilePurple.prefab
+  uploadId: 686388

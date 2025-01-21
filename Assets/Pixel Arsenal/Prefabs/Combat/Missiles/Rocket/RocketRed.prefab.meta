@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ca86bc1940ee43b40954827ebcdd39fd
+timeCreated: 1476374741
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Rocket/RocketRed.prefab
+  uploadId: 686388

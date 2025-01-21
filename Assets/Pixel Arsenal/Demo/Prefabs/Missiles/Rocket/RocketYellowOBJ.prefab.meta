@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c569dfd83afab1e47b010ae44f7ac56b
+timeCreated: 1476380553
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Rocket/RocketYellowOBJ.prefab
+  uploadId: 686388

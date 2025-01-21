@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3380da07015e0d2488a337de6aa0cc8e
+timeCreated: 1476646115
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Portal/PortalPurple.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b11456a81e43ebf478eedbe50258b3b9
+timeCreated: 1476373659
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Rocket/RocketExplosionYellow.prefab
+  uploadId: 686388

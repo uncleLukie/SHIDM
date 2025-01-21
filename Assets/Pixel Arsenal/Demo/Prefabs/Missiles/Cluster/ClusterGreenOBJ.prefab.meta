@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 099c4d23f756cd145a4b132b97b7192b
+timeCreated: 1476380851
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Cluster/ClusterGreenOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 40f02a1bf9e1857489713060bac5bf1c
+timeCreated: 1476195422
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Fireball/FireballBlue.prefab
+  uploadId: 686388

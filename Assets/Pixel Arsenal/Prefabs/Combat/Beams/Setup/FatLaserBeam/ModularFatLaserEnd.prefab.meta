@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2fd0da3f645fa1646a6d7fdbd6062a14
+timeCreated: 1480863712
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Setup/FatLaserBeam/ModularFatLaserEnd.prefab
+  uploadId: 686388

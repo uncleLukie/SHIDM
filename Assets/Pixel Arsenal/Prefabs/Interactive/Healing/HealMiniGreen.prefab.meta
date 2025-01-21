@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f4b2000032926db418e35fd3c4378cc1
+timeCreated: 1574786899
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Healing/HealMiniGreen.prefab
+  uploadId: 686388

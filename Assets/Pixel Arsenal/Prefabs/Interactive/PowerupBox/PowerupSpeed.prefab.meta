@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 27e236a4bd8728149a1cc58144a23cd9
+timeCreated: 1476639599
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/PowerupBox/PowerupSpeed.prefab
+  uploadId: 686388

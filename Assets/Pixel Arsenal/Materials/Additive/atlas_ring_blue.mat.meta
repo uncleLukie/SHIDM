@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ba57f625cbb7f5744b517182e93b3953
+timeCreated: 1476475602
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Additive/atlas_ring_blue.mat
+  uploadId: 686388

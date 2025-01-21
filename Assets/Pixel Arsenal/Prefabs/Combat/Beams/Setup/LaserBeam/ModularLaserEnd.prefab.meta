@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 46d2df1ddd60f604c8551442858524e9
+timeCreated: 1480864161
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Setup/LaserBeam/ModularLaserEnd.prefab
+  uploadId: 686388

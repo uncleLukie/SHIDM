@@ -12,6 +12,8 @@ namespace _Game.Scripts.Managers
         private Vector3 _startPosition;
         private Transform _bulletTransform;
 
+        [SerializeField] private float timeScale = 0.2f;
+
         private void Awake()
         {
             if (instance == null) instance = this;
@@ -22,7 +24,7 @@ namespace _Game.Scripts.Managers
 
         private void Start()
         {
-            Time.timeScale = 0.3f;
+            Time.timeScale = timeScale;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
             
             GameObject bullet = GameObject.FindGameObjectWithTag("Bullet");

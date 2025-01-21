@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 929075accf21ecc478b380a51219c466
+timeCreated: 1476196842
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Fireball Big/BigFireballGreen.prefab
+  uploadId: 686388

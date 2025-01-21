@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a78c621dcfa15bd4fae749ba1fae706e
+timeCreated: 1476197169
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Fireball/FireballPurpleOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b6b81e82ca0d16e4a94dc6cc1abbaf88
+timeCreated: 1476550081
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Pickups/Orb/OrbYellow.prefab
+  uploadId: 686388

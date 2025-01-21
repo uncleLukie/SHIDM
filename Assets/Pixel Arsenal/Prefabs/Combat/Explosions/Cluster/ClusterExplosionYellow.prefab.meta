@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4f3ae9a9ea2848f428d013e2a283ecb6
+timeCreated: 1476372583
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Cluster/ClusterExplosionYellow.prefab
+  uploadId: 686388

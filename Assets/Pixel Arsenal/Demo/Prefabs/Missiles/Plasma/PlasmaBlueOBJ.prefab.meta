@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 282fe1dc73efc294ebefb5c70e14399b
+timeCreated: 1476290183
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Plasma/PlasmaBlueOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c337ab6780e16a346a8540a73f73c6bc
+timeCreated: 1476188615
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Fat Missile/FatMissileRedOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 55fce732ae6f09a48aeb509e89030dec
+timeCreated: 1513007787
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Shadow/ShadowMuzzle.prefab
+  uploadId: 686388

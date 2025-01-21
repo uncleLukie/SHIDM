@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 281ee8fec5512e044bd83578c36800e5
+timeCreated: 1476383448
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Sparkle/SparkleExplosionBlue.prefab
+  uploadId: 686388

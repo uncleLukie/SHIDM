@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ae54bca8b1853274ca2d9231f1df580f
+timeCreated: 1477313999
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Symbol/SymbolMissileRed.prefab
+  uploadId: 686388

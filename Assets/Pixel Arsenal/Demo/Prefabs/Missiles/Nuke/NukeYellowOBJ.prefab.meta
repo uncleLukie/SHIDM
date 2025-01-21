@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 80419d960712cab48a6743b4a7cba7ee
+timeCreated: 1556373792
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Nuke/NukeYellowOBJ.prefab
+  uploadId: 686388

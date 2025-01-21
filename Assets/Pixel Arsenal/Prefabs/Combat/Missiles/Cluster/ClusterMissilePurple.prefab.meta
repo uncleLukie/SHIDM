@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 58350bb34d78075489dfe796d887a180
+timeCreated: 1476379524
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Cluster/ClusterMissilePurple.prefab
+  uploadId: 686388

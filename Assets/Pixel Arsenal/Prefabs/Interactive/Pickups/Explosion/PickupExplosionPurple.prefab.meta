@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2f9dd379088901847b9108d2e5981dbb
+timeCreated: 1476726764
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Pickups/Explosion/PickupExplosionPurple.prefab
+  uploadId: 686388

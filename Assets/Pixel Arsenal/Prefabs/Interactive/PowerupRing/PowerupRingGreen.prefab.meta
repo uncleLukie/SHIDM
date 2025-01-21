@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 58827734dac89424da76a1b49c74d0fb
+timeCreated: 1476475869
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/PowerupRing/PowerupRingGreen.prefab
+  uploadId: 686388

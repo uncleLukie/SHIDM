@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1abc15be90b5da746a6855807c7d293e
+timeCreated: 1513014380
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Lightning/LightningMuzzleModular.prefab
+  uploadId: 686388

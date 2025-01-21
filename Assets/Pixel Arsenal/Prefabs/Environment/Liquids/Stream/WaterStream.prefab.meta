@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e92a1c9aff2b6d24d8859bcb729fb885
+timeCreated: 1555979478
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Liquids/Stream/WaterStream.prefab
+  uploadId: 686388

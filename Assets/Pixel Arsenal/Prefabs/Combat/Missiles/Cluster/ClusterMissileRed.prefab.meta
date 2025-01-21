@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8f5cb9f89122a834e9b0be3950ede732
+timeCreated: 1476374724
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Cluster/ClusterMissileRed.prefab
+  uploadId: 686388

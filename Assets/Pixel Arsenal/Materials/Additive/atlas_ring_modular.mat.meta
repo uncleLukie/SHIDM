@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7b1c76eff6663ab4aaaf49fe1f2c2c2c
+timeCreated: 1480786903
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Additive/atlas_ring_modular.mat
+  uploadId: 686388

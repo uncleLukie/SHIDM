@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 53a44cb1d2dc3214d97af5682ef40c8b
+timeCreated: 1461540931
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Scenes/demo_missiles.unity
+  uploadId: 686388

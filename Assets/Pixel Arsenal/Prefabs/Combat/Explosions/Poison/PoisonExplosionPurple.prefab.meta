@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9efff8a312a017b42b21b0036d650cc8
+timeCreated: 1475872676
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Poison/PoisonExplosionPurple.prefab
+  uploadId: 686388

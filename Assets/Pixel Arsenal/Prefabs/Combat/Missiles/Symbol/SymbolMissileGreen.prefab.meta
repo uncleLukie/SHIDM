@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 816610dd3f7544a49986fd879e15a37c
+timeCreated: 1477314046
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Symbol/SymbolMissileGreen.prefab
+  uploadId: 686388

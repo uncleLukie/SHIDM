@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9da7920c982a18d49af893f503ba7db2
+timeCreated: 1475708592
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Fat Bullet/FatBulletRed.prefab
+  uploadId: 686388

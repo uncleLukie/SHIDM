@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6f1bf9da2b4f94d40b7ef2b5b92254e3
+timeCreated: 1555893333
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Healing/HealGreen.prefab
+  uploadId: 686388

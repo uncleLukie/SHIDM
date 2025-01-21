@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 616f69804973e2544aef82c5610d8b3b
+timeCreated: 1476112794
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Acid/AcidMissileBlue.prefab
+  uploadId: 686388

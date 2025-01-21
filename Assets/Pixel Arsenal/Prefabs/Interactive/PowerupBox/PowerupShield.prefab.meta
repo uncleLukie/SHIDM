@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3f4b74c2b5a6248448102a83b6f81ff1
+timeCreated: 1476639549
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/PowerupBox/PowerupShield.prefab
+  uploadId: 686388

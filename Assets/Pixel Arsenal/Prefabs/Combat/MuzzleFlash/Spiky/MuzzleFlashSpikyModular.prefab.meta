@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 87f2418c3969ca44bbb5524ba1254057
+timeCreated: 1480790931
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Spiky/MuzzleFlashSpikyModular.prefab
+  uploadId: 686388

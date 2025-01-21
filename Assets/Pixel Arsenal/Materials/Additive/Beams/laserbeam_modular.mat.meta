@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 33b0a98beeba2654a8fced16aa6c8c09
+timeCreated: 1480864047
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Additive/Beams/laserbeam_modular.mat
+  uploadId: 686388

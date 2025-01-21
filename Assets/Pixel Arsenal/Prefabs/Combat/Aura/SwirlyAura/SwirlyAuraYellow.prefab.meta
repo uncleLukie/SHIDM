@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 558ec2cbac11b904488a13a8517bb768
+timeCreated: 1477056861
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Aura/SwirlyAura/SwirlyAuraYellow.prefab
+  uploadId: 686388

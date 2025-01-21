@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 24f2ab54fd64dff47a545903bc115f3c
+timeCreated: 1513003837
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Fireball/MuzzleFlashFireballRed.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: de7bec0285771c44c98097fc5566a81f
+timeCreated: 1491839661
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Laser Bolt Big/LaserExplosionBigModular.prefab
+  uploadId: 686388

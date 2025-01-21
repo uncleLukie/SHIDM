@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6afaf1a269b2a01499f01c44285b99e9
+timeCreated: 1476554454
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Regenerate/RegenerateYellow.prefab
+  uploadId: 686388

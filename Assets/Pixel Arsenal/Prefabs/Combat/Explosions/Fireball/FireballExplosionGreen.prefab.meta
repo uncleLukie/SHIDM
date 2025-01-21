@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4d3272f6531f6e14ba3544df07c0fffd
+timeCreated: 1476195624
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fireball/FireballExplosionGreen.prefab
+  uploadId: 686388

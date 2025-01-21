@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5c20c00b7ee7959498dc6de73e377e26
+timeCreated: 1476638544
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Powerups/powerup_shield.mat
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1b28644febac1c146aea9a108ceef2ce
+timeCreated: 1476042326
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Bullets/BulletExplosionYellow.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: af256c061b8da174a9cb11eb59a1a9cd
+timeCreated: 1477312691
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Symbol/SymbolExplosionPurple.prefab
+  uploadId: 686388

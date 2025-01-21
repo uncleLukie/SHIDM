@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ce293cfc081257142826125d147b71a1
+timeCreated: 1476289964
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Plasma/PlasmaMissileYellow.prefab
+  uploadId: 686388

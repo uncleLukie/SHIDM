@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 69eef08ba093e7043a884389294c691e
+timeCreated: 1475508701
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Lightning Bolt/LightningBoltExplosionBlue.prefab
+  uploadId: 686388

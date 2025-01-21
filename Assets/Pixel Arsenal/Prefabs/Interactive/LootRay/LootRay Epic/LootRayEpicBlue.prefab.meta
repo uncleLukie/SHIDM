@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a47e8fc45b69d8545bc265ab73da7092
+timeCreated: 1574788436
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/LootRay/LootRay Epic/LootRayEpicBlue.prefab
+  uploadId: 686388

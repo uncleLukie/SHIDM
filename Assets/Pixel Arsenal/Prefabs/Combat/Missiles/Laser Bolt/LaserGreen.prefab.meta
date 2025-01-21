@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 036242f62be2c644f9dd90ccf34fc3d4
+timeCreated: 1476227784
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Laser Bolt/LaserGreen.prefab
+  uploadId: 686388

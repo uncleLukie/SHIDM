@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e775f08eba51f3b48bbfd681e8e13bbb
+timeCreated: 1512934550
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Rocket/MuzzleFlashRocketRed.prefab
+  uploadId: 686388

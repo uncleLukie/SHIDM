@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7f4d2b7836fcd0e4aa35c18a400ecf82
+timeCreated: 1476383587
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Sparkle/SparkleMissilePurpleOBJ.prefab
+  uploadId: 686388

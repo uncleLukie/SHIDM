@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 795900cdc7960c045a406f19df48096f
+timeCreated: 1512953039
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Laser/MuzzleFlashLaserBlue.prefab
+  uploadId: 686388

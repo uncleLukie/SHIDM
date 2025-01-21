@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b1efb33f5c45bed439e6d5c59b5da60b
+timeCreated: 1476379361
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Cluster/ClusterMissileBlue.prefab
+  uploadId: 686388

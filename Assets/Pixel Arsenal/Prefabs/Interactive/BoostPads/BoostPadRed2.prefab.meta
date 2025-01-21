@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 37dd363b864053048847f4e9a52dec36
+timeCreated: 1476723655
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/BoostPads/BoostPadRed2.prefab
+  uploadId: 686388

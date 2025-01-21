@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 191e00831477404439caf82bde541601
+timeCreated: 1480789637
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Flamethrower/Pixel/PixelFlameThrowerModular.prefab
+  uploadId: 686388

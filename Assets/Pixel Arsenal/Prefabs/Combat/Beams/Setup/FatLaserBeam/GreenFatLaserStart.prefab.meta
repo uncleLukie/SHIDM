@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e55eb2d48aad6bb458aebe5367556493
+timeCreated: 1476891343
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Setup/FatLaserBeam/GreenFatLaserStart.prefab
+  uploadId: 686388

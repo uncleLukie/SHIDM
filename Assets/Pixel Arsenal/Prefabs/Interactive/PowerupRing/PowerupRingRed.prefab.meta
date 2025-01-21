@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 06c5279cbb47e9045a2715869f31717d
+timeCreated: 1476475870
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/PowerupRing/PowerupRingRed.prefab
+  uploadId: 686388

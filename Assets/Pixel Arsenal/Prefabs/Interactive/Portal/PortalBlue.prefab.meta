@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cda1dafbd8a5c4b459b1fbac5d769f5f
+timeCreated: 1476645860
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Portal/PortalBlue.prefab
+  uploadId: 686388

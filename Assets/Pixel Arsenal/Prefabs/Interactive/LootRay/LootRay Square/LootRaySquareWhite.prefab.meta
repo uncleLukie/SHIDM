@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7807f071f259fbe4baa9dd55ce49ce96
+timeCreated: 1555891340
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/LootRay/LootRay Square/LootRaySquareWhite.prefab
+  uploadId: 686388

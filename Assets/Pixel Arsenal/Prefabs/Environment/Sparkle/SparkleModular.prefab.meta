@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f6720d72883b0e642aad827d302db366
+timeCreated: 1480791515
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Sparkle/SparkleModular.prefab
+  uploadId: 686388

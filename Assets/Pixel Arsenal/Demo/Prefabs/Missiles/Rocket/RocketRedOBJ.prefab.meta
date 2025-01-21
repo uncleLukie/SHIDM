@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d9bf8963160ae234aaf65b53a11ffe20
+timeCreated: 1475613960
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Rocket/RocketRedOBJ.prefab
+  uploadId: 686388

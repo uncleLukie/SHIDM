@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0834c6f27e35cf049a216ecd077717fc
+timeCreated: 1475595371
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Laser Bolt/LaserRed.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0297b392554e326418fc0a2ad12c57b7
+timeCreated: 1480791573
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Spiky/SpikyExplosionModular.prefab
+  uploadId: 686388

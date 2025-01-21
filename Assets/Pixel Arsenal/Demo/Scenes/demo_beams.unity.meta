@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f06f0f67fdd8a234994258f42c4beddb
+timeCreated: 1476810212
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Scenes/demo_beams.unity
+  uploadId: 686388

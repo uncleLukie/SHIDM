@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 844fc405257605141ab4bb51d1da63a5
+timeCreated: 1574788429
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/LootRay/LootRay Epic/LootRayEpicRed.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a74b976a3f009444e9fc971b209b29db
+timeCreated: 1555895431
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Blood/BloodExplosionDirectional.prefab
+  uploadId: 686388

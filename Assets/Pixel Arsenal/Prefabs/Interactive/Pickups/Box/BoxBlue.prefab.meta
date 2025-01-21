@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8fbbcacca1cbc384fae4c8d4ec3ceeb7
+timeCreated: 1476551218
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Pickups/Box/BoxBlue.prefab
+  uploadId: 686388

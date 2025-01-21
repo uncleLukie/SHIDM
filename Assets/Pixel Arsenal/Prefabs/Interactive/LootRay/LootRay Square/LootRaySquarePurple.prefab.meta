@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ad9e648a46b4d074396d81112afe8f30
+timeCreated: 1555891081
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/LootRay/LootRay Square/LootRaySquarePurple.prefab
+  uploadId: 686388

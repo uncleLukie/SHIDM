@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 457c943acfc996644b80243e1b6d32f8
+timeCreated: 1476726839
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Pickups/Explosion/PickupExplosionGreen.prefab
+  uploadId: 686388

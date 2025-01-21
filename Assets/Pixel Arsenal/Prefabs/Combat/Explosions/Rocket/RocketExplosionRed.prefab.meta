@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c09b030f4ceef2a42a9e5857d6e092ec
+timeCreated: 1476373445
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Rocket/RocketExplosionRed.prefab
+  uploadId: 686388

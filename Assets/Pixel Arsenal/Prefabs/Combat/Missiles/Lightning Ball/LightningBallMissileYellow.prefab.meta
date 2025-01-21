@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 75d15070080e35e438f5b85fc91935b5
+timeCreated: 1476275767
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Lightning Ball/LightningBallMissileYellow.prefab
+  uploadId: 686388

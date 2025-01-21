@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7a6d374798dc95144967b4fe8d539a20
+timeCreated: 1476379956
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Poison/PoisonMissileRedOBJ.prefab
+  uploadId: 686388

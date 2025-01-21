@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5e4f184e6d656c44eaf3b3b9b994d692
+timeCreated: 1574817528
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Liquids/Explosion/LavaExplosion.prefab
+  uploadId: 686388

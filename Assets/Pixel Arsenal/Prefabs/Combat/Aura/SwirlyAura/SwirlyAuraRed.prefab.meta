@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0b420644f160bda4481af637ea55222d
+timeCreated: 1477056721
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Aura/SwirlyAura/SwirlyAuraRed.prefab
+  uploadId: 686388

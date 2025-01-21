@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2bcbf15d5438e6849b8b592be75384bd
+timeCreated: 1476636641
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Powerups/powerup_energy.mat
+  uploadId: 686388

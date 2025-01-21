@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: add120b9501371b488f2d56794c426b4
+timeCreated: 1476383398
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Sparkle/SparkleExplosionGreen.prefab
+  uploadId: 686388

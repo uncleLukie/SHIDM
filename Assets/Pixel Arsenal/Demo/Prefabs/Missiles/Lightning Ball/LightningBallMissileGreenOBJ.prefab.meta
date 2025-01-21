@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 03930bf90ebae9b4c8a553bed61e1b10
+timeCreated: 1476277664
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Lightning Ball/LightningBallMissileGreenOBJ.prefab
+  uploadId: 686388

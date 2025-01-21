@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0161011c3d0b2ad4d997078300ab1c89
+timeCreated: 1480863183
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Sparkle/SparkleMissileModular.prefab
+  uploadId: 686388

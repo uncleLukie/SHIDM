@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a42fb76af6cb33646be6633428f143cb
+timeCreated: 1476379791
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Rocket/RocketPurple.prefab
+  uploadId: 686388

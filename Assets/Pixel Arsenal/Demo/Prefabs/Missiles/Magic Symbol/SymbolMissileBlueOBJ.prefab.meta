@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 38228c8a2e4426441840ae26833beeb0
+timeCreated: 1477313211
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Magic Symbol/SymbolMissileBlueOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 38b92f1bcacea924e94fa17a2fc1769f
+timeCreated: 1556236059
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Sword/SwordImpact/SwordImpactModular.prefab
+  uploadId: 686388

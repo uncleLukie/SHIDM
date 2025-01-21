@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6daa0346e0e55934081606d918be34ee
+timeCreated: 1476213127
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Glitter/GlitterMissileGreenOBJ.prefab
+  uploadId: 686388

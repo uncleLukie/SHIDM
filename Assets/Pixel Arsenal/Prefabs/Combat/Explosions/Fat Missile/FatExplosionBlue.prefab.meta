@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b68143166a8e288438c316a7f7b0191b
+timeCreated: 1476185595
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fat Missile/FatExplosionBlue.prefab
+  uploadId: 686388

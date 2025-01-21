@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 26ff6f79eeb492e47a36e9e7e57c2f7b
+timeCreated: 1476635321
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Powerups/powerup_ammo.mat
+  uploadId: 686388

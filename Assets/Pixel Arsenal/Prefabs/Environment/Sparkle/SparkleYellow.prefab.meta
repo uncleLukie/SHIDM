@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a2e79eb8f4540c8438677ffde9018db4
+timeCreated: 1476893020
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Sparkle/SparkleYellow.prefab
+  uploadId: 686388

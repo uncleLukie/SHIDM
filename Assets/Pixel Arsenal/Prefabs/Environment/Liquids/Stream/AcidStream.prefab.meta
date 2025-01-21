@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 587f6f8d284e2c843b2eda7725ab92dd
+timeCreated: 1555979850
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Liquids/Stream/AcidStream.prefab
+  uploadId: 686388

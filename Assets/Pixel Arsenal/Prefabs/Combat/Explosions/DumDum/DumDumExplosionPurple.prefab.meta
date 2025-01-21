@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 658d54c74a8d49e44a45d3057fd52207
+timeCreated: 1555973271
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/DumDum/DumDumExplosionPurple.prefab
+  uploadId: 686388

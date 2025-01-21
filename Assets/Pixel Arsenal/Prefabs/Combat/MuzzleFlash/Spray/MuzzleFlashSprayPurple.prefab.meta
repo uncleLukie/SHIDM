@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d526bbe220688b249afce4cfc8951571
+timeCreated: 1513002816
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/MuzzleFlash/Spray/MuzzleFlashSprayPurple.prefab
+  uploadId: 686388

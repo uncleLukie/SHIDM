@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1749128d9fa4b654db12b9aecc753e71
+timeCreated: 1476891353
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Additive/Beams/laserbeamfat_green.mat
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 93ceef333b21c134ca37ce99e1d45687
+timeCreated: 1556233055
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/DumDum Bullet/DumDumBulletGreen.prefab
+  uploadId: 686388

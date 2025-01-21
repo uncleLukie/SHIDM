@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f4eecb485c8d11549bf44f1023e92a01
+timeCreated: 1476639398
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/PowerupBox/PowerupEnergy.prefab
+  uploadId: 686388

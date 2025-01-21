@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fdbf1e89391833d4081081704a78cfa8
+timeCreated: 1477160989
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Fire/Ground/GroundFireRed.prefab
+  uploadId: 686388

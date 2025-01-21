@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d3b0d84ff68c0654191182c929a51062
+timeCreated: 1476543838
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Flamethrower/Pixel/PixelFlameThrowerYellow.prefab
+  uploadId: 686388

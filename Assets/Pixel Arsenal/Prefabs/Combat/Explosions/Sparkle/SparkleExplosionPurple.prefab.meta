@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4514898663fbb0148a8a2179f728db48
+timeCreated: 1476383574
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Sparkle/SparkleExplosionPurple.prefab
+  uploadId: 686388

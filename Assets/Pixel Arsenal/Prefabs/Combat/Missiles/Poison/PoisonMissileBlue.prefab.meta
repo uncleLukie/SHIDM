@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2d377303bc33ed04ebec82b5c3036ade
+timeCreated: 1476297003
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Poison/PoisonMissileBlue.prefab
+  uploadId: 686388

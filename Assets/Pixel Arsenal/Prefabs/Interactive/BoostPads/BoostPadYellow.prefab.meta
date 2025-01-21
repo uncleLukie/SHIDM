@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b623ca918782b4448ac153f3252eb907
+timeCreated: 1476715863
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/BoostPads/BoostPadYellow.prefab
+  uploadId: 686388

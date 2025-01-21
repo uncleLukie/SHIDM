@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5a603b0d1e162534998680f1954bd1a9
+timeCreated: 1556639319
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/PowerupBox/PowerupHeart.prefab
+  uploadId: 686388

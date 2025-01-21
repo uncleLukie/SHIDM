@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 114af15af51533444a74051bcd0ffb78
+timeCreated: 1574817921
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Dust/AreaDustCalm.prefab
+  uploadId: 686388

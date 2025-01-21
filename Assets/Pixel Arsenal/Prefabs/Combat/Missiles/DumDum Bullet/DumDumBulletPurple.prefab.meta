@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e8e3aa98b8b50e14e95553f3755e3d92
+timeCreated: 1556233120
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/DumDum Bullet/DumDumBulletPurple.prefab
+  uploadId: 686388

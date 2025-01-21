@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 23e7fad12258a034ea9088ed57f0db4f
+timeCreated: 1476115511
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fat Bullet/FatBulletExplosionYellow.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d524d3bd34d46a84fb705d360c6ddec0
+timeCreated: 1476477296
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/BeamUp/BeamUpBlue.prefab
+  uploadId: 686388

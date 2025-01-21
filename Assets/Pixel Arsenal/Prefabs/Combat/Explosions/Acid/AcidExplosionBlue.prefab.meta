@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dced2fc32a8df41498ec050e598128a1
+timeCreated: 1476113397
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Acid/AcidExplosionBlue.prefab
+  uploadId: 686388

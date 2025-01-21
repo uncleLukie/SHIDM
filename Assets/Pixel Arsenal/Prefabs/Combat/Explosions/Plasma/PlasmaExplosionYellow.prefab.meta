@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e97f12ad00910c143b5a173d2c32e75b
+timeCreated: 1476289801
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Plasma/PlasmaExplosionYellow.prefab
+  uploadId: 686388

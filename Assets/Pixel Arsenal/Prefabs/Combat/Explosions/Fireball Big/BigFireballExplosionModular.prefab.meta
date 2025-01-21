@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d9819475ad57831449d111577e329246
+timeCreated: 1480794398
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fireball Big/BigFireballExplosionModular.prefab
+  uploadId: 686388

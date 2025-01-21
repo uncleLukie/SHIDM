@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 34ed30a4f8c117e41b1a06f361f17e74
+timeCreated: 1476891585
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Setup/FatLaserBeam/PurpleFatLaserStart.prefab
+  uploadId: 686388

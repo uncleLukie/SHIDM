@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bd99dae9f6a08324fbc9bf0b12d8a95b
+timeCreated: 1555860144
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Static Beams/LaserBeam/LaserBeamStaticGreen.prefab
+  uploadId: 686388

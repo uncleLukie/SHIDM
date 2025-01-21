@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: da395ba1af3864649b8b40e0852898d9
+timeCreated: 1556412127
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Confetti/ConfettiRainDirectional.prefab
+  uploadId: 686388

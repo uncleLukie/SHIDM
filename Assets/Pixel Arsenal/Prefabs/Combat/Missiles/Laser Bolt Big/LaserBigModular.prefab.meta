@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 96f829a907f3fe041a040350cb8b3c5f
+timeCreated: 1491838512
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Laser Bolt Big/LaserBigModular.prefab
+  uploadId: 686388

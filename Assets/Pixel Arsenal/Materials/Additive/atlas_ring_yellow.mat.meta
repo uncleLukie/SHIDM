@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a55909e67f0e0d244b3e498b361ee789
+timeCreated: 1476475764
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Additive/atlas_ring_yellow.mat
+  uploadId: 686388

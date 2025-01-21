@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3b6c24ddf9e9ad44b9cae828eadac37d
+timeCreated: 1476195747
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Fireball/FireballExplosionPurple.prefab
+  uploadId: 686388

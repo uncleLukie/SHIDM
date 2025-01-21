@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 020e9128d59773947a4852c586d3b6ef
+timeCreated: 1476197168
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Fireball/FireballYellowOBJ.prefab
+  uploadId: 686388

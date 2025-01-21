@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 53310ac4ef672c24f8481ef5bb6f7af8
+timeCreated: 1474297128
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Fireball Big/BigFireballRed.prefab
+  uploadId: 686388

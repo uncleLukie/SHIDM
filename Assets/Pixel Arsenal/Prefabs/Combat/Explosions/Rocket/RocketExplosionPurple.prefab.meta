@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: acf5e9f93b47ba54ba2aca8603b1ef9c
+timeCreated: 1476373773
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Rocket/RocketExplosionPurple.prefab
+  uploadId: 686388

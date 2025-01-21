@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7f92bd9d30bc7074583476146bb10e11
+timeCreated: 1556375311
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Nuke/NukeMissilePurple.prefab
+  uploadId: 686388

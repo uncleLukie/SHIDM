@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cf2c04589e6724e4d8f9945dda22c7a2
+timeCreated: 1475504361
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Sparkle/SparkleExplosionRed.prefab
+  uploadId: 686388

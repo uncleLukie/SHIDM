@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 395a7db52e95e864f83b14fae83d775d
+timeCreated: 1476278435
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Lightning Bolt/LightningBoltExplosionYellow.prefab
+  uploadId: 686388

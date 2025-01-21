@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ba35a28fc7a52834bb190e405bcfcac8
+timeCreated: 1556204352
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Death/DeathEvil.prefab
+  uploadId: 686388

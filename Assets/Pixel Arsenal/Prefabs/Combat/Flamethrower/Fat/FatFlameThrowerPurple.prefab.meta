@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 30891f272fa2b2643a25733e0b1fd739
+timeCreated: 1477245715
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Flamethrower/Fat/FatFlameThrowerPurple.prefab
+  uploadId: 686388

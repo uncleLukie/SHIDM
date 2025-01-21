@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 46ff8401d45974f4891ab137bc677259
+timeCreated: 1476726763
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Interactive/Pickups/Explosion/PickupExplosionRed.prefab
+  uploadId: 686388

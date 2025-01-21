@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e825aec23d3079d419f89cd459218fa7
+timeCreated: 1477315303
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Shadow/ShadowMissileOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d803d21f2cd2cec40973bf421094210a
+timeCreated: 1476905020
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Spiky/SpikyExplosionPurple.prefab
+  uploadId: 686388

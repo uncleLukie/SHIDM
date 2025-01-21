@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 84a408a137f362a4ba06f0c301afc3a4
+timeCreated: 1476112120
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Missiles/Acid/AcidMissileRed.prefab
+  uploadId: 686388

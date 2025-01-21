@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 95788260895fe5e488821775f8ab98ab
+timeCreated: 1477162329
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Fire/Torch/TorchFireBlue.prefab
+  uploadId: 686388

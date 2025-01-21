@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5e007d3e7dfeb574eb815eeb428e4429
+timeCreated: 1476109044
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Acid/AcidExplosionYellow.prefab
+  uploadId: 686388

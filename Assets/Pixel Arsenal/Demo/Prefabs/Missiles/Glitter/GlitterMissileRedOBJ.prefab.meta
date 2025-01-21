@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: af25d4e4ad7112746873d52c676f65e8
+timeCreated: 1475612144
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/Glitter/GlitterMissileRedOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f4ec9fceee7fff44688cef6643f7805a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Scenes/demo_missilesSettings.lighting
+  uploadId: 686388

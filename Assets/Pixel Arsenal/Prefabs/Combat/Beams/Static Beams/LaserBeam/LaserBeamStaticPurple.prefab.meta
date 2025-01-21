@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8070d03f24aaa5f4ebbfaf00688679e2
+timeCreated: 1555860148
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Beams/Static Beams/LaserBeam/LaserBeamStaticPurple.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3d1a87d715d37cd419f805a1da531494
+timeCreated: 1480863301
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Symbol/SymbolExplosionModular.prefab
+  uploadId: 686388

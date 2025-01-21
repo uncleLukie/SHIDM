@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bc6d156303358da4e82d4e7d0cb50e5d
+timeCreated: 1475598143
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Plasma/PlasmaExplosionRed.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 15d73a7a721842a4c9cd26d1bba3d3f7
+timeCreated: 1556234126
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Demo/Prefabs/Missiles/DumDum/DumDumGreenOBJ.prefab
+  uploadId: 686388

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8fa792556b2db4f4eb7c2adb0f4fa4a1
+timeCreated: 1556236133
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Sword/SwordImpact/SwordImpactRed.prefab
+  uploadId: 686388

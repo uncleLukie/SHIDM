@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 64905ca2ded5b544cb1764692da1d272
+timeCreated: 1480794796
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Combat/Explosions/Lightning Ball/v1/LightningBallExplosionModular.prefab
+  uploadId: 686388

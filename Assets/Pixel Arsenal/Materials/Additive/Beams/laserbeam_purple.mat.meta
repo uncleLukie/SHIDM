@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ddfbbaef717153741be49d846cf29968
+timeCreated: 1476813717
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Materials/Additive/Beams/laserbeam_purple.mat
+  uploadId: 686388

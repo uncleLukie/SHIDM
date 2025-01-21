@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 68e36aa0999a80d429ffd21cb0095cf5
+timeCreated: 1477162323
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74726
+  packageName: Pixel Arsenal
+  packageVersion: 1.55
+  assetPath: Assets/Pixel Arsenal/Prefabs/Environment/Fire/Torch/TorchFireYellow.prefab
+  uploadId: 686388
