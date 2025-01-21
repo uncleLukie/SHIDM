@@ -4,15 +4,24 @@ namespace _Game.Scripts.Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        public int health = 1;
+        [Header("Animator References")]
+        [Tooltip("Animator on this enemy (with default idle controller).")]
+        public Animator animator;
 
-        public void TakeDamage(int damage)
+        [Tooltip("Death animator controller (people-dead-pose).")]
+        public RuntimeAnimatorController deathController;
+
+        public void TriggerDeath()
         {
-            health -= damage;
-            if (health <= 0)
+            // Swap animator controller to death animation
+            if (animator != null && deathController != null)
             {
-                // trigger death logic, animations, etc.
-                Destroy(gameObject);
+                animator.runtimeAnimatorController = deathController;
+                animator.Play("dead-pose", 0, 0f);
+            }
+            else
+            {
+                Debug.LogWarning($"Enemy '{name}' has no assigned deathController or animator!");
             }
         }
     }
