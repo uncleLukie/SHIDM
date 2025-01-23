@@ -12,7 +12,7 @@ namespace _Game.Scripts.Managers
         private Vector3 _startPosition;
         private Transform _bulletTransform;
 
-        [SerializeField] private float timeScale = 0.2f;
+        [SerializeField] private float timeScale = 0.1f;
 
         private void Awake()
         {

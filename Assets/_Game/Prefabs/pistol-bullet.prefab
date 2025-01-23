@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2234207112990217}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.48356566, y: -0.51282305, z: -0.48683938, w: 0.51591116}
-  m_LocalPosition: {x: 0.15499993, y: -0.4366659, z: -0.08500004}
+  m_LocalRotation: {x: -0.48251277, y: -0.51357895, z: -0.45559597, w: 0.54392135}
+  m_LocalPosition: {x: 0.855, y: 0.23666668, z: -0.08500004}
   m_LocalScale: {x: 0.49999988, y: 0.4992319, z: 0.3336756}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -269,10 +269,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 15
+  maxForwardSpeed: 25
   lateralSpeed: 8
+  turnSmooth: 10
   mouseSensitivity: 2
   gravityMultiplier: 0.1
+  forwardSlowdown: 0.46
   collisionSpeedBoost: 5
+  upwardBoostDuration: 0.5
   collisionUpwardBoost: 2
   bloodFXPrefab: {fileID: 130776, guid: a74b976a3f009444e9fc971b209b29db, type: 3}
 --- !u!1 &8811127397419622758
@@ -304,8 +308,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8811127397419622758}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.48356566, y: -0.51282305, z: -0.48683938, w: 0.51591116}
-  m_LocalPosition: {x: 0.15499993, y: -0.4366659, z: -0.08500004}
+  m_LocalRotation: {x: -0.48251277, y: -0.51357895, z: -0.45559597, w: 0.54392135}
+  m_LocalPosition: {x: 0.855, y: 0.23666668, z: -0.08500004}
   m_LocalScale: {x: 0.49999988, y: 0.4992319, z: 0.3336756}
   m_ConstrainProportionsScale: 0
   m_Children: []
