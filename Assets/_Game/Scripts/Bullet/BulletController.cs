@@ -9,11 +9,14 @@ namespace _Game.Scripts.Bullet
         [Header("Movement Settings")]
         public float forwardSpeed = 20f;
         public float maxForwardSpeed = 25f;
-        public float maxInfluence = 2f;
+        public float inputInfluence = 2f;
         public float inputSensitivity = 2f;
         public float deadzone = 0.2f;
         public float gravityMultiplier = 0.02f;
         public float forwardSlowdown = 0.5f;
+
+        [Header("Rotation Settings")]
+        public float maxRotationAngle = 45f;
 
         [Header("Collision Boosts")]
         public float collisionSpeedBoost = 5f;
@@ -24,24 +27,36 @@ namespace _Game.Scripts.Bullet
         public GameObject bloodFXPrefab;
 
         [Header("Anchor System")]
-        [Tooltip("Anchor for the Cinemachine camera.")]
-        public Transform cameraAnchor;
+        [Tooltip("Tag used to find the Cinemachine camera anchor.")]
+        public string cameraAnchorTag = "CamAnchor";
         public float anchorSmoothSpeed = 5f; // How fast the anchor catches up
 
         private Rigidbody _rb;
-        private bool _isBulletFrozen;
-
-        // Movement variables
-        private Vector2 _inputDirection;
-        private Vector3 _trajectoryOffset;
+        private Transform cameraAnchor; // Camera anchor found via tag
+        private Vector2 _inputDirection; // Input direction from mouse/controller
+        private Vector3 _trajectory;    // Bullet trajectory after release
         private float _verticalVelocity;
         private float _upwardBoostTimer;
+        private bool _isBulletFrozen;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
-            _rb.useGravity = false;
+            _rb.useGravity = false; // Manual gravity
             _rb.interpolation = RigidbodyInterpolation.Interpolate;
+
+            _trajectory = Vector3.left * forwardSpeed;
+
+            // Find the camera anchor using the specified tag
+            GameObject anchorObject = GameObject.FindGameObjectWithTag(cameraAnchorTag);
+            if (anchorObject != null)
+            {
+                cameraAnchor = anchorObject.transform;
+            }
+            else
+            {
+                Debug.LogWarning($"Camera anchor with tag '{cameraAnchorTag}' not found.");
+            }
         }
 
         private void Update()
@@ -54,23 +69,9 @@ namespace _Game.Scripts.Bullet
             Vector2 combinedInput = mouseInput + controllerInput;
 
             // Apply deadzone
-            if (combinedInput.magnitude < deadzone)
-            {
-                _inputDirection = Vector2.zero;
-            }
-            else
-            {
-                _inputDirection = combinedInput.normalized * Mathf.Min((combinedInput.magnitude - deadzone) * inputSensitivity, 1f);
-            }
+            _inputDirection = combinedInput.magnitude < deadzone ? Vector2.zero : combinedInput.normalized;
 
-            // Adjust trajectory offset
-            _trajectoryOffset = new Vector3(
-                _inputDirection.x * maxInfluence,
-                _inputDirection.y * maxInfluence,
-                0f
-            );
-
-            // Gravity and upward force logic
+            // Adjust vertical velocity for gravity
             if (_upwardBoostTimer > 0)
             {
                 _upwardBoostTimer -= Time.deltaTime;
@@ -80,10 +81,10 @@ namespace _Game.Scripts.Bullet
                 _verticalVelocity += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
             }
 
-            // Natural forward slowdown
+            // Gradual forward slowdown
             forwardSpeed = Mathf.Max(forwardSpeed - forwardSlowdown * Time.deltaTime, 0f);
 
-            // Update the camera anchor's position
+            // Update the camera anchor position
             UpdateCameraAnchor();
         }
 
@@ -92,20 +93,34 @@ namespace _Game.Scripts.Bullet
             if (_isBulletFrozen) return;
 
             // Forward velocity along -X
-            Vector3 forwardVelocity = new Vector3(-Mathf.Min(forwardSpeed, maxForwardSpeed), 0f, 0f);
+            Vector3 forwardVelocity = Vector3.left * forwardSpeed;
 
-            // Combine trajectory offset and gravity
-            Vector3 adjustedVelocity = forwardVelocity + _trajectoryOffset + new Vector3(0f, _verticalVelocity, 0f);
-
-            // Set bullet velocity
-            _rb.linearVelocity = adjustedVelocity;
-
-            // Adjust bullet orientation
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                Quaternion.LookRotation(adjustedVelocity.normalized, Vector3.up),
-                Time.deltaTime * 5f
+            // Apply input influence to trajectory
+            Vector3 inputVelocity = new Vector3(
+                _inputDirection.x * inputInfluence,
+                _inputDirection.y * inputInfluence + _verticalVelocity,
+                0f
             );
+
+            // Combine forward and input velocities
+            _trajectory = forwardVelocity + inputVelocity;
+
+            // Update Rigidbody velocity
+            _rb.linearVelocity = _trajectory;
+
+            // Adjust rotation based on trajectory
+            AdjustBulletRotation();
+        }
+
+        private void AdjustBulletRotation()
+        {
+            // Calculate target rotation from trajectory
+            float targetPitch = Mathf.Clamp(_trajectory.y * maxRotationAngle / inputInfluence, -maxRotationAngle, maxRotationAngle); // Up/Down
+            float targetYaw = Mathf.Clamp(_trajectory.z * maxRotationAngle / inputInfluence, -maxRotationAngle, maxRotationAngle);  // Left/Right
+
+            // Calculate and apply target rotation
+            Quaternion targetRotation = Quaternion.Euler(targetPitch, 0f, 90f + targetYaw);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
 
         private void UpdateCameraAnchor()
@@ -114,69 +129,9 @@ namespace _Game.Scripts.Bullet
 
             // Smoothly move the camera anchor forward
             Vector3 targetPosition = transform.position;
-            targetPosition.z = transform.position.z + _trajectoryOffset.z * 0.5f; // Slightly ahead of the bullet
+            targetPosition.z = transform.position.z + _trajectory.z * 0.5f;
 
             cameraAnchor.position = Vector3.Lerp(cameraAnchor.position, targetPosition, anchorSmoothSpeed * Time.deltaTime);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (_isBulletFrozen) return;
-
-            if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-            {
-                SpawnBloodFX(other);
-
-                if (other.CompareTag("Boss"))
-                {
-                    GameManager.instance.OnBossHit();
-                }
-                else
-                {
-                    forwardSpeed = Mathf.Min(forwardSpeed + collisionSpeedBoost, maxForwardSpeed);
-                    _verticalVelocity += collisionUpwardBoost;
-                    _upwardBoostTimer = upwardBoostDuration;
-
-                    var wanderNpc = other.GetComponent<Polyperfect.People.People_WanderScript>();
-                    if (wanderNpc != null)
-                    {
-                        wanderNpc.Die();
-                        GameManager.instance.IncrementScore();
-                    }
-                }
-            }
-            else
-            {
-                GameManager.instance.OnBulletDestroyed();
-                FreezeBullet();
-            }
-        }
-
-        private void SpawnBloodFX(Collider other)
-        {
-            if (bloodFXPrefab)
-            {
-                Vector3 collisionPoint = other.ClosestPoint(transform.position);
-                Vector3 bulletDirection = _rb.linearVelocity.normalized;
-                Quaternion bloodRotation = Quaternion.LookRotation(bulletDirection);
-
-                Instantiate(bloodFXPrefab, collisionPoint, bloodRotation);
-            }
-            else
-            {
-                Debug.LogWarning("BloodFXPrefab not assigned in BulletController!");
-            }
-        }
-
-        private void FreezeBullet()
-        {
-            _rb.linearVelocity = Vector3.zero;
-            _rb.angularVelocity = Vector3.zero;
-            _rb.isKinematic = true;
-            _rb.detectCollisions = false;
-
-            _isBulletFrozen = true;
-            enabled = false;
         }
     }
 }
