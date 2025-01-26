@@ -54,7 +54,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -88,12 +88,12 @@
                 },
                 {
                     "name": "BulletTimeToggle",
-                    "type": "Button",
-                    "id": "6aaf35b9-f93c-4d9e-8495-e7f864b9284f",
+                    "type": "Value",
+                    "id": "d41cba82-ce50-47b4-8358-c5091652fce1",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -484,11 +484,11 @@
                 },
                 {
                     "name": "",
-                    "id": "413a41c1-cdbf-4102-97a9-aeeb67f5eb7f",
-                    "path": "<Mouse>/leftButton",
+                    "id": "9d58161c-1605-4d44-9893-b71969a1573e",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "",
                     "action": "BulletTimeToggle",
                     "isComposite": false,
                     "isPartOfComposite": false

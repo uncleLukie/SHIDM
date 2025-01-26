@@ -1199,6 +1199,7 @@ MonoBehaviour:
   timeScaleStepInterval: 0.1
   bulletTimeDelay: 0.005
   bulletInScene: {fileID: 7804758404847574807}
+  bulletAimCameraRig: {fileID: 1473532142}
 --- !u!4 &468893922
 Transform:
   m_ObjectHideFlags: 0
@@ -3109,9 +3110,9 @@ MonoBehaviour:
     Controllers:
     - Name: BulletTime
       Owner: {fileID: 1473532142}
-      Enabled: 1
+      Enabled: 0
       Input:
-        InputAction: {fileID: 6224582555560651618, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+        InputAction: {fileID: -8992077186741971289, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: 1
         LegacyInput: 
         LegacyGain: 1
@@ -4699,7 +4700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[0].Name
