@@ -1,44 +1,45 @@
 using System.Collections.Generic;
-using _Game.Scripts.Bullet;
 using UnityEngine;
 using Unity.Cinemachine;
+using _Game.Scripts.Bullet;  // Make sure this references your own namespace for SimpleBulletAimController
 
 namespace _Game.Scripts.Cameras
 {
     /// <summary>
-    /// A custom camera manager that selects between an "Aim" camera and a "Free" camera.
-    /// Instead of looking for SimplePlayerAimController, it looks for SimpleBulletAimController.
-    /// 
-    /// Steps:
-    /// 1. AimMode axis > 0.5 => Switch to AimCamera, set bullet's CouplingMode = Coupled
-    /// 2. AimMode axis <= 0.5 => Switch to FreeCamera, set bullet's CouplingMode = Decoupled
-    /// 
-    /// You can rename "AimMode" if you prefer something like "BulletTime" or "IsAiming".
+    /// A camera manager, similar to the Cinemachine sample's AimCameraRig, but adapted to:
+    ///   - Search for SimpleBulletAimController instead of SimplePlayerAimController
+    ///   - Switch cameras based on a "BulletTime" input axis
+    ///   - When bullet time is active, we pick the "Aim" camera; otherwise we pick the "Free" camera
+    ///   - Coupling the bullet's rotation with the camera in bullet time
     /// </summary>
     [ExecuteAlways]
     public class BulletAimCameraRig : CinemachineCameraManagerBase, IInputAxisOwner
     {
-        [Tooltip("If this axis > 0.5, we activate AimCam. Else we pick FreeCam.")]
-        public InputAxis AimMode = InputAxis.DefaultMomentary;
+        [Tooltip("Input axis used to determine whether bullet time is active.  "
+            + "If BulletTime.Value > 0.5, we enable the aim camera.")]
+        public InputAxis BulletTime = InputAxis.DefaultMomentary;
 
-        [Tooltip("Camera used when not aiming (normal/free look).")]
-        public CinemachineVirtualCameraBase FreeCam;
+        // We'll discover these children automatically at Start() by scanning ChildCameras.
+        private CinemachineVirtualCameraBase _aimCamera;
+        private CinemachineVirtualCameraBase _freeCamera;
 
-        [Tooltip("Camera used when aiming (close follow, third person aim, etc.).")]
-        public CinemachineVirtualCameraBase AimCam;
+        // Reference to the bullet's aim script, so we can set Coupled or Decoupled rotation
+        private SimpleBulletAimController _bulletAimController;
 
-        // Reference to the bullet's aim controller so we can set Coupled/Decoupled
-        private SimpleBulletAimController m_BulletAim;
+        /// <summary>
+        /// If BulletTime axis > 0.5, we consider bullet time active => use aim camera
+        /// </summary>
+        private bool IsBulletTimeActive => BulletTime.Value > 0.5f;
 
-        private bool IsAimActive => AimMode.Value > 0.5f;
-
-        /// <summary>Expose 'AimMode' to CinemachineInputAxisController or legacy input.</summary>
+        /// <summary>
+        /// Expose 'BulletTime' axis for CinemachineInputAxisController or other input system
+        /// </summary>
         public void GetInputAxes(List<IInputAxisOwner.AxisDescriptor> axes)
         {
             axes.Add(new()
             {
-                DrivenAxis = () => ref AimMode,
-                Name = "Aim Mode", // or "BulletTime"
+                DrivenAxis = () => ref BulletTime,
+                Name = "BulletTime", // The name to match in your input system
                 Hint = IInputAxisOwner.AxisDescriptor.Hints.X
             });
         }
@@ -47,51 +48,68 @@ namespace _Game.Scripts.Cameras
         {
             base.Start();
 
-            // Find the bullet aim controller in the scene. 
-            // Usually you'd have the bullet in the scene with a child "AimCore" that has SimpleBulletAimController
-            // We'll do a naive approach: try to find it by searching the entire scene or
-            // look on the cameras' Follow target if you prefer.
-            if (AimCam != null && AimCam.Follow != null)
+            // Scan ChildCameras to find:
+            //  - One that has CinemachineThirdPersonAim with NoiseCancellation => aim camera
+            //  - One that doesn't => free camera
+            // Then also find a SimpleBulletAimController in the aim camera's Follow target
+            for (int i = 0; i < ChildCameras.Count; i++)
             {
-                // If the bullet aim is on the AimCam.Follow or its children
-                m_BulletAim = AimCam.Follow.GetComponentInChildren<SimpleBulletAimController>();
+                var cam = ChildCameras[i];
+                if (!cam.isActiveAndEnabled)
+                    continue;
+
+                if (_aimCamera == null
+                    && cam.TryGetComponent(out CinemachineThirdPersonAim aimComp) 
+                    && aimComp.NoiseCancellation)
+                {
+                    // Found our aim camera
+                    _aimCamera = cam;
+
+                    // See if it has a Follow target with a SimpleBulletAimController child
+                    var bullet = _aimCamera.Follow;
+                    if (bullet != null)
+                    {
+                        _bulletAimController = bullet.GetComponentInChildren<SimpleBulletAimController>();
+                    }
+                }
+                else if (_freeCamera == null)
+                {
+                    // By elimination, this must be the free camera
+                    _freeCamera = cam;
+                }
             }
 
-            if (m_BulletAim == null)
-            {
-                Debug.LogError("BulletAimCameraRig: No valid SimpleBulletAimController found. " +
-                               "Please assign a bullet with that script as the AimCam.Follow target.");
-            }
-            if (AimCam == null)
-                Debug.LogError("BulletAimCameraRig: No AimCam assigned.");
-            if (FreeCam == null)
-                Debug.LogError("BulletAimCameraRig: No FreeCam assigned.");
+            // Check if we found everything
+            if (_aimCamera == null)
+                Debug.LogError($"{nameof(BulletAimCameraRig)}: No valid 'Aim' camera found "
+                             + "(no CinemachineThirdPersonAim with NoiseCancellation among children)");
+            if (_bulletAimController == null)
+                Debug.LogError($"{nameof(BulletAimCameraRig)}: No valid SimpleBulletAimController found "
+                             + "in the Aim camera's Follow hierarchy");
+            if (_freeCamera == null)
+                Debug.LogError($"{nameof(BulletAimCameraRig)}: No valid 'Free' camera found among children");
         }
 
         /// <summary>
-        /// CinemachineCameraManagerBase will call this to decide which camera is active.
-        /// We'll pick AimCam if AimMode>0.5, else FreeCam. We'll also set the bullet aim's coupling.
+        /// Called by CinemachineCameraManagerBase each frame to choose which child camera is active.
+        /// If bullet time is active => use the aim camera; else use free camera.
+        /// Also toggles the bullet aim script's CouplingMode accordingly.
         /// </summary>
-        protected override CinemachineVirtualCameraBase ChooseCurrentCamera(
-            Vector3 worldUp, float deltaTime)
+        protected override CinemachineVirtualCameraBase ChooseCurrentCamera(Vector3 worldUp, float deltaTime)
         {
-            var newCam = IsAimActive ? AimCam : FreeCam;
+            var chosenCam = IsBulletTimeActive ? _aimCamera : _freeCamera;
 
-            if (m_BulletAim != null)
+            // If we have a bullet aim script, set CouplingMode
+            // so that when bullet time is on, the bullet is "coupled" to the camera
+            // otherwise it's decoupled.
+            if (_bulletAimController != null)
             {
-                if (IsAimActive)
-                {
-                    // Force bullet to Coupled
-                    m_BulletAim.BulletRotation = SimpleBulletAimController.CouplingMode.Coupled;
-                }
-                else
-                {
-                    // Force bullet to Decoupled (or CoupledWhenMoving if you prefer)
-                    m_BulletAim.BulletRotation = SimpleBulletAimController.CouplingMode.Decoupled;
-                }
+                _bulletAimController.BulletRotation = IsBulletTimeActive
+                    ? SimpleBulletAimController.CouplingMode.Coupled
+                    : SimpleBulletAimController.CouplingMode.Decoupled;
             }
 
-            return newCam;
+            return chosenCam;
         }
     }
 }

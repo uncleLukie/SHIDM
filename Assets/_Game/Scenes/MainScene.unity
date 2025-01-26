@@ -1193,8 +1193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b16e17e7571644cbcc19ea3960432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalTimeScale: 0.5
-  bulletTimeScale: 0.01
+  normalTimeScale: 1
+  bulletTimeScale: 0.5
   timeScaleStep: 0.02
   timeScaleStepInterval: 0.1
   bulletTimeDelay: 0.005
@@ -1473,17 +1473,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7106542305205703657, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
   m_PrefabInstance: {fileID: 2663555133965803458}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &820071504 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5050121508198096000, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
-  m_PrefabInstance: {fileID: 2663555133965803458}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584438558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a98e5e4b17784592b9725e8cfc063, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &820071508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3093,7 +3082,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1473532140}
   - component: {fileID: 1473532138}
-  - component: {fileID: 1473532141}
   - component: {fileID: 1473532142}
   m_Layer: 0
   m_Name: Camera Rig
@@ -3116,27 +3104,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScanRecursively: 1
   SuppressInputWhileBlending: 1
-  IgnoreTimeScale: 0
+  IgnoreTimeScale: 1
   m_ControllerManager:
     Controllers:
-    - Name: Aim
-      Owner: {fileID: 1473532141}
-      Enabled: 1
-      Input:
-        InputAction: {fileID: 0}
-        Gain: 1
-        LegacyInput: 
-        LegacyGain: 1
-        CancelDeltaTime: 0
-      InputValue: 0
-      Driver:
-        AccelTime: 0
-        DecelTime: 0
-    - Name: Aim Mode
+    - Name: BulletTime
       Owner: {fileID: 1473532142}
       Enabled: 1
       Input:
-        InputAction: {fileID: 0}
+        InputAction: {fileID: 6224582555560651618, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: 1
         LegacyInput: 
         LegacyGain: 1
@@ -3164,51 +3139,6 @@ Transform:
   - {fileID: 971507016}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1473532141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473532137}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8861e25f312f0a4ea14b26b40531fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Priority:
-    Enabled: 0
-    m_Value: 0
-  OutputChannel: 1
-  StandbyUpdate: 2
-  m_StreamingVersion: 20241001
-  m_LegacyPriority: 0
-  DefaultTarget:
-    Enabled: 0
-    Target:
-      TrackingTarget: {fileID: 0}
-      LookAtTarget: {fileID: 0}
-      CustomLookAtTarget: 0
-  DefaultBlend:
-    Style: 1
-    Time: 0.5
-    CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  CustomBlends: {fileID: 0}
-  AimMode:
-    Value: 0
-    Center: 0
-    Range: {x: -1, y: 1}
-    Wrap: 0
-    Recentering:
-      Enabled: 0
-      Wait: 0
-      Time: 0
-    Restrictions: 6
 --- !u!114 &1473532142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3244,7 +3174,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
-  AimMode:
+  BulletTime:
     Value: 0
     Center: 0
     Range: {x: -1, y: 1}
@@ -3254,8 +3184,6 @@ MonoBehaviour:
       Wait: 0
       Time: 0
     Restrictions: 6
-  FreeCam: {fileID: 1883652916}
-  AimCam: {fileID: 971507020}
 --- !u!1001 &1629302832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4413,147 +4341,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 956647906445221291, guid: 539c97b518cffef4d9e22b947a19a971, type: 3}
   m_PrefabInstance: {fileID: 1778841530}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1800685164
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1800685167}
-  - component: {fileID: 1800685166}
-  - component: {fileID: 1800685165}
-  m_Layer: 0
-  m_Name: CursorLock Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1800685165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800685164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScanRecursively: 1
-  SuppressInputWhileBlending: 1
-  IgnoreTimeScale: 0
-  m_ControllerManager:
-    Controllers:
-    - Name: CursorLock
-      Owner: {fileID: 1800685166}
-      Enabled: 1
-      Input:
-        InputAction: {fileID: 0}
-        Gain: 1
-        LegacyInput: 
-        LegacyGain: 1
-        CancelDeltaTime: 0
-      InputValue: 0
-      Driver:
-        AccelTime: 0
-        DecelTime: 0
-  PlayerIndex: -1
-  AutoEnableInputs: 1
---- !u!114 &1800685166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800685164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84bbe8a9281f49f9801ffc0203bee6df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CursorLock:
-    Value: 0
-    Center: 0
-    Range: {x: -1, y: 1}
-    Wrap: 0
-    Recentering:
-      Enabled: 0
-      Wait: 0
-      Time: 0
-    Restrictions: 6
-  OnCursorLocked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7804758404847574802}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnCursorUnlocked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7804758404847574802}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!4 &1800685167
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800685164}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1868394030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4902,9 +4689,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 96377426955900152, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.size
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[0].Name
@@ -4961,11 +4756,11 @@ PrefabInstance:
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[3].Owner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 820071508}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[4].Owner
       value: 
-      objectReference: {fileID: 820071504}
+      objectReference: {fileID: 820071508}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[5].Owner
       value: 
@@ -4977,7 +4772,7 @@ PrefabInstance:
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[7].Owner
       value: 
-      objectReference: {fileID: 820071504}
+      objectReference: {fileID: 0}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[8].Owner
       value: 
@@ -4985,7 +4780,7 @@ PrefabInstance:
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[9].Owner
       value: 
-      objectReference: {fileID: 820071504}
+      objectReference: {fileID: 0}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[5].Enabled
       value: 1
@@ -5173,7 +4968,7 @@ PrefabInstance:
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[2].Input.InputAction
       value: 
-      objectReference: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+      objectReference: {fileID: -3679512165948668398, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[2].Input.LegacyInput
       value: Fire1
@@ -5189,7 +4984,7 @@ PrefabInstance:
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[4].Input.InputAction
       value: 
-      objectReference: {fileID: -3679512165948668398, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+      objectReference: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
     - target: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[4].Input.LegacyInput
       value: Mouse Y
@@ -5236,7 +5031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5050121508198096000, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5050121508198096000, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       propertyPath: AimTargetManager
@@ -5298,6 +5093,7 @@ PrefabInstance:
     - {fileID: 7448377981211877398, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
     - {fileID: 6237725599291756935, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
     - {fileID: 7708154006182506953, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
+    - {fileID: 5050121508198096000, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -5311,17 +5107,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 820071508}
   m_SourcePrefab: {fileID: 100100000, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
---- !u!114 &7804758404847574802 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3552721397921089955, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
-  m_PrefabInstance: {fileID: 2663555133965803458}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 789174750}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!143 &7804758404847574806
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5398,5 +5183,4 @@ SceneRoots:
   - {fileID: 679003486}
   - {fileID: 1473532140}
   - {fileID: 2663555133965803458}
-  - {fileID: 1800685167}
   - {fileID: 1759863107}
