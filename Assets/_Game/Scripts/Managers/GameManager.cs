@@ -99,15 +99,24 @@ namespace _Game.Scripts.Managers
 
         private IEnumerator WaitForBulletFireThenRevert()
         {
-            // Wait until user clicks to confirm "fire" 
-            // (You can also do a separate logic. This is just an example.)
             Debug.Log("BulletTime active: user can aim. Click to finalize and revert.");
             yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
 
-            // user clicked => "fire" again or whatever your logic is
-            // if your bullet code has an explicit method "FireAgain()" do it now, or 
-            // maybe you just want to revert time scale. 
-            // We'll revert time scale after some logic:
+            // Step 1: Immediately exit bullet time so the bullet is no longer slow
+            if (bulletInScene) bulletInScene.ExitBulletTime();  // sets _isBulletTime = false
+            // Also kill the slow timescale if you want an instant revert:
+            SetTimeScale(1f); 
+            // Optionally skip the gradual ramp if you want an immediate jump.
+            // or you can do: StartCoroutine(GraduallyIncreaseTimeScale()) but then also do a tiny yield
+
+            // Step 2: ReFire bullet at normal speed (no bullet time)
+            bulletInScene.ReFireInCurrentAimDirection(); 
+
+            // Finally switch the camera rig to free camera
+            if (bulletAimCameraRig != null)
+                bulletAimCameraRig.BulletTime.Value = 0f;
+
+            // Revert time scale
             ResumeNormalTime();
         }
 

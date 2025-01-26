@@ -123,19 +123,15 @@ namespace _Game.Scripts.Bullet
                     // Force bullet to strafe mode = true if we want side input to be lateral
                     // or false if we want the bullet to rotate with camera? The sample sets strafe = true
                     // but your game might want strafe = false. Let's mimic the sample:
-                    m_Bullet.Strafe = true;
                     RecenterBullet();  // forcibly match parent's yaw to this child's yaw
                     break;
 
                 case CouplingMode.CoupledWhenMoving:
-                    m_Bullet.Strafe = true;  // sample sets strafe = true
                     if (m_Bullet.IsMoving)
                         RecenterBullet(RotationDamping);
                     break;
 
                 case CouplingMode.Decoupled:
-                    // bullet strafe off if you want it to rotate by velocity only
-                    m_Bullet.Strafe = false;
                     break;
             }
 
