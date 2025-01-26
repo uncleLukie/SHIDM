@@ -9,20 +9,20 @@ namespace _Game.Scripts.Managers
         public static GameManager instance;
 
         [Header("Time Scale Settings")]
-        public float normalTimeScale = 1f;   // Full speed
-        public float bulletTimeScale = 0.1f; // Slow speed
-        public float timeScaleStep = 0.05f;  // How much we add or subtract per step
-        public float timeScaleStepInterval = 0.1f; // Delay between steps
+        public float normalTimeScale = 1f;
+        public float bulletTimeScale = 0.1f;
+        public float timeScaleStep = 0.05f;
+        public float timeScaleStepInterval = 0.1f;
 
-        [Header("Bullet Settings")]
-        [Tooltip("The bullet prefab to spawn.")]
-        public GameObject bulletPrefab;
-        [Tooltip("Where the bullet is spawned from (transform).")]
-        public Transform bulletSpawnPoint;
-        [Tooltip("How long after bullet is fired do we start the slow motion?")]
+        [Header("Bullet Time Settings")]
+        [Tooltip("Delay before we enter bullet time after the bullet is fired.")]
         public float bulletTimeDelay = 0.3f;
 
-        private BulletController _bulletController;
+        [Header("Scene Bullet Reference")]
+        [Tooltip("Reference to the bullet in the scene (disabled at start) with X=90 local rotation so tip is up.")]
+        public SimpleBulletController bulletInScene;
+        
+        private bool _gameStarted;
         private bool _bulletSpawned;
 
         private void Awake()
@@ -30,54 +30,57 @@ namespace _Game.Scripts.Managers
             if (instance == null) instance = this;
             else Destroy(gameObject);
 
-            // Default to normal timescale
             SetTimeScale(normalTimeScale);
         }
 
         private void Start()
         {
-            // Immediately spawn & fire bullet
-            SpawnAndFireBullet();
+            // If bullet is active in scene, disable it
+            if (bulletInScene && bulletInScene.gameObject.activeSelf)
+            {
+                bulletInScene.gameObject.SetActive(false);
+            }
         }
 
-        private void SpawnAndFireBullet()
+        private void Update()
         {
-            if (!bulletPrefab || !bulletSpawnPoint)
+            // example: user left-click => activate bullet
+            if (!_gameStarted && Input.GetMouseButtonDown(0))
             {
-                Debug.LogError("Bullet Prefab or Spawn Point missing!");
+                _gameStarted = true;
+                ActivateAndFireBullet();
+            }
+        }
+
+        /// <summary>
+        /// Enable bulletInScene, call FireBullet(), schedule bullet time after bulletTimeDelay
+        /// </summary>
+        private void ActivateAndFireBullet()
+        {
+            if (!bulletInScene)
+            {
+                Debug.LogError("No bulletInScene assigned in GameManager!");
                 return;
             }
 
-            // Instantiate bullet
-            GameObject bulletObj = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.Euler(0f, 0f, 90f));
-            _bulletController = bulletObj.GetComponent<BulletController>();
-
-            if (_bulletController == null)
-            {
-                Debug.LogError("No BulletController on bullet prefab!");
-                return;
-            }
-
-            // Fire the bullet at normal time
-            _bulletController.FireBullet();
+            bulletInScene.gameObject.SetActive(true);
+            bulletInScene.FireBullet();
             _bulletSpawned = true;
 
-            // Start slowdown after a short delay (0.3s default)
+            // bullet time after delay
             if (bulletTimeDelay > 0f)
                 Invoke(nameof(StartGradualBulletTime), bulletTimeDelay);
             else
                 StartGradualBulletTime();
         }
 
-        // Public so bullet can call it again after collisions
         public void StartGradualBulletTime()
         {
             if (!_bulletSpawned) return;
             StartCoroutine(GraduallyDecreaseTimeScale());
         }
 
-        // Gradually slow from normalTimeScale => bulletTimeScale
-        public IEnumerator GraduallyDecreaseTimeScale()
+        private IEnumerator GraduallyDecreaseTimeScale()
         {
             float currentScale = Time.timeScale;
             while (currentScale > bulletTimeScale)
@@ -87,12 +90,11 @@ namespace _Game.Scripts.Managers
                 yield return new WaitForSecondsRealtime(timeScaleStepInterval);
             }
 
-            // Once at bullet time, let bullet steer
-            if (_bulletController != null)
-                _bulletController.EnterBulletTime();
+            // Let bullet steer
+            if (bulletInScene)
+                bulletInScene.EnterBulletTime();
         }
 
-        // Gradually speed from bulletTimeScale => normalTimeScale
         public IEnumerator GraduallyIncreaseTimeScale()
         {
             float currentScale = Time.timeScale;
@@ -102,7 +104,6 @@ namespace _Game.Scripts.Managers
                 SetTimeScale(Mathf.Min(currentScale, normalTimeScale));
                 yield return new WaitForSecondsRealtime(timeScaleStepInterval);
             }
-            // Now fully back to normal time
         }
 
         private void SetTimeScale(float timeScale)

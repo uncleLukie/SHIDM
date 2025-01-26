@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4365302734705367514}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 3, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &4365302734704100826
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -151,16 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 20
-  maxForwardSpeed: 25
-  inputInfluence: 2
-  inputSensitivity: 3
-  deadzone: 0.2
   gravityMultiplier: 0.02
-  forwardSlowdown: 0.5
-  maxRotationAngle: 45
-  collisionSpeedBoost: 5
-  upwardBoostDuration: 0.2
-  collisionUpwardBoost: 4
+  bulletTimeForwardSpeed: 1
+  minPitch: -45
+  maxPitch: 45
+  mouseSensitivity: 2
+  rotationSpeed: 180
   bloodFXPrefab: {fileID: 130776, guid: a74b976a3f009444e9fc971b209b29db, type: 3}
-  cameraAnchor: {fileID: 0}
-  anchorSmoothSpeed: 5
