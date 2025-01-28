@@ -15,11 +15,9 @@ namespace _Game.Scripts.Bullet
 
         private void Awake()
         {
-            // Ensure the collider is a trigger
             var coll = GetComponent<Collider>();
             if (coll) coll.isTrigger = true;
-
-            // Find parent bullet controller
+            
             _bulletController = GetComponentInParent<SimpleBulletController>();
             if (!_bulletController)
             {
@@ -36,33 +34,31 @@ namespace _Game.Scripts.Bullet
 
             if (layerName == enemyLayerName)
             {
-                // Possibly kill enemy, spawn blood, etc.
                 var wander = other.GetComponent<Common_WanderScript>();
                 if (wander != null) wander.Die();
 
                 if (bloodFXPrefab != null)
                     Instantiate(bloodFXPrefab, transform.position, Quaternion.identity);
-
-                // *** New: call a method that quickly transitions to bullet time
+                
                 StartCoroutine(SmoothlyEnterBulletTimeAfterEnemyHit());
             }
-            else if (layerName == environmentLayerName)
+            else if (layerName == enemyLayerName)
             {
-                Debug.Log("Hit environment: " + other.name);
-                _bulletController.EndBullet("Environment collision");
+                var wander = other.GetComponent<Common_WanderScript>();
+                if (wander != null) wander.Die();
+
+                if (bloodFXPrefab != null)
+                    Instantiate(bloodFXPrefab, transform.position, Quaternion.identity);
+                
+                GameManager.instance.EnterBulletTimeAfterEnemyHit();
             }
         }
-
-        /// <summary>
-        /// Wait a tiny bit (optional) then call the GameManager to do a quick bullet-time ramp.
-        /// </summary>
+        
         private System.Collections.IEnumerator SmoothlyEnterBulletTimeAfterEnemyHit()
         {
-            // Optionally wait one frame so the bullet has fully "passed" the enemy
             yield return new WaitForEndOfFrame();
-
-            // Now call a custom method on GameManager that does a fast bullet-time
-            GameManager.instance.StartQuickBulletTime();
+            
+            GameManager.instance.EnterBulletTimeAfterEnemyHit();
         }
     }
 }

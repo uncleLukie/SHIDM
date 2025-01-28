@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using _Game.Scripts.Bullet;
-using _Game.Scripts.Cameras; // for BulletAimCameraRig
+using _Game.Scripts.Cameras;
 
 namespace _Game.Scripts.Managers
 {
@@ -10,21 +10,23 @@ namespace _Game.Scripts.Managers
         public static GameManager instance;
 
         [Header("Time Scale Settings")]
-        public float normalTimeScale = 0.4f;
+        public float normalTimeScale = 0.4f; 
         public float bulletTimeScale = 0.1f;
-        public float timeScaleStep = 0.02f;
-        public float timeScaleStepInterval = 0.1f;
 
-        [Header("Bullet Time Settings")]
-        public float bulletTimeDelay = 0.005f;
+        [Header("Ramp Settings (Normal)")]
+        public float normalTimeScaleStep = 0.02f;
+        public float normalTimeScaleInterval = 0.1f;
+
+        [Header("Ramp Settings (Quick)")]
+        [Tooltip("Used when we do a bullet-time entry after passing through an enemy.")]
+        public float quickTimeScaleStep = 0.03f;
+        public float quickTimeScaleInterval = 0.02f;
 
         [Header("References")]
         public SimpleBulletController bulletInScene;
-        // Add a reference to your camera rig (drag in inspector)
         public BulletAimCameraRig bulletAimCameraRig;
 
         private bool _gameStarted;
-        private bool _bulletSpawned;
 
         private void Awake()
         {
@@ -50,6 +52,9 @@ namespace _Game.Scripts.Managers
             }
         }
 
+        /// <summary>
+        /// Called once at game start: bullet becomes active, fires, then does a normal bullet-time ramp.
+        /// </summary>
         private void ActivateAndFireBullet()
         {
             if (!bulletInScene)
@@ -60,109 +65,36 @@ namespace _Game.Scripts.Managers
 
             bulletInScene.gameObject.SetActive(true);
             bulletInScene.FireBullet();
-            _bulletSpawned = true;
 
-            // after short delay, we do bullet time
-            if (bulletTimeDelay > 0f)
-                Invoke(nameof(StartGradualBulletTime), bulletTimeDelay);
-            else
-                StartGradualBulletTime();
+            // Enter bullet time with normal ramp
+            EnterBulletTimeAndWaitForClick(quickRamp: false);
         }
 
-        public void StartGradualBulletTime()
+        /// <summary>
+        /// Called by BulletCollisionProxy after hitting an enemy. 
+        /// We do a "quick" ramp into bullet time, but otherwise the same flow.
+        /// </summary>
+        public void EnterBulletTimeAfterEnemyHit()
         {
-            if (!_bulletSpawned) return;
-            StartCoroutine(GraduallyDecreaseTimeScale());
+            EnterBulletTimeAndWaitForClick(quickRamp: true);
         }
 
-        private IEnumerator GraduallyDecreaseTimeScale()
+        /// <summary>
+        /// Unified bullet-time entry method that smoothly ramps time scale down (normal or quick),
+        /// sets the bullet to bullet-time mode, picks aim camera, then waits for user click to revert.
+        /// </summary>
+        public void EnterBulletTimeAndWaitForClick(bool quickRamp)
         {
-            float currentScale = Time.timeScale;
-            while (currentScale > bulletTimeScale)
-            {
-                currentScale -= timeScaleStep;
-                SetTimeScale(Mathf.Max(currentScale, bulletTimeScale));
-                yield return new WaitForSecondsRealtime(timeScaleStepInterval);
-            }
-            // Now we've slowed time. Let bullet steer:
-            if (bulletInScene) bulletInScene.EnterBulletTime();
+            // Stop any existing time-scale coroutines (optional)
+            StopAllCoroutines();
 
-            // Also manually tell the camera rig to pick the aim cam
-            if (bulletAimCameraRig != null)
-                bulletAimCameraRig.BulletTime.Value = 1f;
-
-            // Now the user sees the aim camera, can move mouse to aim the bullet. 
-            // Next step: we want to detect user click to "fire" again, then revert?
-            // We can watch for that here or in Update(). For example:
-            StartCoroutine(WaitForBulletFireThenRevert());
+            // Start the downward ramp
+            float step = quickRamp ? quickTimeScaleStep : normalTimeScaleStep;
+            float interval = quickRamp ? quickTimeScaleInterval : normalTimeScaleInterval;
+            StartCoroutine(DoBulletTimeRampDownThenWait(step, interval));
         }
 
-        private IEnumerator WaitForBulletFireThenRevert()
-        {
-            Debug.Log("BulletTime active: user can aim. Click to finalize and revert.");
-            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-
-            // Step 1: Immediately exit bullet time so the bullet is no longer slow
-            if (bulletInScene) bulletInScene.ExitBulletTime();  // sets _isBulletTime = false
-            // Also kill the slow timescale if you want an instant revert:
-            SetTimeScale(1f); 
-            // Optionally skip the gradual ramp if you want an immediate jump.
-            // or you can do: StartCoroutine(GraduallyIncreaseTimeScale()) but then also do a tiny yield
-
-            // Step 2: ReFire bullet at normal speed (no bullet time)
-            bulletInScene.ReFireInCurrentAimDirection(); 
-
-            // Finally switch the camera rig to free camera
-            if (bulletAimCameraRig != null)
-                bulletAimCameraRig.BulletTime.Value = 0f;
-
-            // Revert time scale
-            ResumeNormalTime();
-        }
-
-        public void ResumeNormalTime()
-        {
-            StartCoroutine(GraduallyIncreaseTimeScale());
-        }
-
-        public IEnumerator GraduallyIncreaseTimeScale()
-        {
-            float currentScale = Time.timeScale;
-            while (currentScale < normalTimeScale)
-            {
-                currentScale += timeScaleStep;
-                SetTimeScale(Mathf.Min(currentScale, normalTimeScale));
-                yield return new WaitForSecondsRealtime(timeScaleStepInterval);
-            }
-
-            // Now we switch camera rig to free camera
-            if (bulletAimCameraRig != null)
-                bulletAimCameraRig.BulletTime.Value = 0f;
-
-            // also bullet no longer in bullet time
-            if (bulletInScene)
-                bulletInScene.ExitBulletTime();
-        }
-
-        private void SetTimeScale(float timeScale)
-        {
-            Time.timeScale = timeScale;
-            Time.fixedDeltaTime = 0.02f * timeScale;
-        }
-        
-        public void StartQuickBulletTime()
-        {
-            // Possibly override the step or interval to something bigger 
-            // so we go from e.g. 0.4f -> 0.1f quickly in about 0.3 seconds total.
-            float quickStep = 0.03f;
-            float quickInterval = 0.02f; 
-            // Adjust these to taste.
-
-            StopAllCoroutines(); // if you want to cancel any existing time ramp
-            StartCoroutine(QuicklyDecreaseTimeScale(quickStep, quickInterval));
-        }
-
-        private IEnumerator QuicklyDecreaseTimeScale(float step, float interval)
+        private IEnumerator DoBulletTimeRampDownThenWait(float step, float interval)
         {
             float currentScale = Time.timeScale;
             while (currentScale > bulletTimeScale)
@@ -171,18 +103,51 @@ namespace _Game.Scripts.Managers
                 SetTimeScale(Mathf.Max(currentScale, bulletTimeScale));
                 yield return new WaitForSecondsRealtime(interval);
             }
-
-            // Once we get there, enable the bullet's internal bullet-time
-            if (bulletInScene)
-                bulletInScene.EnterBulletTime();
-
-            // Also pick the aim camera
+            
+            if (bulletInScene) bulletInScene.EnterBulletTime();
+            
             if (bulletAimCameraRig != null)
                 bulletAimCameraRig.BulletTime.Value = 1f;
+            
+            Debug.Log("BulletTime active: user can aim. Click to finalize and revert.");
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+            
+            RevertTimeScaleToNormal();
+        }
 
-            // If you want to re-initiate a "WaitForBulletFireThenRevert()" afterwards, 
-            // you can do so here, or you can let the user aim manually, etc.
-            Debug.Log("Reached bullet-time quickly after enemy hit!");
+        /// <summary>
+        /// Ramps time scale back up to normal, re-fires bullet in normal speed, 
+        /// reselects free camera, etc.
+        /// </summary>
+        private void RevertTimeScaleToNormal()
+        {
+            if (bulletInScene) bulletInScene.ExitBulletTime();
+            
+            if (bulletAimCameraRig != null)
+                bulletAimCameraRig.BulletTime.Value = 0f;
+            
+            if (bulletInScene) bulletInScene.ReFireInCurrentAimDirection();
+            
+            StartCoroutine(GraduallyIncreaseTimeScale());
+        }
+
+        private IEnumerator GraduallyIncreaseTimeScale()
+        {
+            float currentScale = Time.timeScale;
+            while (currentScale < normalTimeScale)
+            {
+                currentScale += normalTimeScaleStep;
+                SetTimeScale(Mathf.Min(currentScale, normalTimeScale));
+                yield return new WaitForSecondsRealtime(normalTimeScaleInterval);
+            }
+            // done
+            Debug.Log("Time back to normal, free camera is active.");
+        }
+
+        private void SetTimeScale(float timeScale)
+        {
+            Time.timeScale = timeScale;
+            Time.fixedDeltaTime = 0.02f * timeScale;
         }
     }
 }
