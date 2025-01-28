@@ -1,82 +1,68 @@
 using UnityEngine;
-using _Game.Scripts.Managers;
-using Polyperfect.Common; // If you need Common_WanderScript references
+using _Game.Scripts.Managers; // For GameManager
+using Polyperfect.Common;      // If you need Common_WanderScript references
 
 namespace _Game.Scripts.Bullet
 {
-    /// <summary>
-    /// This script sits on the pistol-bullet model child, which has a MeshCollider (isTrigger).
-    /// It detects collisions with enemies/environment, and then calls the parent
-    /// SimpleBulletController to handle the logic (killing enemy, bullet time, bullet end, etc.).
-    /// </summary>
     [RequireComponent(typeof(Collider))]
     public class BulletCollisionProxy : MonoBehaviour
     {
-        [Tooltip("Layer name for 'Enemy'.  We'll detect hits and forward to BulletController.")]
         public string enemyLayerName = "Enemy";
-
-        [Tooltip("Layer name for 'Environment'. We'll detect hits and forward to BulletController.")]
         public string environmentLayerName = "Environment";
-
-        [Tooltip("Optional blood prefab spawned when we hit an enemy.")]
         public GameObject bloodFXPrefab;
 
-        private SimpleBulletController _bulletController; // Reference to parent bullet logic
+        private SimpleBulletController _bulletController;
 
         private void Awake()
         {
             // Ensure the collider is a trigger
-            Collider coll = GetComponent<Collider>();
+            var coll = GetComponent<Collider>();
             if (coll) coll.isTrigger = true;
 
-            // Find the parent bullet controller
+            // Find parent bullet controller
             _bulletController = GetComponentInParent<SimpleBulletController>();
             if (!_bulletController)
             {
-                Debug.LogError("PistolBulletCollisionProxy: No SimpleBulletController found in parent!", this);
+                Debug.LogError("BulletCollisionProxy: No SimpleBulletController in parent!", this);
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            // Only do something if the bullet is currently flying
             if (_bulletController == null || !_bulletController.IsFired)
                 return;
 
-            // Check the object's layer
-            int layer = other.gameObject.layer;
-            string layerName = LayerMask.LayerToName(layer);
+            string layerName = LayerMask.LayerToName(other.gameObject.layer);
 
             if (layerName == enemyLayerName)
             {
-                Debug.Log("Bullet hit Enemy: " + other.name);
-
-                // Optionally kill the enemy
+                // Possibly kill enemy, spawn blood, etc.
                 var wander = other.GetComponent<Common_WanderScript>();
-                if (wander != null)
-                    wander.Die();
+                if (wander != null) wander.Die();
 
-                // Spawn blood
                 if (bloodFXPrefab != null)
-                {
                     Instantiate(bloodFXPrefab, transform.position, Quaternion.identity);
-                }
 
-                // Trigger bullet time again so user can re-aim
-                // or partial bullet time logic
-                GameManager.instance.StartGradualBulletTime();
-
-                // If you want the bullet to end on hitting enemy, call:
-                // _bulletController.EndBullet("Hit enemy");
-                // Otherwise let it keep flying
+                // *** New: call a method that quickly transitions to bullet time
+                StartCoroutine(SmoothlyEnterBulletTimeAfterEnemyHit());
             }
             else if (layerName == environmentLayerName)
             {
-                Debug.Log("Bullet hit environment: " + other.name);
-
-                // End bullet
-                _bulletController.EndBullet("Hit environment");
+                Debug.Log("Hit environment: " + other.name);
+                _bulletController.EndBullet("Environment collision");
             }
+        }
+
+        /// <summary>
+        /// Wait a tiny bit (optional) then call the GameManager to do a quick bullet-time ramp.
+        /// </summary>
+        private System.Collections.IEnumerator SmoothlyEnterBulletTimeAfterEnemyHit()
+        {
+            // Optionally wait one frame so the bullet has fully "passed" the enemy
+            yield return new WaitForEndOfFrame();
+
+            // Now call a custom method on GameManager that does a fast bullet-time
+            GameManager.instance.StartQuickBulletTime();
         }
     }
 }

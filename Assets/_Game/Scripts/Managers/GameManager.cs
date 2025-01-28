@@ -10,13 +10,13 @@ namespace _Game.Scripts.Managers
         public static GameManager instance;
 
         [Header("Time Scale Settings")]
-        public float normalTimeScale = 1f;
+        public float normalTimeScale = 0.4f;
         public float bulletTimeScale = 0.1f;
-        public float timeScaleStep = 0.05f;
+        public float timeScaleStep = 0.02f;
         public float timeScaleStepInterval = 0.1f;
 
         [Header("Bullet Time Settings")]
-        public float bulletTimeDelay = 0.3f;
+        public float bulletTimeDelay = 0.005f;
 
         [Header("References")]
         public SimpleBulletController bulletInScene;
@@ -148,6 +148,41 @@ namespace _Game.Scripts.Managers
         {
             Time.timeScale = timeScale;
             Time.fixedDeltaTime = 0.02f * timeScale;
+        }
+        
+        public void StartQuickBulletTime()
+        {
+            // Possibly override the step or interval to something bigger 
+            // so we go from e.g. 0.4f -> 0.1f quickly in about 0.3 seconds total.
+            float quickStep = 0.03f;
+            float quickInterval = 0.02f; 
+            // Adjust these to taste.
+
+            StopAllCoroutines(); // if you want to cancel any existing time ramp
+            StartCoroutine(QuicklyDecreaseTimeScale(quickStep, quickInterval));
+        }
+
+        private IEnumerator QuicklyDecreaseTimeScale(float step, float interval)
+        {
+            float currentScale = Time.timeScale;
+            while (currentScale > bulletTimeScale)
+            {
+                currentScale -= step;
+                SetTimeScale(Mathf.Max(currentScale, bulletTimeScale));
+                yield return new WaitForSecondsRealtime(interval);
+            }
+
+            // Once we get there, enable the bullet's internal bullet-time
+            if (bulletInScene)
+                bulletInScene.EnterBulletTime();
+
+            // Also pick the aim camera
+            if (bulletAimCameraRig != null)
+                bulletAimCameraRig.BulletTime.Value = 1f;
+
+            // If you want to re-initiate a "WaitForBulletFireThenRevert()" afterwards, 
+            // you can do so here, or you can let the user aim manually, etc.
+            Debug.Log("Reached bullet-time quickly after enemy hit!");
         }
     }
 }

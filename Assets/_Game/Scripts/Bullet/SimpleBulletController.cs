@@ -22,13 +22,13 @@ namespace _Game.Scripts.Bullet
 
         [Header("Gravity & Distance")]
         [Tooltip("Set this to a small value (e.g. 1 or 1.5) for slight bullet drop.")]
-        public float Gravity = 0.005f;
+        public float Gravity = 0.4f;
 
         [Tooltip("If true, gravity is zero (or partial) in bullet time.")]
-        public bool ReduceGravityInBulletTime = false;
+        public bool ReduceGravityInBulletTime = true;
 
         [Tooltip("How far the bullet can travel before disabling. <= 0 => no limit.")]
-        public float MaxDistance = 50f;
+        public float MaxDistance = 150f;
 
         [Header("Events")]
         public UnityEvent OnBulletFired;
@@ -77,7 +77,6 @@ namespace _Game.Scripts.Bullet
             float currentGravity = Gravity;
             if (ReduceGravityInBulletTime && _isBulletTime)
             {
-                // e.g. set gravity to 0 or partial
                 currentGravity = 0f; 
             }
 
