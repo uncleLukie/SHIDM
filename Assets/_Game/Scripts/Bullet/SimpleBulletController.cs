@@ -7,148 +7,143 @@ using Unity.Cinemachine;
 namespace _Game.Scripts.Bullet
 {
     /// <summary>
-    /// A simplified bullet controller that does NOT read WASD or user inputs
-    /// for steering. Instead, it travels forward once fired, and can optionally
-    /// be re-aimed at bullet time or by other means.
-    /// 
-    /// It still supports:
-    ///  - Normal speed vs. bullet-time speed
-    ///  - Hooking into SimpleBulletAimController (PreUpdate/PostUpdate)
-    ///  - A "ReFireInCurrentAimDirection()" method that re-aims the bullet at the
-    ///    "Player Aiming Core" transform, then sets velocity to NormalSpeed
+    /// Parent bullet script on the BulletPlayer root:
+    /// - Moves forward once fired.
+    /// - Applies a slight gravity drop (e.g. Gravity=1.5).
+    /// - Has max distance limit.
+    /// - Provides public EndBullet() method so child collision script can end it.
+    /// - No collision code here, because the mesh child "PistolBulletCollisionProxy" handles that.
     /// </summary>
     public class SimpleBulletController : MonoBehaviour, IInputAxisOwner
     {
         [Header("Speed Settings")]
-        [Tooltip("Speed when in normal mode.")]
-        public float NormalSpeed = 20f;
+        public float NormalSpeed = 40f;
+        public float BulletTimeSpeed = 2f;
 
-        [Tooltip("Speed when in bullet-time.")]
-        public float BulletTimeSpeed = 5f;
+        [Header("Gravity & Distance")]
+        [Tooltip("Set this to a small value (e.g. 1 or 1.5) for slight bullet drop.")]
+        public float Gravity = 0.005f;
 
-        [Header("Other Settings")]
-        [Tooltip("Event fired when bullet is first launched.")]
+        [Tooltip("If true, gravity is zero (or partial) in bullet time.")]
+        public bool ReduceGravityInBulletTime = false;
+
+        [Tooltip("How far the bullet can travel before disabling. <= 0 => no limit.")]
+        public float MaxDistance = 50f;
+
+        [Header("Events")]
         public UnityEvent OnBulletFired;
+        public UnityEvent OnBulletEnd;
 
-        // For hooking into an aim controller if desired
+        // If you want bullet time re-aim or hooking with an aim controller
         public Action PreUpdate;
         public Action<Vector3, float> PostUpdate;
 
-        private bool _fired;          // True once bullet is launched
-        private bool _isBulletTime;   // True if bullet-time is active
-        private Vector3 _currentVelocity; 
+        // Internal
+        private bool _fired;
+        private bool _isBulletTime;
+        private Vector3 _lastPosition;
+        private float _distanceTraveled;
+        private float _verticalVelocity;
 
         /// <summary>
-        /// We keep this so the aim controller can know if the bullet is "moving."
-        /// (Used in CoupledWhenMoving mode, for instance.)
+        /// Is the bullet currently in flight?
         /// </summary>
-        public bool IsMoving => _currentVelocity.sqrMagnitude > 0.01f;
+        public bool IsFired => _fired;
 
         private void OnEnable()
         {
+            // Reset
             _fired = false;
             _isBulletTime = false;
-            _currentVelocity = Vector3.zero;
+            _lastPosition = transform.position;
+            _distanceTraveled = 0f;
+            _verticalVelocity = 0f;
         }
 
         private void Update()
         {
-            // Let any aim controller do pre-update logic
             PreUpdate?.Invoke();
 
             if (!_fired)
             {
-                // Bullet hasn't been fired yet
                 PostUpdate?.Invoke(Vector3.zero, 1f);
                 return;
             }
 
-            // If bullet is in bullet time, it uses BulletTimeSpeed, else NormalSpeed
+            // Decide forward speed
             float speed = _isBulletTime ? BulletTimeSpeed : NormalSpeed;
 
-            // Move the bullet forward by current velocity
-            // But if we want the bullet to keep the same direction, we can
-            // either forcibly keep the bullet oriented in that same transform.forward,
-            // or let velocity define our direction. 
-            // For simplicity, we'll treat velocity as "transform.forward * speed"
-            // every frame. That means if you want to do physics-like flight, you'd expand logic. 
-            _currentVelocity = transform.forward * speed;
+            // Gravity factor
+            float currentGravity = Gravity;
+            if (ReduceGravityInBulletTime && _isBulletTime)
+            {
+                // e.g. set gravity to 0 or partial
+                currentGravity = 0f; 
+            }
 
-            // Move 
-            transform.position += _currentVelocity * Time.deltaTime;
+            // Accumulate vertical velocity (slight drop)
+            _verticalVelocity -= currentGravity * Time.deltaTime;
 
-            // Post-update: we pass local velocity so the aim controller can see it if needed
-            var localVel = Quaternion.Inverse(transform.rotation) * _currentVelocity;
+            // Move
+            Vector3 moveFrame = (transform.forward * speed + Vector3.up * _verticalVelocity) * Time.deltaTime;
+            transform.position += moveFrame;
+
+            // Distance limit
+            _distanceTraveled += (transform.position - _lastPosition).magnitude;
+            _lastPosition = transform.position;
+            if (MaxDistance > 0 && _distanceTraveled >= MaxDistance)
+            {
+                EndBullet("Distance limit reached");
+                return;
+            }
+
+            // Post update
+            Vector3 localVel = Quaternion.Inverse(transform.rotation) 
+                * (transform.forward * speed + Vector3.up * _verticalVelocity);
             PostUpdate?.Invoke(localVel, 1f);
         }
 
-        /// <summary>
-        /// Launch the bullet the first time, setting _fired = true and 
-        /// velocity in transform.forward direction at NormalSpeed
-        /// </summary>
         public void FireBullet()
         {
-            if (_fired) return;  // don't refire if already launched
+            if (_fired) return; 
             _fired = true;
-            // Set initial forward velocity
-            transform.rotation = transform.rotation;  // optional sanity
-            _currentVelocity = transform.forward * NormalSpeed;
+            _distanceTraveled = 0f;
+            _lastPosition = transform.position;
+            _verticalVelocity = 0f;
 
             OnBulletFired?.Invoke();
         }
 
-        /// <summary>
-        /// Switch to bullet-time mode (slowed speed). 
-        /// </summary>
-        public void EnterBulletTime() 
-            => _isBulletTime = true;
+        public void EnterBulletTime() => _isBulletTime = true;
+        public void ExitBulletTime()  => _isBulletTime = false;
 
-        /// <summary>
-        /// Switch out of bullet-time mode (normal speed). 
-        /// </summary>
-        public void ExitBulletTime()  
-            => _isBulletTime = false;
+        // Called from the child collision script if environment is hit,
+        // or from anywhere if you want to forcibly end the bullet.
+        public void EndBullet(string reason)
+        {
+            Debug.Log($"Bullet ended: {reason}");
+            OnBulletEnd?.Invoke();
 
-        /// <summary>
-        /// Called after the user has re-aimed the bullet while in bullet time, 
-        /// and we want to snap the bullet orientation + velocity to that new direction,
-        /// then go at NormalSpeed (or bullet time speed, if you prefer).
-        /// </summary>
+            // Option A: disable
+            _fired = false;
+            gameObject.SetActive(false);
+
+            // Option B: or Destroy(gameObject);
+        }
+
         public void ReFireInCurrentAimDirection()
         {
-            // 1) Find the child "Player Aiming Core"
-            var aimingCore = transform.Find("Player Aiming Core");
-            if (!aimingCore)
-            {
-                Debug.LogWarning("ReFireInCurrentAimDirection(): 'Player Aiming Core' not found under bullet!");
-                return;
-            }
+            // If you want to reset vertical velocity
+            _verticalVelocity = 0f;
 
-            // 2) Snap the bullet's rotation to match the aiming core
-            transform.rotation = aimingCore.rotation;
-
-            // 3) Decide which speed you want after user re-aims. If you want normal speed:
-            _currentVelocity = transform.forward * NormalSpeed;
-
-            // If you want it to remain bullet-time speed until time is returned to normal,
-            // do: 
-            // _currentVelocity = transform.forward * (_isBulletTime ? BulletTimeSpeed : NormalSpeed);
+            // Snap to "Player Aiming Core" if desired
+            Transform aimCore = transform.Find("Player Aiming Core");
+            if (aimCore)
+                transform.rotation = aimCore.rotation;
         }
 
-        /// <summary>
-        /// We do not actually use MoveX/MoveZ for steering now,
-        /// but we keep these fields in case SimpleBulletAimController or 
-        /// Cinemachine input expects them.  If you don't need them at all,
-        /// remove them and remove the IInputAxisOwner interface.
-        /// </summary>
-        public InputAxis MoveX = InputAxis.DefaultMomentary;
-        public InputAxis MoveZ = InputAxis.DefaultMomentary;
-
+        // Implementation for Cinemachine Input Axis Owner 
         public void GetInputAxes(List<IInputAxisOwner.AxisDescriptor> axes)
-        {
-            // If you truly have no intention of reading user input at all,
-            // you can remove this entire method. 
-            // For now, we keep it to maintain Cinemachine sample structure. 
-        }
+        {  /* no input needed if we only do forward bullet. */ }
     }
 }

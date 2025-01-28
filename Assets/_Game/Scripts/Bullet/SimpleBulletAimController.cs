@@ -127,7 +127,7 @@ namespace _Game.Scripts.Bullet
                     break;
 
                 case CouplingMode.CoupledWhenMoving:
-                    if (m_Bullet.IsMoving)
+                    if (m_Bullet.IsFired)
                         RecenterBullet(RotationDamping);
                     break;
 
