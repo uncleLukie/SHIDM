@@ -1,6 +1,7 @@
-# SHIDM
+![shid](https://github.com/user-attachments/assets/7b67203f-fde5-4398-8837-24141403ea65)
 
-Sure Hope I Don't Miss, a wild west style arcade game built in 2 weeks for [Pirate Software - Game Jam 16](https://itch.io/jam/pirate)
+--------------
+Sure Hope I Don't Miss is a wild west style arcade game built in 2 weeks for [Pirate Software - Game Jam 16](https://itch.io/jam/pirate)
 
 Theme: **You Are The Weapon**
 
