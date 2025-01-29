@@ -2652,7 +2652,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -5.85, z: 104.2}
-  m_LocalScale: {x: 32.768, y: 11.929508, z: 303.22}
+  m_LocalScale: {x: 32.768, y: 12.744294, z: 303.22}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1929326479}
@@ -2731,26 +2731,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988409023}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1050662659 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5374058051249177741, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
-  m_PrefabInstance: {fileID: 2663555133965803458}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1050662664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1050662659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0303bf7206214d039442ffd53b9d8fd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyLayerName: Enemy
-  environmentLayerName: Environment
-  bloodFXPrefab: {fileID: 130776, guid: a74b976a3f009444e9fc971b209b29db, type: 3}
 --- !u!1001 &1100435250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4887,7 +4867,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: d132d951a2c99a54d8621cce30c35904, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: db35fe3d312dac7438f2af32a5503291, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1929326479
 Transform:
@@ -5366,15 +5346,19 @@ PrefabInstance:
     - {fileID: 6237725599291756935, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
     - {fileID: 7708154006182506953, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
     - {fileID: 5050121508198096000, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
+    - {fileID: 9179110356466667834, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7106542305205703657, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7804758404847574807}
-    - targetCorrespondingSourceObject: {fileID: 5374058051249177741, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7106542305205703657, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1050662664}
+      addedObject: {fileID: 7804758404847574810}
+    - targetCorrespondingSourceObject: {fileID: 7106542305205703657, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7804758404847574811}
     - targetCorrespondingSourceObject: {fileID: 96377426955900152, guid: b60f5de69bfa8934381c91852b1cc7cf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 820071508}
@@ -5391,19 +5375,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a1ae14d10c46778e7b3458b69eb8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NormalSpeed: 20
-  BulletTimeSpeed: 2
-  Gravity: 0.4
-  ReduceGravityInBulletTime: 1
-  MaxDistance: 150
-  RicochetCount: 1
-  MaxFlightSeconds: 10
-  OnBulletFired:
+  normalSpeed: 20
+  bulletTimeSpeed: 2
+  gravity: 0.4
+  reduceGravityInBulletTime: 1
+  maxDistance: 150
+  ricochetCount: 1
+  maxFlightSeconds: 10
+  onBulletFired:
     m_PersistentCalls:
       m_Calls: []
-  OnBulletEnd:
+  onBulletEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!135 &7804758404847574810
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789174750}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 320
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.018493595
+  m_Center: {x: 0, y: 0, z: 0.13155755}
+--- !u!54 &7804758404847574811
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789174750}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

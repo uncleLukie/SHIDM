@@ -2,179 +2,197 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
+using _Game.Scripts.Managers;
+using Polyperfect.Common;
 using Unity.Cinemachine;
+using UnityEngine.Serialization;
 
 namespace _Game.Scripts.Bullet
 {
+    [RequireComponent(typeof(Collider))]
     public class SimpleBulletController : MonoBehaviour, IInputAxisOwner
     {
-        [Header("Speed Settings")]
-        public float NormalSpeed = 40f;
-        public float BulletTimeSpeed = 2f;
+        [Header("Layer Settings")]
+        private int enemyLayer;
+        private int environmentLayer;
 
-        [Header("Gravity & Distance")]
-        public float Gravity = 0.4f;
-        public bool ReduceGravityInBulletTime = true;
-        public float MaxDistance = 150f;
+        [FormerlySerializedAs("NormalSpeed")] [Header("Speed Settings")]
+        public float normalSpeed = 40f;
+        [FormerlySerializedAs("BulletTimeSpeed")] public float bulletTimeSpeed = 2f;
 
-        [Header("Ricochet")]
-        [Tooltip("How many times bullet can bounce off environment before 'GameOver.'")]
-        public int RicochetCount = 1;
+        [FormerlySerializedAs("Gravity")] [Header("Gravity & Distance")]
+        public float gravity = 0.4f;
+        [FormerlySerializedAs("ReduceGravityInBulletTime")] public bool reduceGravityInBulletTime = true;
+        [FormerlySerializedAs("MaxDistance")] public float maxDistance = 150f;
 
-        [Header("Flight Time Limit")]
-        [Tooltip("If bullet travels longer than this in real time, we end the bullet. <= 0 => no limit.")]
-        public float MaxFlightSeconds = 20f;
+        [FormerlySerializedAs("RicochetCount")] [Header("Ricochet")]
+        public int ricochetCount = 1;
 
-        [Header("Events")]
-        public UnityEvent OnBulletFired;
-        public UnityEvent OnBulletEnd;
+        [FormerlySerializedAs("MaxFlightSeconds")] [Header("Flight Time Limit")]
+        public float maxFlightSeconds = 20f;
 
-        // If you want bullet time re-aim or hooking with an aim controller
+        [FormerlySerializedAs("OnBulletFired")] [Header("Events")]
+        public UnityEvent onBulletFired;
+        [FormerlySerializedAs("OnBulletEnd")] public UnityEvent onBulletEnd;
+
         public Action PreUpdate;
         public Action<Vector3, float> PostUpdate;
 
-        private bool _fired;
-        private bool _isBulletTime;
-        private Vector3 _lastPosition;
-        private float _distanceTraveled;
-        private float _verticalVelocity;
+        private bool fired;
+        private bool isBulletTime;
+        private Vector3 lastPosition;
+        private float distanceTraveled;
+        private float verticalVelocity;
+        private float flightTimer;
 
-        // Additional
-        private float _flightTimer; // how many seconds since fired
+        public bool IsFired => fired;
 
-        public bool IsFired => _fired;
+        private void Awake()
+        {
+            // Assign layer numbers
+            enemyLayer = LayerMask.NameToLayer("Enemy");
+            environmentLayer = LayerMask.NameToLayer("Environment");
+
+            var coll = GetComponent<Collider>();
+            if (coll && !coll.isTrigger)
+            {
+                coll.isTrigger = true;
+                Debug.LogWarning("SimpleBulletController: Collider set to isTrigger=true at runtime!");
+            }
+        }
 
         private void OnEnable()
         {
-            _fired = false;
-            _isBulletTime = false;
-            _lastPosition = transform.position;
-            _distanceTraveled = 0f;
-            _verticalVelocity = 0f;
-            _flightTimer = 0f;
+            fired = false;
+            isBulletTime = false;
+            lastPosition = transform.position;
+            distanceTraveled = 0f;
+            verticalVelocity = 0f;
+            flightTimer = 0f;
         }
 
         private void Update()
         {
             PreUpdate?.Invoke();
 
-            if (!_fired)
+            if (!fired)
             {
                 PostUpdate?.Invoke(Vector3.zero, 1f);
                 return;
             }
 
-            // Flight time check
-            _flightTimer += Time.deltaTime;
-            if (MaxFlightSeconds > 0 && _flightTimer >= MaxFlightSeconds)
+            flightTimer += Time.deltaTime;
+            if (maxFlightSeconds > 0 && flightTimer >= maxFlightSeconds)
             {
-                // If bullet is in flight too long => game over
                 EndBullet("Flight time exceeded");
-                // or call game manager => game over
                 return;
             }
 
-            // Decide forward speed
-            float speed = _isBulletTime ? BulletTimeSpeed : NormalSpeed;
+            float speed = isBulletTime ? bulletTimeSpeed : normalSpeed;
+            float currentGravity = (reduceGravityInBulletTime && isBulletTime) ? 0f : gravity;
 
-            // Gravity factor
-            float currentGravity = Gravity;
-            if (ReduceGravityInBulletTime && _isBulletTime)
-            {
-                currentGravity = 0f;
-            }
+            verticalVelocity -= currentGravity * Time.deltaTime;
 
-            // Accumulate vertical velocity
-            _verticalVelocity -= currentGravity * Time.deltaTime;
-
-            // Move
-            Vector3 moveFrame = (transform.forward * speed + Vector3.up * _verticalVelocity) * Time.deltaTime;
+            Vector3 moveFrame = (transform.forward * speed + Vector3.up * verticalVelocity) * Time.deltaTime;
             transform.position += moveFrame;
 
-            // Distance limit
-            float distanceThisFrame = (transform.position - _lastPosition).magnitude;
-            _distanceTraveled += distanceThisFrame;
-            _lastPosition = transform.position;
+            float distanceThisFrame = (transform.position - lastPosition).magnitude;
+            distanceTraveled += distanceThisFrame;
+            lastPosition = transform.position;
 
-            if (MaxDistance > 0 && _distanceTraveled >= MaxDistance)
+            if (maxDistance > 0 && distanceTraveled >= maxDistance)
             {
                 EndBullet("Distance limit reached");
                 return;
             }
 
-            // Post update
-            Vector3 localVel = Quaternion.Inverse(transform.rotation)
-                * (transform.forward * speed + Vector3.up * _verticalVelocity);
+            Vector3 localVel = Quaternion.Inverse(transform.rotation) * (transform.forward * speed + Vector3.up * verticalVelocity);
             PostUpdate?.Invoke(localVel, 1f);
         }
 
         public void FireBullet()
         {
-            if (_fired) return;
-            _fired = true;
-            _distanceTraveled = 0f;
-            _lastPosition = transform.position;
-            _verticalVelocity = 0f;
-            _flightTimer = 0f;
+            if (fired) return;
+            fired = true;
+            distanceTraveled = 0f;
+            lastPosition = transform.position;
+            verticalVelocity = 0f;
+            flightTimer = 0f;
 
-            OnBulletFired?.Invoke();
+            onBulletFired?.Invoke();
         }
 
-        public void EnterBulletTime() => _isBulletTime = true;
-        public void ExitBulletTime()  => _isBulletTime = false;
+        public void EnterBulletTime() => isBulletTime = true;
+        public void ExitBulletTime() => isBulletTime = false;
 
-        public void EndBullet(string reason)
+        private void EndBullet(string reason)
         {
             Debug.Log($"Bullet ended: {reason}");
-            OnBulletEnd?.Invoke();
+            onBulletEnd?.Invoke();
 
-            _fired = false;
+            fired = false;
             gameObject.SetActive(false);
         }
 
         public void ReFireInCurrentAimDirection()
         {
-            _verticalVelocity = 0f;
+            verticalVelocity = 0f;
             Transform aimCore = transform.Find("Player Aiming Core");
             if (aimCore)
                 transform.rotation = aimCore.rotation;
         }
 
-        /// <summary>
-        /// Attempt a ricochet off the given hitNormal. 
-        /// If we have ricochets left, reflect the bullet's forward direction across the normal,
-        /// reduce RicochetCount by 1, reset vertical velocity if desired. Return true.
-        /// If no ricochets left, return false.
-        /// </summary>
-        public bool TryRicochet(Vector3 hitNormal)
+        private bool TryRicochet(Vector3 hitNormal)
         {
-            if (RicochetCount <= 0)
+            if (ricochetCount <= 0)
             {
-                // can't bounce
                 return false;
             }
 
-            // Decrement ricochet
-            RicochetCount--;
+            ricochetCount--;
 
-            // Reflect bullet forward vector about hitNormal
-            // reflect(incident, normal) = incident - 2*(incident dot normal)*normal
-            Vector3 incident = transform.forward;
-            Vector3 reflect = Vector3.Reflect(incident, hitNormal);
-
-            // We'll maintain same orientation, just new forward
-            // Possibly keep bullet "up" the same? For simplicity we do:
+            Vector3 reflect = Vector3.Reflect(transform.forward, hitNormal);
             transform.forward = reflect.normalized;
+            verticalVelocity = 0f;
 
-            // Optionally reset vertical velocity
-            // so that the bullet doesn't keep diving
-            _verticalVelocity = 0f;
-
-            Debug.Log($"Ricochet! Count left: {RicochetCount}");
+            Debug.Log($"Ricochet! Count left: {ricochetCount}");
             return true;
         }
 
-        // Implementation for Cinemachine Input Axis Owner
+        private void OnTriggerEnter(Collider other)
+        {
+            int otherLayer = other.gameObject.layer;
+
+            if (otherLayer == enemyLayer)
+            {
+                Debug.Log("Bullet hit enemy");
+
+                var wander = other.GetComponent<Common_WanderScript>();
+                wander?.Die();
+
+                GameManager.instance.EnterBulletTimeAfterEnemyHit();
+            }
+            else if (otherLayer == environmentLayer)
+            {
+                Debug.Log("Bullet hit environment");
+
+                Vector3 normal = Vector3.up;
+                Vector3 dir = (transform.position - lastPosition).normalized;
+                float dist = Vector3.Distance(lastPosition, transform.position);
+
+                if (Physics.Raycast(lastPosition, dir, out RaycastHit hitInfo, dist + 0.2f,
+                                    1 << otherLayer, QueryTriggerInteraction.Ignore))
+                {
+                    normal = hitInfo.normal;
+                }
+
+                if (!TryRicochet(normal))
+                {
+                    GameManager.instance.GameOver("No ricochets left!");
+                }
+            }
+        }
+
         public void GetInputAxes(List<IInputAxisOwner.AxisDescriptor> axes) { }
     }
 }
