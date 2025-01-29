@@ -74,5 +74,10 @@ crashlytics-build.properties
 
 # Licensed assets
 /[Aa]ssets/Layer Lab/*
+/[Aa]ssets/Layer Lab.meta
+
 /[Aa]ssets/Pixel Arsenal/*
+/[Aa]ssets/Pixel Arsenal.meta
+
 /[Aa]ssets/polyperfect/*
+/[Aa]ssets/polyperfect.meta
