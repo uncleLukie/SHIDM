@@ -25,8 +25,14 @@ namespace _Game.Scripts.Managers
         [Header("References")]
         public SimpleBulletController bulletInScene;
         public BulletAimCameraRig bulletAimCameraRig;
+        
+        [Header("Game Over UI")]
+        public GameObject gameOverScreen; 
 
         private bool _gameStarted;
+        private bool _isGameOver;
+        
+        public bool IsGameOver => _isGameOver;
 
         private void Awake()
         {
@@ -34,6 +40,9 @@ namespace _Game.Scripts.Managers
             else Destroy(gameObject);
 
             SetTimeScale(normalTimeScale);
+
+            if (gameOverScreen) 
+                gameOverScreen.SetActive(false);
         }
 
         private void Start()
@@ -44,7 +53,10 @@ namespace _Game.Scripts.Managers
 
         private void Update()
         {
-            // example: user left-click => first bullet spawn
+            // if we want to block inputs after game over
+            if (_isGameOver) return;
+
+            // same logic for bullet activation
             if (!_gameStarted && Input.GetMouseButtonDown(0))
             {
                 _gameStarted = true;
@@ -142,6 +154,17 @@ namespace _Game.Scripts.Managers
             }
             // done
             Debug.Log("Time back to normal, free camera is active.");
+        }
+        
+        public void GameOver(string reason)
+        {
+            if (_isGameOver) return;
+            _isGameOver = true;
+            Debug.Log($"Game Over: {reason}");
+
+            // Show UI
+            if (gameOverScreen)
+                gameOverScreen.SetActive(true);
         }
 
         private void SetTimeScale(float timeScale)

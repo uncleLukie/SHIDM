@@ -6,14 +6,6 @@ using Unity.Cinemachine;
 
 namespace _Game.Scripts.Bullet
 {
-    /// <summary>
-    /// Parent bullet script on the BulletPlayer root:
-    /// - Moves forward once fired.
-    /// - Applies a slight gravity drop (e.g. Gravity=1.5).
-    /// - Has max distance limit.
-    /// - Provides public EndBullet() method so child collision script can end it.
-    /// - No collision code here, because the mesh child "PistolBulletCollisionProxy" handles that.
-    /// </summary>
     public class SimpleBulletController : MonoBehaviour, IInputAxisOwner
     {
         [Header("Speed Settings")]
@@ -21,14 +13,17 @@ namespace _Game.Scripts.Bullet
         public float BulletTimeSpeed = 2f;
 
         [Header("Gravity & Distance")]
-        [Tooltip("Set this to a small value (e.g. 1 or 1.5) for slight bullet drop.")]
         public float Gravity = 0.4f;
-
-        [Tooltip("If true, gravity is zero (or partial) in bullet time.")]
         public bool ReduceGravityInBulletTime = true;
-
-        [Tooltip("How far the bullet can travel before disabling. <= 0 => no limit.")]
         public float MaxDistance = 150f;
+
+        [Header("Ricochet")]
+        [Tooltip("How many times bullet can bounce off environment before 'GameOver.'")]
+        public int RicochetCount = 1;
+
+        [Header("Flight Time Limit")]
+        [Tooltip("If bullet travels longer than this in real time, we end the bullet. <= 0 => no limit.")]
+        public float MaxFlightSeconds = 20f;
 
         [Header("Events")]
         public UnityEvent OnBulletFired;
@@ -38,26 +33,25 @@ namespace _Game.Scripts.Bullet
         public Action PreUpdate;
         public Action<Vector3, float> PostUpdate;
 
-        // Internal
         private bool _fired;
         private bool _isBulletTime;
         private Vector3 _lastPosition;
         private float _distanceTraveled;
         private float _verticalVelocity;
 
-        /// <summary>
-        /// Is the bullet currently in flight?
-        /// </summary>
+        // Additional
+        private float _flightTimer; // how many seconds since fired
+
         public bool IsFired => _fired;
 
         private void OnEnable()
         {
-            // Reset
             _fired = false;
             _isBulletTime = false;
             _lastPosition = transform.position;
             _distanceTraveled = 0f;
             _verticalVelocity = 0f;
+            _flightTimer = 0f;
         }
 
         private void Update()
@@ -70,6 +64,16 @@ namespace _Game.Scripts.Bullet
                 return;
             }
 
+            // Flight time check
+            _flightTimer += Time.deltaTime;
+            if (MaxFlightSeconds > 0 && _flightTimer >= MaxFlightSeconds)
+            {
+                // If bullet is in flight too long => game over
+                EndBullet("Flight time exceeded");
+                // or call game manager => game over
+                return;
+            }
+
             // Decide forward speed
             float speed = _isBulletTime ? BulletTimeSpeed : NormalSpeed;
 
@@ -77,10 +81,10 @@ namespace _Game.Scripts.Bullet
             float currentGravity = Gravity;
             if (ReduceGravityInBulletTime && _isBulletTime)
             {
-                currentGravity = 0f; 
+                currentGravity = 0f;
             }
 
-            // Accumulate vertical velocity (slight drop)
+            // Accumulate vertical velocity
             _verticalVelocity -= currentGravity * Time.deltaTime;
 
             // Move
@@ -88,8 +92,10 @@ namespace _Game.Scripts.Bullet
             transform.position += moveFrame;
 
             // Distance limit
-            _distanceTraveled += (transform.position - _lastPosition).magnitude;
+            float distanceThisFrame = (transform.position - _lastPosition).magnitude;
+            _distanceTraveled += distanceThisFrame;
             _lastPosition = transform.position;
+
             if (MaxDistance > 0 && _distanceTraveled >= MaxDistance)
             {
                 EndBullet("Distance limit reached");
@@ -97,18 +103,19 @@ namespace _Game.Scripts.Bullet
             }
 
             // Post update
-            Vector3 localVel = Quaternion.Inverse(transform.rotation) 
+            Vector3 localVel = Quaternion.Inverse(transform.rotation)
                 * (transform.forward * speed + Vector3.up * _verticalVelocity);
             PostUpdate?.Invoke(localVel, 1f);
         }
 
         public void FireBullet()
         {
-            if (_fired) return; 
+            if (_fired) return;
             _fired = true;
             _distanceTraveled = 0f;
             _lastPosition = transform.position;
             _verticalVelocity = 0f;
+            _flightTimer = 0f;
 
             OnBulletFired?.Invoke();
         }
@@ -116,33 +123,58 @@ namespace _Game.Scripts.Bullet
         public void EnterBulletTime() => _isBulletTime = true;
         public void ExitBulletTime()  => _isBulletTime = false;
 
-        // Called from the child collision script if environment is hit,
-        // or from anywhere if you want to forcibly end the bullet.
         public void EndBullet(string reason)
         {
             Debug.Log($"Bullet ended: {reason}");
             OnBulletEnd?.Invoke();
 
-            // Option A: disable
             _fired = false;
             gameObject.SetActive(false);
-
-            // Option B: or Destroy(gameObject);
         }
 
         public void ReFireInCurrentAimDirection()
         {
-            // If you want to reset vertical velocity
             _verticalVelocity = 0f;
-
-            // Snap to "Player Aiming Core" if desired
             Transform aimCore = transform.Find("Player Aiming Core");
             if (aimCore)
                 transform.rotation = aimCore.rotation;
         }
 
-        // Implementation for Cinemachine Input Axis Owner 
-        public void GetInputAxes(List<IInputAxisOwner.AxisDescriptor> axes)
-        {  /* no input needed if we only do forward bullet. */ }
+        /// <summary>
+        /// Attempt a ricochet off the given hitNormal. 
+        /// If we have ricochets left, reflect the bullet's forward direction across the normal,
+        /// reduce RicochetCount by 1, reset vertical velocity if desired. Return true.
+        /// If no ricochets left, return false.
+        /// </summary>
+        public bool TryRicochet(Vector3 hitNormal)
+        {
+            if (RicochetCount <= 0)
+            {
+                // can't bounce
+                return false;
+            }
+
+            // Decrement ricochet
+            RicochetCount--;
+
+            // Reflect bullet forward vector about hitNormal
+            // reflect(incident, normal) = incident - 2*(incident dot normal)*normal
+            Vector3 incident = transform.forward;
+            Vector3 reflect = Vector3.Reflect(incident, hitNormal);
+
+            // We'll maintain same orientation, just new forward
+            // Possibly keep bullet "up" the same? For simplicity we do:
+            transform.forward = reflect.normalized;
+
+            // Optionally reset vertical velocity
+            // so that the bullet doesn't keep diving
+            _verticalVelocity = 0f;
+
+            Debug.Log($"Ricochet! Count left: {RicochetCount}");
+            return true;
+        }
+
+        // Implementation for Cinemachine Input Axis Owner
+        public void GetInputAxes(List<IInputAxisOwner.AxisDescriptor> axes) { }
     }
 }
