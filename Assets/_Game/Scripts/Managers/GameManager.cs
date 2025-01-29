@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement; // For scene reload
 using _Game.Scripts.Bullet;
 using _Game.Scripts.Cameras;
 
@@ -30,8 +31,12 @@ namespace _Game.Scripts.Managers
         public GameObject gameOverScreen; 
 
         [Header("Pause/UI Menu")]
-        [Tooltip("Assign a UI panel or menu canvas here that you want to show when Esc is pressed.")]
+        [Tooltip("Assign the same panel you want to show when Esc is pressed.")]
         public GameObject pauseMenu;
+
+        [Header("Game Win UI")]
+        [Tooltip("Panel to show when the player has beaten the final boss")]
+        public GameObject gameWinScreen;
 
         private bool _gameStarted;
         private bool _isGameOver;
@@ -49,6 +54,9 @@ namespace _Game.Scripts.Managers
             if (gameOverScreen) 
                 gameOverScreen.SetActive(false);
 
+            if (gameWinScreen)
+                gameWinScreen.SetActive(false);
+
             // Hide the pause menu if assigned
             if (pauseMenu) 
                 pauseMenu.SetActive(false);
@@ -60,31 +68,38 @@ namespace _Game.Scripts.Managers
             if (bulletInScene && bulletInScene.gameObject.activeSelf)
                 bulletInScene.gameObject.SetActive(false);
 
-            // Lock/hide mouse by default
-            LockAndHideCursor(true);
+            // Default: lock/hide cursor
+            // (UIController overrides this to show the mouse for TitleStart)
+            LockAndHideCursor(false);
         }
 
         private void Update()
         {
-            // If game is over, skip further input checks
-            if (_isGameOver) return;
+            // Block pause if game hasn't started yet, or if game is over/win
+            if (!_gameStarted || _isGameOver) return;
 
-            // 1) Toggle pause menu with Esc
+            // Toggle pause menu with Esc
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 TogglePauseMenu();
             }
+        }
 
-            // 2) If not started, left-click => first bullet spawn
-            if (!_gameStarted && Input.GetMouseButtonDown(0) && !_isMenuOpen)
-            {
-                _gameStarted = true;
-                ActivateAndFireBullet();
-            }
+        /// <summary>
+        /// Public method for the TitleStart UI button to call:
+        /// Sets the _gameStarted flag and fires the first bullet.
+        /// </summary>
+        public void StartTheGame()
+        {
+            if (_gameStarted) return;
+            _gameStarted = true;
+            ActivateAndFireBullet();
         }
 
         /// <summary>
         /// Show/hide the pause/UI menu, and lock/unlock the cursor accordingly.
+        /// Called from Update() if the user presses Esc. 
+        /// Toggling again or calling ResumeGame() will revert it.
         /// </summary>
         private void TogglePauseMenu()
         {
@@ -96,6 +111,21 @@ namespace _Game.Scripts.Managers
             LockAndHideCursor(!_isMenuOpen);
 
             Time.timeScale = _isMenuOpen ? 0 : normalTimeScale;
+        }
+
+        /// <summary>
+        /// Public method for the "Continue" button to call, or for the second Esc press.
+        /// Resumes normal gameplay from pause.
+        /// </summary>
+        public void ResumeGame()
+        {
+            _isMenuOpen = false;
+
+            if (pauseMenu)
+                pauseMenu.SetActive(false);
+
+            LockAndHideCursor(true);
+            Time.timeScale = normalTimeScale;
         }
 
         /// <summary>
@@ -135,7 +165,7 @@ namespace _Game.Scripts.Managers
 
         /// <summary>
         /// Called by BulletCollisionProxy (or bullet itself) after hitting an enemy. 
-        /// We do a "quick" ramp into bullet time, but otherwise the same flow.
+        /// We do a "quick" ramp into bullet time.
         /// </summary>
         public void EnterBulletTimeAfterEnemyHit()
         {
@@ -146,7 +176,7 @@ namespace _Game.Scripts.Managers
         /// Unified bullet-time entry method that smoothly ramps time scale down (normal or quick),
         /// sets the bullet to bullet-time mode, picks aim camera, then waits for user click to revert.
         /// </summary>
-        public void EnterBulletTimeAndWaitForClick(bool quickRamp)
+        private void EnterBulletTimeAndWaitForClick(bool quickRamp)
         {
             // Stop any existing time-scale coroutines
             StopAllCoroutines();
@@ -208,18 +238,57 @@ namespace _Game.Scripts.Managers
             Debug.Log("Time back to normal, free camera is active.");
         }
         
+        /// <summary>
+        /// Called by bullet or other code to signal game over.
+        /// Mouse unlocked, user sees GameOver panel. No more pause or bullet firing.
+        /// </summary>
         public void GameOver(string reason)
         {
             if (_isGameOver) return;
             _isGameOver = true;
             Debug.Log($"Game Over: {reason}");
 
-            // Show UI
             if (gameOverScreen)
                 gameOverScreen.SetActive(true);
 
-            // Also unlock cursor so player can click UI
             LockAndHideCursor(false);
+        }
+
+        /// <summary>
+        /// Similar to GameOver, but for a Win scenario. 
+        /// Time is not paused, and pressing Esc does nothing because _isGameOver is true.
+        /// </summary>
+        public void GameWin()
+        {
+            if (_isGameOver) return;
+            _isGameOver = true;
+            Debug.Log("Game Won!");
+
+            if (gameWinScreen)
+                gameWinScreen.SetActive(true);
+
+            LockAndHideCursor(false);
+        }
+
+        /// <summary>
+        /// Public method for UI buttons to reload the current scene, effectively "Restart".
+        /// </summary>
+        public void RestartGame()
+        {
+            // Restore timescale to normal for the new scene
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        /// <summary>
+        /// Public method for UI buttons to quit the game.
+        /// </summary>
+        public void QuitGame()
+        {
+            Application.Quit();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
         }
 
         private void SetTimeScale(float timeScale)
