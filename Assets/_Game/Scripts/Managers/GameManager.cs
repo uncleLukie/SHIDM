@@ -29,9 +29,14 @@ namespace _Game.Scripts.Managers
         [Header("Game Over UI")]
         public GameObject gameOverScreen; 
 
+        [Header("Pause/UI Menu")]
+        [Tooltip("Assign a UI panel or menu canvas here that you want to show when Esc is pressed.")]
+        public GameObject pauseMenu;
+
         private bool _gameStarted;
         private bool _isGameOver;
-        
+        private bool _isMenuOpen;    // Whether our pause/UI menu is currently open
+
         public bool IsGameOver => _isGameOver;
 
         private void Awake()
@@ -43,24 +48,70 @@ namespace _Game.Scripts.Managers
 
             if (gameOverScreen) 
                 gameOverScreen.SetActive(false);
+
+            // Hide the pause menu if assigned
+            if (pauseMenu) 
+                pauseMenu.SetActive(false);
         }
 
         private void Start()
         {
+            // If bullet is already active, we disable it at start
             if (bulletInScene && bulletInScene.gameObject.activeSelf)
                 bulletInScene.gameObject.SetActive(false);
+
+            // Lock/hide mouse by default
+            LockAndHideCursor(true);
         }
 
         private void Update()
         {
-            // if we want to block inputs after game over
+            // If game is over, skip further input checks
             if (_isGameOver) return;
 
-            // same logic for bullet activation
-            if (!_gameStarted && Input.GetMouseButtonDown(0))
+            // 1) Toggle pause menu with Esc
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                TogglePauseMenu();
+            }
+
+            // 2) If not started, left-click => first bullet spawn
+            if (!_gameStarted && Input.GetMouseButtonDown(0) && !_isMenuOpen)
             {
                 _gameStarted = true;
                 ActivateAndFireBullet();
+            }
+        }
+
+        /// <summary>
+        /// Show/hide the pause/UI menu, and lock/unlock the cursor accordingly.
+        /// </summary>
+        private void TogglePauseMenu()
+        {
+            _isMenuOpen = !_isMenuOpen;
+            if (pauseMenu)
+                pauseMenu.SetActive(_isMenuOpen);
+
+            // If menu is open => unlock cursor, else lock it
+            LockAndHideCursor(!_isMenuOpen);
+
+            Time.timeScale = _isMenuOpen ? 0 : normalTimeScale;
+        }
+
+        /// <summary>
+        /// Lock/hide or unlock/show the hardware mouse cursor.
+        /// </summary>
+        private void LockAndHideCursor(bool lockIt)
+        {
+            if (lockIt)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
 
@@ -83,7 +134,7 @@ namespace _Game.Scripts.Managers
         }
 
         /// <summary>
-        /// Called by BulletCollisionProxy after hitting an enemy. 
+        /// Called by BulletCollisionProxy (or bullet itself) after hitting an enemy. 
         /// We do a "quick" ramp into bullet time, but otherwise the same flow.
         /// </summary>
         public void EnterBulletTimeAfterEnemyHit()
@@ -97,7 +148,7 @@ namespace _Game.Scripts.Managers
         /// </summary>
         public void EnterBulletTimeAndWaitForClick(bool quickRamp)
         {
-            // Stop any existing time-scale coroutines (optional)
+            // Stop any existing time-scale coroutines
             StopAllCoroutines();
 
             // Start the downward ramp
@@ -117,13 +168,14 @@ namespace _Game.Scripts.Managers
             }
             
             if (bulletInScene) bulletInScene.EnterBulletTime();
-            
-            if (bulletAimCameraRig != null)
+            if (bulletAimCameraRig != null) 
                 bulletAimCameraRig.BulletTime.Value = 1f;
             
             Debug.Log("BulletTime active: user can aim. Click to finalize and revert.");
-            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-            
+
+            // Wait until user left-click to revert
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(0) && !_isMenuOpen);
+
             RevertTimeScaleToNormal();
         }
 
@@ -165,6 +217,9 @@ namespace _Game.Scripts.Managers
             // Show UI
             if (gameOverScreen)
                 gameOverScreen.SetActive(true);
+
+            // Also unlock cursor so player can click UI
+            LockAndHideCursor(false);
         }
 
         private void SetTimeScale(float timeScale)
