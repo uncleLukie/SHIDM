@@ -3,6 +3,8 @@
 --------------
 Sure Hope I Don't Miss is a wild west style arcade game built in 2 weeks for [Pirate Software - Game Jam 16](https://itch.io/jam/pirate)
 
+Play it at: https://unclelukie.itch.io/sure-hope-i-dont-miss
+
 Theme: **You Are The Weapon**
 
 [Game Design Document](https://docs.google.com/document/d/1uqWtq5vjYB-EIcmapQR8w22kwuxXd2n5onxZqv496Ns/edit?usp=sharing)
