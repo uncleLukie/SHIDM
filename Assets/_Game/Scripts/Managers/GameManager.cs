@@ -94,6 +94,7 @@ namespace _Game.Scripts.Managers
             if (_gameStarted) return;
             _gameStarted = true;
             ActivateAndFireBullet();
+            LockAndHideCursor(true);
         }
 
         /// <summary>
