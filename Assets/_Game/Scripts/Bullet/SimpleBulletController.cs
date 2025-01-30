@@ -37,6 +37,10 @@ namespace _Game.Scripts.Bullet
         public UnityEvent onBulletFired;
         public UnityEvent onBulletEnd;
 
+        [Header("Effects")]
+        [Tooltip("Blood FX prefab to spawn on enemy hit.")]
+        public GameObject bloodFXPrefab;
+
         public Action PreUpdate;
         public Action<Vector3, float> PostUpdate;
 
@@ -49,7 +53,6 @@ namespace _Game.Scripts.Bullet
 
         public bool IsFired => fired;
 
-        // store whether we've already bounced this frame to prevent repeated triggers if we remain inside the environment collider.
         private bool didBounceThisFrame;
 
         void Awake()
@@ -85,7 +88,6 @@ namespace _Game.Scripts.Bullet
 
         void Update()
         {
-            // Let an aim controller run first
             PreUpdate?.Invoke();
 
             if (!fired)
@@ -105,7 +107,6 @@ namespace _Game.Scripts.Bullet
             float g = (reduceGravityInBulletTime && isBulletTime) ? 0f : gravity;
             verticalVelocity -= g * Time.deltaTime;
 
-            // Move the bullet
             Vector3 moveFrame = (transform.forward * speed + Vector3.up * verticalVelocity) * Time.deltaTime;
             transform.position += moveFrame;
 
@@ -123,8 +124,6 @@ namespace _Game.Scripts.Bullet
                                * (transform.forward * speed + Vector3.up * verticalVelocity);
             PostUpdate?.Invoke(localVel, 1f);
 
-            // Reset didBounceThisFrame each frame so we can bounce again on a *future* collision
-            // but never multiple times in the same frame
             didBounceThisFrame = false;
         }
 
@@ -160,25 +159,29 @@ namespace _Game.Scripts.Bullet
         void OnTriggerEnter(Collider other)
         {
             if (!fired) return;
-            if (didBounceThisFrame) return; // already bounced once this frame, ignore further triggers
+            if (didBounceThisFrame) return;
 
             int layer = other.gameObject.layer;
             if (layer == enemyLayer)
             {
+                Vector3 bloodPosition = FindBloodHitPosition(other);
+
+                if (bloodFXPrefab)
+                    Instantiate(bloodFXPrefab, bloodPosition, Quaternion.identity);
+
                 var wander = other.GetComponent<Common_WanderScript>();
                 if (wander) wander.Die();
+
                 GameManager.instance.EnterBulletTimeAfterEnemyHit();
             }
             else if (layer == environmentLayer)
             {
-                // attempt reflection
                 Vector3 hitNormal = FindSurfaceNormalOfEnvironment(other);
                 bool success = TryRicochet(hitNormal);
                 didBounceThisFrame = true;
 
                 if (success)
                 {
-                    // After each ricochet, re-enter bullet time
                     GameManager.instance.EnterBulletTimeAfterEnemyHit();
                 }
                 else
@@ -188,19 +191,37 @@ namespace _Game.Scripts.Bullet
             }
         }
 
+        Vector3 FindBloodHitPosition(Collider enemyCollider)
+        {
+            Vector3 closestSpherePoint = enemyCollider.ClosestPoint(lastPosition);
+            SkinnedMeshRenderer skinnedMesh = enemyCollider.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            if (skinnedMesh)
+            {
+                Vector3 dir = (closestSpherePoint - lastPosition).normalized;
+                float distance = Vector3.Distance(lastPosition, closestSpherePoint);
+
+                if (Physics.Raycast(lastPosition, dir, out RaycastHit hit, distance, LayerMask.GetMask("Enemy"), QueryTriggerInteraction.Ignore))
+                {
+                    return hit.point;
+                }
+            }
+
+            return closestSpherePoint;
+        }
+
         Vector3 FindSurfaceNormalOfEnvironment(Collider envCollider)
         {
-            // Raycast from lastPosition to current to find hit normal
             Vector3 dir = (transform.position - lastPosition).normalized;
             float dist = Vector3.Distance(lastPosition, transform.position);
             Vector3 normal = Vector3.up;
-            if (Physics.Raycast(lastPosition, dir, out RaycastHit hitInfo, dist + 0.2f,
-                                1 << environmentLayer, QueryTriggerInteraction.Ignore))
+
+            if (Physics.Raycast(lastPosition, dir, out RaycastHit hitInfo, dist + 0.2f, 1 << environmentLayer, QueryTriggerInteraction.Ignore))
             {
                 normal = hitInfo.normal;
-                // Move bullet slightly outside the collision plane so we don't stay inside the collider
                 transform.position = hitInfo.point + hitInfo.normal * 0.01f;
             }
+
             return normal;
         }
 
