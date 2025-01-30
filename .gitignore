@@ -81,3 +81,6 @@ crashlytics-build.properties
 
 /[Aa]ssets/polyperfect/*
 /[Aa]ssets/polyperfect.meta
+
+/[Aa]ssets/Universal Sound FX/*
+/[Aa]ssets/Universal Sound FX.meta

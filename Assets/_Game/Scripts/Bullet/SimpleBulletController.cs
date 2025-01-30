@@ -44,16 +44,15 @@ namespace _Game.Scripts.Bullet
         public Action PreUpdate;
         public Action<Vector3, float> PostUpdate;
 
-        private bool fired;
-        private bool isBulletTime;
-        private Vector3 lastPosition;
-        private float distanceTraveled;
-        private float verticalVelocity;
-        private float flightTimer;
+        bool fired;
+        bool isBulletTime;
+        Vector3 lastPosition;
+        float distanceTraveled;
+        float verticalVelocity;
+        float flightTimer;
 
+        bool didBounceThisFrame;
         public bool IsFired => fired;
-
-        private bool didBounceThisFrame;
 
         void Awake()
         {
@@ -96,6 +95,10 @@ namespace _Game.Scripts.Bullet
                 return;
             }
 
+            // Optional: Update wind audio
+            // float bulletSpeed = isBulletTime ? bulletTimeSpeed : normalSpeed;
+            // AudioManager.instance.UpdateWind(bulletSpeed);
+
             flightTimer += Time.deltaTime;
             if (maxFlightSeconds > 0 && flightTimer >= maxFlightSeconds)
             {
@@ -136,6 +139,9 @@ namespace _Game.Scripts.Bullet
             verticalVelocity = 0f;
             flightTimer = 0f;
             onBulletFired?.Invoke();
+
+            // Play SFX
+            AudioManager.instance.PlayBulletFire();
         }
 
         public void EnterBulletTime() => isBulletTime = true;
@@ -147,6 +153,8 @@ namespace _Game.Scripts.Bullet
             onBulletEnd?.Invoke();
             fired = false;
             gameObject.SetActive(false);
+            // Optionally stop wind if you want
+            // AudioManager.instance.StopWind();
         }
 
         public void ReFireInCurrentAimDirection()
@@ -165,12 +173,14 @@ namespace _Game.Scripts.Bullet
             if (layer == enemyLayer)
             {
                 Vector3 bloodPosition = FindBloodHitPosition(other);
-
                 if (bloodFXPrefab)
                     Instantiate(bloodFXPrefab, bloodPosition, Quaternion.identity);
 
                 var wander = other.GetComponent<Common_WanderScript>();
                 if (wander) wander.Die();
+
+                // Play enemy hit SFX
+                AudioManager.instance.PlayEnemyHit();
 
                 GameManager.instance.EnterBulletTimeAfterEnemyHit();
             }
@@ -206,7 +216,6 @@ namespace _Game.Scripts.Bullet
                     return hit.point;
                 }
             }
-
             return closestSpherePoint;
         }
 
@@ -221,7 +230,6 @@ namespace _Game.Scripts.Bullet
                 normal = hitInfo.normal;
                 transform.position = hitInfo.point + hitInfo.normal * 0.01f;
             }
-
             return normal;
         }
 
@@ -233,7 +241,6 @@ namespace _Game.Scripts.Bullet
             Vector3 reflect = Vector3.Reflect(transform.forward, hitNormal);
             transform.forward = reflect.normalized;
             verticalVelocity = 0f;
-
             Debug.Log($"Ricochet! Count left: {ricochetCount}");
             return true;
         }
