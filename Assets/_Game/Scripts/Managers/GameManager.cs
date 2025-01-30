@@ -45,6 +45,7 @@ namespace _Game.Scripts.Managers
         {
             if (instance == null) instance = this;
             else Destroy(gameObject);
+
             SetTimeScale(normalTimeScale);
 
             if (gameOverScreen) gameOverScreen.SetActive(false);
@@ -56,27 +57,37 @@ namespace _Game.Scripts.Managers
         {
             if (bulletInScene && bulletInScene.gameObject.activeSelf)
                 bulletInScene.gameObject.SetActive(false);
+
+            // At title screen, we want mouse unlocked/visible
             LockAndHideCursor(false);
         }
 
         void Update()
         {
             if (!gameStarted || isGameOver) return;
-            if (Input.GetKeyDown(KeyCode.Escape)) TogglePauseMenu();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                TogglePauseMenu();
+            }
         }
 
         public void StartTheGame()
         {
             if (gameStarted) return;
             gameStarted = true;
-            ActivateAndFireBullet();
+
+            // Lock cursor BEFORE firing the bullet
             LockAndHideCursor(true);
+
+            ActivateAndFireBullet();
         }
 
         void TogglePauseMenu()
         {
             isMenuOpen = !isMenuOpen;
             if (pauseMenu) pauseMenu.SetActive(isMenuOpen);
+
             LockAndHideCursor(!isMenuOpen);
             Time.timeScale = isMenuOpen ? 0 : normalTimeScale;
         }
@@ -85,6 +96,7 @@ namespace _Game.Scripts.Managers
         {
             isMenuOpen = false;
             if (pauseMenu) pauseMenu.SetActive(false);
+
             LockAndHideCursor(true);
             Time.timeScale = normalTimeScale;
         }
@@ -104,6 +116,7 @@ namespace _Game.Scripts.Managers
             }
             bulletInScene.gameObject.SetActive(true);
             bulletInScene.FireBullet();
+
             EnterBulletTimeAndWaitForClick(false);
         }
 
@@ -129,12 +142,14 @@ namespace _Game.Scripts.Managers
                 SetTimeScale(Mathf.Max(currentScale, bulletTimeScale));
                 yield return new WaitForSecondsRealtime(interval);
             }
+
             if (bulletInScene) bulletInScene.EnterBulletTime();
             if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 1f;
             AudioManager.instance.PlayBulletTimeEnter();
 
             Debug.Log("BulletTime active. Click to revert.");
             yield return new WaitUntil(() => Input.GetMouseButtonDown(0) && !isMenuOpen);
+
             RevertTimeScaleToNormal();
         }
 
@@ -167,7 +182,6 @@ namespace _Game.Scripts.Managers
             if (gameOverScreen) gameOverScreen.SetActive(true);
             LockAndHideCursor(false);
 
-            // Switch to game over music
             AudioManager.instance.PlayGameOverMusic();
         }
 
@@ -179,7 +193,6 @@ namespace _Game.Scripts.Managers
             if (gameWinScreen) gameWinScreen.SetActive(true);
             LockAndHideCursor(false);
 
-            // Switch to game win music
             AudioManager.instance.PlayGameWinMusic();
         }
 
