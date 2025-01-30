@@ -35,11 +35,11 @@ namespace _Game.Scripts.Managers
         [Header("Game Win UI")]
         public GameObject gameWinScreen;
 
-        bool _gameStarted;
-        bool _isGameOver;
-        bool _isMenuOpen;
+        private bool gameStarted;
+        private bool isGameOver;
+        private bool isMenuOpen;
 
-        public bool IsGameOver => _isGameOver;
+        public bool IsGameOver => isGameOver;
 
         void Awake()
         {
@@ -61,29 +61,29 @@ namespace _Game.Scripts.Managers
 
         void Update()
         {
-            if (!_gameStarted || _isGameOver) return;
+            if (!gameStarted || isGameOver) return;
             if (Input.GetKeyDown(KeyCode.Escape)) TogglePauseMenu();
         }
 
         public void StartTheGame()
         {
-            if (_gameStarted) return;
-            _gameStarted = true;
+            if (gameStarted) return;
+            gameStarted = true;
             ActivateAndFireBullet();
             LockAndHideCursor(true);
         }
 
         void TogglePauseMenu()
         {
-            _isMenuOpen = !_isMenuOpen;
-            if (pauseMenu) pauseMenu.SetActive(_isMenuOpen);
-            LockAndHideCursor(!_isMenuOpen);
-            Time.timeScale = _isMenuOpen ? 0 : normalTimeScale;
+            isMenuOpen = !isMenuOpen;
+            if (pauseMenu) pauseMenu.SetActive(isMenuOpen);
+            LockAndHideCursor(!isMenuOpen);
+            Time.timeScale = isMenuOpen ? 0 : normalTimeScale;
         }
 
         public void ResumeGame()
         {
-            _isMenuOpen = false;
+            isMenuOpen = false;
             if (pauseMenu) pauseMenu.SetActive(false);
             LockAndHideCursor(true);
             Time.timeScale = normalTimeScale;
@@ -131,12 +131,10 @@ namespace _Game.Scripts.Managers
             }
             if (bulletInScene) bulletInScene.EnterBulletTime();
             if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 1f;
-
-            // Play bullet-time enter SFX
             AudioManager.instance.PlayBulletTimeEnter();
 
             Debug.Log("BulletTime active. Click to revert.");
-            yield return new WaitUntil(() => Input.GetMouseButtonDown(0) && !_isMenuOpen);
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(0) && !isMenuOpen);
             RevertTimeScaleToNormal();
         }
 
@@ -157,29 +155,32 @@ namespace _Game.Scripts.Managers
                 SetTimeScale(Mathf.Min(currentScale, normalTimeScale));
                 yield return new WaitForSecondsRealtime(normalTimeScaleInterval);
             }
-
-            // Play bullet-time exit SFX
             AudioManager.instance.PlayBulletTimeExit();
-
             Debug.Log("Time back to normal, free camera is active.");
         }
         
         public void GameOver(string reason)
         {
-            if (_isGameOver) return;
-            _isGameOver = true;
+            if (isGameOver) return;
+            isGameOver = true;
             Debug.Log($"Game Over: {reason}");
             if (gameOverScreen) gameOverScreen.SetActive(true);
             LockAndHideCursor(false);
+
+            // Switch to game over music
+            AudioManager.instance.PlayGameOverMusic();
         }
 
         public void GameWin()
         {
-            if (_isGameOver) return;
-            _isGameOver = true;
+            if (isGameOver) return;
+            isGameOver = true;
             Debug.Log("Game Won!");
             if (gameWinScreen) gameWinScreen.SetActive(true);
             LockAndHideCursor(false);
+
+            // Switch to game win music
+            AudioManager.instance.PlayGameWinMusic();
         }
 
         public void RestartGame()

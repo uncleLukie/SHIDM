@@ -31,11 +31,14 @@ namespace _Game.Scripts.Managers
             if (playGameOverPanel) playGameOverPanel.SetActive(false);
             if (playGameWinPanel) playGameWinPanel.SetActive(false);
             GameManager.instance?.gameObject.SendMessage("LockAndHideCursor", false, SendMessageOptions.DontRequireReceiver);
+
+            // Start playing Title music in loop
+            AudioManager.instance.PlayTitleMusic();
         }
 
         public void OnClickTitleStart()
         {
-            AudioManager.instance.PlayUIClick(); // UI sound
+            AudioManager.instance.PlayUIClick();
             if (titleStartCanvasGroup)
             {
                 StartCoroutine(FadeOutTitleStartPanel());
@@ -43,7 +46,7 @@ namespace _Game.Scripts.Managers
             else
             {
                 if (titleStartPanel) titleStartPanel.SetActive(false);
-                GameManager.instance.StartTheGame();
+                HandleActualGameStart();
             }
         }
 
@@ -63,6 +66,18 @@ namespace _Game.Scripts.Managers
                 yield return null;
             }
             if (titleStartPanel) titleStartPanel.SetActive(false);
+
+            HandleActualGameStart();
+        }
+
+        void HandleActualGameStart()
+        {
+            // Play the one-shot "start game" SFX
+            AudioManager.instance.PlayStartGameOneShot();
+
+            // Switch the music from Title to In-Game
+            AudioManager.instance.PlayInGameMusic();
+
             GameManager.instance.StartTheGame();
         }
 

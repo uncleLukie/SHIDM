@@ -6,17 +6,19 @@ namespace _Game.Scripts.Managers
     {
         public static AudioManager instance;
 
-        [Header("General Settings")]
-        [Tooltip("Master volume to scale all SFX volumes. 0 = silent, 1 = normal.")]
+        [Header("General Volume")]
         [Range(0f, 1f)]
         public float masterVolume = 1f;
 
         [Header("Audio Sources")]
-        [Tooltip("Audio source for short one-shot SFX.")]
+        [Tooltip("Primary one-shot SFX source.")]
         public AudioSource sfxSource;
 
-        [Tooltip("Looping audio source dedicated for wind sound.")]
+        [Tooltip("Looping audio source for wind or other loops.")]
         public AudioSource windSource;
+
+        [Tooltip("Dedicated music audio source for background music.")]
+        public AudioSource musicSource;
 
         [Header("Bullet Fire")]
         public AudioClip bulletFireClip;
@@ -31,8 +33,9 @@ namespace _Game.Scripts.Managers
         public float windPitchMax = 1.2f;
         public float maxBulletSpeedForWind = 80f;
 
-        [Header("Enemy Hit / Blood Spurt")]
-        public AudioClip enemyHitClip;
+        [Header("Enemy Hit / Blood Spurt (Random Clips)")]
+        [Tooltip("One of these clips will be chosen randomly each time.")]
+        public AudioClip[] enemyHitClips;
         [Range(0f, 1f)] public float enemyHitVolume = 1f;
         public float enemyHitPitchMin = 0.9f;
         public float enemyHitPitchMax = 1.1f;
@@ -44,11 +47,34 @@ namespace _Game.Scripts.Managers
         public float bulletTimePitchMin = 0.95f;
         public float bulletTimePitchMax = 1.05f;
 
-        [Header("UI Click")]
-        public AudioClip uiClickClip;
+        [Header("UI Click (Random Clips)")]
+        [Tooltip("One of these clips will be chosen randomly each time a UI button is clicked.")]
+        public AudioClip[] uiClickClips;
         [Range(0f, 1f)] public float uiClickVolume = 1f;
         public float uiClickPitchMin = 0.95f;
         public float uiClickPitchMax = 1.05f;
+
+        [Header("Title Music (Loop)")]
+        [Tooltip("Plays at Title screen, looped, pitch=1, no randomization.")]
+        public AudioClip titleMusicClip;
+        [Range(0f, 1f)] public float titleMusicVolume = 1f;
+
+        [Header("Start Game One-Shot")]
+        [Tooltip("Plays once when user clicks Start. No pitch randomization.")]
+        public AudioClip startGameClip;
+        [Range(0f, 1f)] public float startGameVolume = 1f;
+
+        [Header("In-Game Music (Loop)")]
+        public AudioClip inGameMusicClip;
+        [Range(0f, 1f)] public float inGameMusicVolume = 1f;
+
+        [Header("Game Over Music")]
+        public AudioClip gameOverMusicClip;
+        [Range(0f, 1f)] public float gameOverMusicVolume = 1f;
+
+        [Header("Game Win Music")]
+        public AudioClip gameWinMusicClip;
+        [Range(0f, 1f)] public float gameWinMusicVolume = 1f;
 
         void Awake()
         {
@@ -58,44 +84,71 @@ namespace _Game.Scripts.Managers
 
             if (!sfxSource) sfxSource = gameObject.AddComponent<AudioSource>();
             if (!windSource) windSource = gameObject.AddComponent<AudioSource>();
+            if (!musicSource) musicSource = gameObject.AddComponent<AudioSource>();
 
             windSource.loop = true;
             windSource.clip = windLoopClip;
             windSource.volume = 0f;
             windSource.playOnAwake = false;
-            windSource.Play(); // plays silently unless you update volume
-        }
-
-        void Update()
-        {
-            // Optionally, you could update wind each frame here
+            windSource.Play();
         }
 
         public void PlayBulletFire()
         {
-            PlayOneShot(bulletFireClip, bulletFireVolume, bulletFirePitchMin, bulletFirePitchMax);
+            PlayOneShotRandomPitch(bulletFireClip, bulletFireVolume, bulletFirePitchMin, bulletFirePitchMax);
         }
 
         public void PlayEnemyHit()
         {
-            PlayOneShot(enemyHitClip, enemyHitVolume, enemyHitPitchMin, enemyHitPitchMax);
+            var clip = GetRandomClip(enemyHitClips);
+            PlayOneShotRandomPitch(clip, enemyHitVolume, enemyHitPitchMin, enemyHitPitchMax);
         }
 
         public void PlayBulletTimeEnter()
         {
-            PlayOneShot(bulletTimeEnterClip, bulletTimeVolume, bulletTimePitchMin, bulletTimePitchMax);
+            PlayOneShotRandomPitch(bulletTimeEnterClip, bulletTimeVolume, bulletTimePitchMin, bulletTimePitchMax);
         }
 
         public void PlayBulletTimeExit()
         {
-            PlayOneShot(bulletTimeExitClip, bulletTimeVolume, bulletTimePitchMin, bulletTimePitchMax);
+            PlayOneShotRandomPitch(bulletTimeExitClip, bulletTimeVolume, bulletTimePitchMin, bulletTimePitchMax);
         }
 
         public void PlayUIClick()
         {
-            PlayOneShot(uiClickClip, uiClickVolume, uiClickPitchMin, uiClickPitchMax);
+            var clip = GetRandomClip(uiClickClips);
+            PlayOneShotRandomPitch(clip, uiClickVolume, uiClickPitchMin, uiClickPitchMax);
         }
 
+        // Title music loop, no random pitch, volume uses titleMusicVolume
+        public void PlayTitleMusic()
+        {
+            PlayMusic(titleMusicClip, titleMusicVolume, loop: true, pitch: 1f);
+        }
+
+        // One-shot start clip, no random pitch
+        public void PlayStartGameOneShot()
+        {
+            PlayOneShotNoPitch(startGameClip, startGameVolume);
+        }
+
+        // Replace the title music with in-game loop
+        public void PlayInGameMusic()
+        {
+            PlayMusic(inGameMusicClip, inGameMusicVolume, loop: true, pitch: 1f);
+        }
+
+        public void PlayGameOverMusic()
+        {
+            PlayMusic(gameOverMusicClip, gameOverMusicVolume, loop: false, pitch: 1f);
+        }
+
+        public void PlayGameWinMusic()
+        {
+            PlayMusic(gameWinMusicClip, gameWinMusicVolume, loop: false, pitch: 1f);
+        }
+
+        // Continuously set wind pitch/volume based on bullet speed if desired
         public void UpdateWind(float bulletSpeed)
         {
             if (!windSource || !windLoopClip) return;
@@ -111,12 +164,43 @@ namespace _Game.Scripts.Managers
             if (windSource) windSource.volume = 0f;
         }
 
-        void PlayOneShot(AudioClip clip, float volume, float pitchMin, float pitchMax)
+        void PlayOneShotRandomPitch(AudioClip clip, float volume, float pitchMin, float pitchMax)
         {
             if (!clip || !sfxSource) return;
             sfxSource.pitch = Random.Range(pitchMin, pitchMax);
             sfxSource.volume = volume * masterVolume;
             sfxSource.PlayOneShot(clip);
+        }
+
+        void PlayOneShotNoPitch(AudioClip clip, float volume)
+        {
+            if (!clip || !sfxSource) return;
+            sfxSource.pitch = 1f;
+            sfxSource.volume = volume * masterVolume;
+            sfxSource.PlayOneShot(clip);
+        }
+
+        void PlayMusic(AudioClip clip, float volume, bool loop, float pitch)
+        {
+            if (!musicSource) return;
+            if (!clip)
+            {
+                // if no clip, maybe stop music
+                musicSource.Stop();
+                return;
+            }
+            musicSource.volume = volume * masterVolume;
+            musicSource.pitch = pitch;
+            musicSource.loop = loop;
+            musicSource.clip = clip;
+            musicSource.Play();
+        }
+
+        AudioClip GetRandomClip(AudioClip[] clips)
+        {
+            if (clips == null || clips.Length == 0) return null;
+            int index = Random.Range(0, clips.Length);
+            return clips[index];
         }
     }
 }

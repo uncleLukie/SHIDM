@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Cinemachine;
-using _Game.Scripts.Bullet;  // Make sure this references your own namespace for SimpleBulletAimController
+using _Game.Scripts.Bullet;
 
 namespace _Game.Scripts.Cameras
 {
