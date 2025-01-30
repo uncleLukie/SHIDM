@@ -26,6 +26,7 @@ namespace _Game.Scripts.Environment
         {
             ApplyWindForce();
             AlignRotationWithMovement();
+            windDirection = Quaternion.Euler(0, Random.Range(-10f, 10f), 0) * windDirection;
         }
 
         void ApplyWindForce()
