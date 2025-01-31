@@ -10,34 +10,26 @@ namespace _Game.Scripts.Managers
     {
         public static GameManager instance;
 
-        [Header("Time Scale Settings")]
         public float normalTimeScale = 0.4f; 
         public float bulletTimeScale = 0.1f;
-
-        [Header("Ramp Settings (Normal)")]
         public float normalTimeScaleStep = 0.02f;
         public float normalTimeScaleInterval = 0.1f;
-
-        [Header("Ramp Settings (Quick)")]
         public float quickTimeScaleStep = 0.03f;
         public float quickTimeScaleInterval = 0.02f;
 
-        [Header("References")]
         public SimpleBulletController bulletInScene;
         public BulletAimCameraRig bulletAimCameraRig;
         
-        [Header("Game Over UI")]
         public GameObject gameOverScreen; 
-
-        [Header("Pause/UI Menu")]
         public GameObject pauseMenu;
-
-        [Header("Game Win UI")]
         public GameObject gameWinScreen;
 
         bool gameStarted;
         bool isGameOver;
         bool isMenuOpen;
+
+        bool wasInBulletTime;
+        float prePauseTimeScale;
 
         public bool IsGameOver => isGameOver;
 
@@ -49,64 +41,110 @@ namespace _Game.Scripts.Managers
             SetTimeScale(normalTimeScale);
 
             if (gameOverScreen) gameOverScreen.SetActive(false);
-            if (gameWinScreen) gameWinScreen.SetActive(false);
-            if (pauseMenu) pauseMenu.SetActive(false);
+            if (gameWinScreen)  gameWinScreen.SetActive(false);
+            if (pauseMenu)      pauseMenu.SetActive(false);
         }
 
         void Start()
         {
+            // Deactivate bullet or set it inactive
             if (bulletInScene && bulletInScene.gameObject.activeSelf)
                 bulletInScene.gameObject.SetActive(false);
 
+            // Title screen => show mouse
             LockAndHideCursor(false);
         }
 
         void Update()
         {
             if (!gameStarted || isGameOver) return;
+
+            // Pause menu
             if (Input.GetKeyDown(KeyCode.Escape)) TogglePauseMenu();
+
+            // Wait for user to press Mouse1 to actually fire bullet
+            if (!isMenuOpen && bulletInScene && !bulletInScene.IsFired && Input.GetMouseButtonDown(0))
+            {
+                // We only proceed if bullet is not fired yet
+                bulletInScene.gameObject.SetActive(true);
+                bulletInScene.FireBullet();
+                EnterBulletTimeAndWaitForClick(false);
+            }
         }
 
         public void StartTheGame()
         {
             if (gameStarted) return;
             gameStarted = true;
+
+            // We'll just enable the bullet object but NOT fire. 
+            // The bullet will remain floating until the user presses mouse 1 to fire it.
+            if (bulletInScene && !bulletInScene.gameObject.activeSelf)
+                bulletInScene.gameObject.SetActive(true);
+
             LockAndHideCursor(true);
-            ActivateAndFireBullet();
         }
 
         void TogglePauseMenu()
         {
             isMenuOpen = !isMenuOpen;
             if (pauseMenu) pauseMenu.SetActive(isMenuOpen);
-            LockAndHideCursor(!isMenuOpen);
-            Time.timeScale = isMenuOpen ? 0 : normalTimeScale;
+
+            if (isMenuOpen)
+            {
+                StopAllCoroutines();
+                prePauseTimeScale = Time.timeScale;
+
+                wasInBulletTime = (bulletAimCameraRig && bulletAimCameraRig.BulletTime.Value > 0.5f);
+                if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 0f;
+                if (bulletInScene) bulletInScene.ExitBulletTime();
+
+                Time.timeScale = 0f;
+                LockAndHideCursor(false);
+            }
+            else
+            {
+                if (bulletAimCameraRig && wasInBulletTime)
+                {
+                    bulletAimCameraRig.BulletTime.Value = 1f;
+                    if (bulletInScene) bulletInScene.EnterBulletTime();
+                }
+                else
+                {
+                    if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 0f;
+                    if (bulletInScene) bulletInScene.ExitBulletTime();
+                }
+
+                Time.timeScale = prePauseTimeScale > 0 ? prePauseTimeScale : normalTimeScale;
+                LockAndHideCursor(true);
+            }
         }
 
         public void ResumeGame()
         {
+            if (!isMenuOpen) return;
             isMenuOpen = false;
             if (pauseMenu) pauseMenu.SetActive(false);
+
+            if (bulletAimCameraRig && wasInBulletTime)
+            {
+                bulletAimCameraRig.BulletTime.Value = 1f;
+                if (bulletInScene) bulletInScene.EnterBulletTime();
+            }
+            else
+            {
+                if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 0f;
+                if (bulletInScene) bulletInScene.ExitBulletTime();
+            }
+
+            Time.timeScale = prePauseTimeScale > 0 ? prePauseTimeScale : normalTimeScale;
             LockAndHideCursor(true);
-            Time.timeScale = normalTimeScale;
         }
 
-        void LockAndHideCursor(bool lockIt)
+        public void LockAndHideCursor(bool lockIt)
         {
             Cursor.lockState = lockIt ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !lockIt;
-        }
-
-        void ActivateAndFireBullet()
-        {
-            if (!bulletInScene)
-            {
-                Debug.LogError("No bulletInScene assigned in GameManager!");
-                return;
-            }
-            bulletInScene.gameObject.SetActive(true);
-            bulletInScene.FireBullet();
-            EnterBulletTimeAndWaitForClick(false);
         }
 
         public void EnterBulletTimeAfterEnemyHit()
@@ -134,7 +172,7 @@ namespace _Game.Scripts.Managers
             }
             if (bulletInScene) bulletInScene.EnterBulletTime();
             if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 1f;
-            
+
             yield return new WaitUntil(() => Input.GetMouseButtonDown(0) && !isMenuOpen);
             RevertTimeScaleToNormal();
         }
@@ -158,7 +196,7 @@ namespace _Game.Scripts.Managers
                 yield return new WaitForSecondsRealtime(normalTimeScaleInterval);
             }
         }
-        
+
         public void GameOver(string reason)
         {
             if (isGameOver) return;

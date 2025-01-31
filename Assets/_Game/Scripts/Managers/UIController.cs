@@ -26,19 +26,25 @@ namespace _Game.Scripts.Managers
 
         void Start()
         {
-            if (titleStartPanel) titleStartPanel.SetActive(true);
-            if (playPausePanel) playPausePanel.SetActive(false);
-            if (playGameOverPanel) playGameOverPanel.SetActive(false);
-            if (playGameWinPanel) playGameWinPanel.SetActive(false);
-            GameManager.instance?.gameObject.SendMessage("LockAndHideCursor", false, SendMessageOptions.DontRequireReceiver);
+            if (titleStartPanel)      titleStartPanel.SetActive(true);
+            if (playPausePanel)       playPausePanel.SetActive(false);
+            if (playGameOverPanel)    playGameOverPanel.SetActive(false);
+            if (playGameWinPanel)     playGameWinPanel.SetActive(false);
 
-            // Start playing Title music in loop
+            // Let the user see the mouse. 
+            GameManager.instance?.LockAndHideCursor(false);
+
+            // Title music
             AudioManager.instance.PlayTitleMusic();
         }
 
         public void OnClickTitleStart()
         {
             AudioManager.instance.PlayUIClick();
+
+            // Request pointer lock in WebGL, if possible
+            GameManager.instance?.LockAndHideCursor(true);
+
             if (titleStartCanvasGroup)
             {
                 StartCoroutine(FadeOutTitleStartPanel());
@@ -52,9 +58,13 @@ namespace _Game.Scripts.Managers
 
         IEnumerator FadeOutTitleStartPanel()
         {
+            // Start-Game One-Shot right away
+            AudioManager.instance.PlayStartGameOneShot();
+
             float elapsed = 0f;
             float startAlpha = titleStartCanvasGroup.alpha;
             float endAlpha = 0f;
+
             titleStartCanvasGroup.interactable = false;
             titleStartCanvasGroup.blocksRaycasts = false;
 
@@ -65,19 +75,17 @@ namespace _Game.Scripts.Managers
                 titleStartCanvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, t);
                 yield return null;
             }
-            if (titleStartPanel) titleStartPanel.SetActive(false);
 
+            if (titleStartPanel) titleStartPanel.SetActive(false);
             HandleActualGameStart();
         }
 
         void HandleActualGameStart()
         {
-            // Play the one-shot "start game" SFX
-            AudioManager.instance.PlayStartGameOneShot();
-
-            // Switch the music from Title to In-Game
+            // Switch from title to in-game music
             AudioManager.instance.PlayInGameMusic();
 
+            // Actually start the game logic
             GameManager.instance.StartTheGame();
         }
 
