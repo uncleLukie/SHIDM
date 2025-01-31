@@ -23,7 +23,7 @@ namespace _Game.Scripts.Bullet
         public bool reduceGravityInBulletTime = true;
         public float maxDistance = 150f;
         public int ricochetCount = 1;
-        public float maxFlightSeconds = 20f;
+        public float maxFlightSeconds = 30f;
 
         public UnityEvent onBulletFired;
         public UnityEvent onBulletEnd;
@@ -126,7 +126,7 @@ namespace _Game.Scripts.Bullet
             lastPosition = transform.position;
             verticalVelocity = 0f;
             flightTimer = 0f;
-            
+
             if (muzzleFlashFX)
             {
                 GameObject flash = Instantiate(muzzleFlashFX, transform.position, Quaternion.identity);
@@ -173,6 +173,8 @@ namespace _Game.Scripts.Bullet
                 DoBloodSpurt(other);
                 DoKillWander(other);
                 distanceTraveled = 0f;
+                flightTimer = 0f; // RESET flight-time
+
                 AudioManager.instance.PlayEnemyHit();
                 GameManager.instance.EnterBulletTimeAfterEnemyHit();
             }
@@ -181,6 +183,8 @@ namespace _Game.Scripts.Bullet
                 DoBloodSpurt(other);
                 DoKillWander(other);
                 distanceTraveled = 0f;
+                flightTimer = 0f; // RESET flight-time
+
                 AudioManager.instance.PlayEnemyHit();
                 StartCoroutine(DoBossKillFlow());
             }
@@ -192,6 +196,7 @@ namespace _Game.Scripts.Bullet
                 if (success)
                 {
                     distanceTraveled = 0f;
+                    flightTimer = 0f; // RESET flight-time
                     GameManager.instance.EnterBulletTimeAfterEnemyHit();
                 }
                 else

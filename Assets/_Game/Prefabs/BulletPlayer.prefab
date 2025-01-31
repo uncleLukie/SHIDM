@@ -283,7 +283,7 @@ MonoBehaviour:
   reduceGravityInBulletTime: 1
   maxDistance: 150
   ricochetCount: 2
-  maxFlightSeconds: 10
+  maxFlightSeconds: 30
   onBulletFired:
     m_PersistentCalls:
       m_Calls: []

@@ -35,9 +35,9 @@ namespace _Game.Scripts.Managers
         [Header("Game Win UI")]
         public GameObject gameWinScreen;
 
-        private bool gameStarted;
-        private bool isGameOver;
-        private bool isMenuOpen;
+        bool gameStarted;
+        bool isGameOver;
+        bool isMenuOpen;
 
         public bool IsGameOver => isGameOver;
 
@@ -165,7 +165,6 @@ namespace _Game.Scripts.Managers
             isGameOver = true;
             Debug.Log($"Game Over: {reason}");
 
-            // Force bullet out of bullet time and end it
             if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 0f;
             if (bulletInScene)
             {
@@ -184,7 +183,6 @@ namespace _Game.Scripts.Managers
             isGameOver = true;
             Debug.Log("Game Won!");
 
-            // Force bullet out of bullet time and end it
             if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 0f;
             if (bulletInScene)
             {
