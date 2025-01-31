@@ -119,20 +119,17 @@ namespace _Game.Scripts.Managers
             var clip = GetRandomClip(uiClickClips);
             PlayOneShotRandomPitch(clip, uiClickVolume, uiClickPitchMin, uiClickPitchMax);
         }
-
-        // Title music loop, no random pitch, volume uses titleMusicVolume
+        
         public void PlayTitleMusic()
         {
             PlayMusic(titleMusicClip, titleMusicVolume, loop: true, pitch: 1f);
         }
-
-        // One-shot start clip, no random pitch
+        
         public void PlayStartGameOneShot()
         {
             PlayOneShotNoPitch(startGameClip, startGameVolume);
         }
-
-        // Replace the title music with in-game loop
+        
         public void PlayInGameMusic()
         {
             PlayMusic(inGameMusicClip, inGameMusicVolume, loop: true, pitch: 1f);
@@ -147,8 +144,7 @@ namespace _Game.Scripts.Managers
         {
             PlayMusic(gameWinMusicClip, gameWinMusicVolume, loop: false, pitch: 1f);
         }
-
-        // Continuously set wind pitch/volume based on bullet speed if desired
+        
         public void UpdateWind(float bulletSpeed)
         {
             if (!windSource || !windLoopClip) return;
@@ -185,7 +181,6 @@ namespace _Game.Scripts.Managers
             if (!musicSource) return;
             if (!clip)
             {
-                // if no clip, maybe stop music
                 musicSource.Stop();
                 return;
             }

@@ -58,28 +58,20 @@ namespace _Game.Scripts.Managers
             if (bulletInScene && bulletInScene.gameObject.activeSelf)
                 bulletInScene.gameObject.SetActive(false);
 
-            // At title screen, we want mouse unlocked/visible
             LockAndHideCursor(false);
         }
 
         void Update()
         {
             if (!gameStarted || isGameOver) return;
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                TogglePauseMenu();
-            }
+            if (Input.GetKeyDown(KeyCode.Escape)) TogglePauseMenu();
         }
 
         public void StartTheGame()
         {
             if (gameStarted) return;
             gameStarted = true;
-
-            // Lock cursor BEFORE firing the bullet
             LockAndHideCursor(true);
-
             ActivateAndFireBullet();
         }
 
@@ -87,7 +79,6 @@ namespace _Game.Scripts.Managers
         {
             isMenuOpen = !isMenuOpen;
             if (pauseMenu) pauseMenu.SetActive(isMenuOpen);
-
             LockAndHideCursor(!isMenuOpen);
             Time.timeScale = isMenuOpen ? 0 : normalTimeScale;
         }
@@ -96,7 +87,6 @@ namespace _Game.Scripts.Managers
         {
             isMenuOpen = false;
             if (pauseMenu) pauseMenu.SetActive(false);
-
             LockAndHideCursor(true);
             Time.timeScale = normalTimeScale;
         }
@@ -116,7 +106,6 @@ namespace _Game.Scripts.Managers
             }
             bulletInScene.gameObject.SetActive(true);
             bulletInScene.FireBullet();
-
             EnterBulletTimeAndWaitForClick(false);
         }
 
@@ -135,6 +124,7 @@ namespace _Game.Scripts.Managers
 
         IEnumerator DoBulletTimeRampDownThenWait(float step, float interval)
         {
+            AudioManager.instance.PlayBulletTimeEnter();
             float currentScale = Time.timeScale;
             while (currentScale > bulletTimeScale)
             {
@@ -142,14 +132,10 @@ namespace _Game.Scripts.Managers
                 SetTimeScale(Mathf.Max(currentScale, bulletTimeScale));
                 yield return new WaitForSecondsRealtime(interval);
             }
-
             if (bulletInScene) bulletInScene.EnterBulletTime();
             if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 1f;
-            AudioManager.instance.PlayBulletTimeEnter();
-
-            Debug.Log("BulletTime active. Click to revert.");
+            
             yield return new WaitUntil(() => Input.GetMouseButtonDown(0) && !isMenuOpen);
-
             RevertTimeScaleToNormal();
         }
 
@@ -163,6 +149,7 @@ namespace _Game.Scripts.Managers
 
         IEnumerator GraduallyIncreaseTimeScale()
         {
+            AudioManager.instance.PlayBulletTimeExit();
             float currentScale = Time.timeScale;
             while (currentScale < normalTimeScale)
             {
@@ -170,8 +157,6 @@ namespace _Game.Scripts.Managers
                 SetTimeScale(Mathf.Min(currentScale, normalTimeScale));
                 yield return new WaitForSecondsRealtime(normalTimeScaleInterval);
             }
-            AudioManager.instance.PlayBulletTimeExit();
-            Debug.Log("Time back to normal, free camera is active.");
         }
         
         public void GameOver(string reason)
@@ -179,9 +164,17 @@ namespace _Game.Scripts.Managers
             if (isGameOver) return;
             isGameOver = true;
             Debug.Log($"Game Over: {reason}");
+
+            // Force bullet out of bullet time and end it
+            if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 0f;
+            if (bulletInScene)
+            {
+                bulletInScene.ExitBulletTime();
+                bulletInScene.ForceEndNow();
+            }
+
             if (gameOverScreen) gameOverScreen.SetActive(true);
             LockAndHideCursor(false);
-
             AudioManager.instance.PlayGameOverMusic();
         }
 
@@ -190,9 +183,17 @@ namespace _Game.Scripts.Managers
             if (isGameOver) return;
             isGameOver = true;
             Debug.Log("Game Won!");
+
+            // Force bullet out of bullet time and end it
+            if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 0f;
+            if (bulletInScene)
+            {
+                bulletInScene.ExitBulletTime();
+                bulletInScene.ForceEndNow();
+            }
+
             if (gameWinScreen) gameWinScreen.SetActive(true);
             LockAndHideCursor(false);
-
             AudioManager.instance.PlayGameWinMusic();
         }
 

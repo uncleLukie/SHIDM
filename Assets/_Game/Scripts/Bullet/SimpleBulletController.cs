@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Polyperfect.Common;
 using _Game.Scripts.Managers;
@@ -12,33 +13,21 @@ namespace _Game.Scripts.Bullet
     [RequireComponent(typeof(Rigidbody))]
     public class SimpleBulletController : MonoBehaviour, IInputAxisOwner
     {
-        [Header("Layer Settings")]
-        private int enemyLayer;
-        private int environmentLayer;
+        int enemyLayer;
+        int environmentLayer;
+        int bossLayer;
 
-        [Header("Speed Settings")]
         public float normalSpeed = 40f;
         public float bulletTimeSpeed = 2f;
-
-        [Header("Gravity & Distance")]
         public float gravity = 0.4f;
         public bool reduceGravityInBulletTime = true;
         public float maxDistance = 150f;
-
-        [Header("Ricochet")]
-        [Tooltip("How many times bullet can bounce off environment before 'GameOver'.")]
         public int ricochetCount = 1;
-
-        [Header("Flight Time Limit")]
-        [Tooltip("If bullet travels longer than this in real time, we end the bullet. <= 0 => no limit.")]
         public float maxFlightSeconds = 20f;
 
-        [Header("Events")]
         public UnityEvent onBulletFired;
         public UnityEvent onBulletEnd;
 
-        [Header("Effects")]
-        [Tooltip("Blood FX prefab to spawn on enemy hit.")]
         public GameObject bloodFXPrefab;
 
         public Action PreUpdate;
@@ -50,22 +39,22 @@ namespace _Game.Scripts.Bullet
         float distanceTraveled;
         float verticalVelocity;
         float flightTimer;
-
         bool didBounceThisFrame;
+
         public bool IsFired => fired;
 
         void Awake()
         {
             enemyLayer = LayerMask.NameToLayer("Enemy");
             environmentLayer = LayerMask.NameToLayer("Environment");
+            bossLayer = LayerMask.NameToLayer("Boss");
 
             var rb = GetComponent<Rigidbody>();
             if (rb)
             {
                 rb.isKinematic = true;
-                rb.useGravity = false; 
+                rb.useGravity = false;
             }
-
             var coll = GetComponent<Collider>();
             if (coll && !coll.isTrigger)
             {
@@ -95,13 +84,10 @@ namespace _Game.Scripts.Bullet
                 return;
             }
 
-            // Optional: Update wind audio
-            // float bulletSpeed = isBulletTime ? bulletTimeSpeed : normalSpeed;
-            // AudioManager.instance.UpdateWind(bulletSpeed);
-
             flightTimer += Time.deltaTime;
             if (maxFlightSeconds > 0 && flightTimer >= maxFlightSeconds)
             {
+                GameManager.instance.GameOver("Flight time exceeded");
                 EndBullet("Flight time exceeded");
                 return;
             }
@@ -113,12 +99,13 @@ namespace _Game.Scripts.Bullet
             Vector3 moveFrame = (transform.forward * speed + Vector3.up * verticalVelocity) * Time.deltaTime;
             transform.position += moveFrame;
 
-            float distanceThisFrame = (transform.position - lastPosition).magnitude;
-            distanceTraveled += distanceThisFrame;
+            float distFrame = (transform.position - lastPosition).magnitude;
+            distanceTraveled += distFrame;
             lastPosition = transform.position;
 
             if (maxDistance > 0 && distanceTraveled >= maxDistance)
             {
+                GameManager.instance.GameOver("Distance limit reached");
                 EndBullet("Distance limit reached");
                 return;
             }
@@ -139,8 +126,6 @@ namespace _Game.Scripts.Bullet
             verticalVelocity = 0f;
             flightTimer = 0f;
             onBulletFired?.Invoke();
-
-            // Play SFX
             AudioManager.instance.PlayBulletFire();
         }
 
@@ -153,14 +138,19 @@ namespace _Game.Scripts.Bullet
             onBulletEnd?.Invoke();
             fired = false;
             gameObject.SetActive(false);
-            // Optionally stop wind if you want
-            // AudioManager.instance.StopWind();
+        }
+
+        // Called by GameManager when we do a forced end at GameOver or GameWin
+        public void ForceEndNow()
+        {
+            if (!fired) return;
+            EndBullet("ForceEnd");
         }
 
         public void ReFireInCurrentAimDirection()
         {
             verticalVelocity = 0f;
-            Transform aimCore = transform.Find("Player Aiming Core");
+            var aimCore = transform.Find("Player Aiming Core");
             if (aimCore) transform.rotation = aimCore.rotation;
         }
 
@@ -170,28 +160,31 @@ namespace _Game.Scripts.Bullet
             if (didBounceThisFrame) return;
 
             int layer = other.gameObject.layer;
+            
             if (layer == enemyLayer)
             {
-                Vector3 bloodPosition = FindBloodHitPosition(other);
-                if (bloodFXPrefab)
-                    Instantiate(bloodFXPrefab, bloodPosition, Quaternion.identity);
-
-                var wander = other.GetComponent<Common_WanderScript>();
-                if (wander) wander.Die();
-
-                // Play enemy hit SFX
+                DoBloodSpurt(other);
+                DoKillWander(other);
+                distanceTraveled = 0f;
                 AudioManager.instance.PlayEnemyHit();
-
                 GameManager.instance.EnterBulletTimeAfterEnemyHit();
+            }
+            else if (layer == bossLayer)
+            {
+                DoBloodSpurt(other);
+                DoKillWander(other);
+                distanceTraveled = 0f;
+                AudioManager.instance.PlayEnemyHit();
+                StartCoroutine(DoBossKillFlow());
             }
             else if (layer == environmentLayer)
             {
                 Vector3 hitNormal = FindSurfaceNormalOfEnvironment(other);
                 bool success = TryRicochet(hitNormal);
                 didBounceThisFrame = true;
-
                 if (success)
                 {
+                    distanceTraveled = 0f;
                     GameManager.instance.EnterBulletTimeAfterEnemyHit();
                 }
                 else
@@ -200,17 +193,34 @@ namespace _Game.Scripts.Bullet
                 }
             }
         }
-
-        Vector3 FindBloodHitPosition(Collider enemyCollider)
+        
+        IEnumerator DoBossKillFlow()
         {
-            Vector3 closestSpherePoint = enemyCollider.ClosestPoint(lastPosition);
-            SkinnedMeshRenderer skinnedMesh = enemyCollider.GetComponentInChildren<SkinnedMeshRenderer>();
+            yield return new WaitForSeconds(0.4f);
+            GameManager.instance.GameWin();
+        }
 
+        void DoBloodSpurt(Collider col)
+        {
+            Vector3 bloodPosition = FindBloodHitPosition(col);
+            if (bloodFXPrefab)
+                Instantiate(bloodFXPrefab, bloodPosition, Quaternion.identity);
+        }
+
+        void DoKillWander(Collider col)
+        {
+            var wander = col.GetComponent<Common_WanderScript>();
+            if (wander) wander.Die();
+        }
+
+        Vector3 FindBloodHitPosition(Collider targetCol)
+        {
+            Vector3 closestSpherePoint = targetCol.ClosestPoint(lastPosition);
+            var skinnedMesh = targetCol.GetComponentInChildren<SkinnedMeshRenderer>();
             if (skinnedMesh)
             {
                 Vector3 dir = (closestSpherePoint - lastPosition).normalized;
                 float distance = Vector3.Distance(lastPosition, closestSpherePoint);
-
                 if (Physics.Raycast(lastPosition, dir, out RaycastHit hit, distance, LayerMask.GetMask("Enemy"), QueryTriggerInteraction.Ignore))
                 {
                     return hit.point;
@@ -224,8 +234,9 @@ namespace _Game.Scripts.Bullet
             Vector3 dir = (transform.position - lastPosition).normalized;
             float dist = Vector3.Distance(lastPosition, transform.position);
             Vector3 normal = Vector3.up;
+            int envMask = 1 << environmentLayer;
 
-            if (Physics.Raycast(lastPosition, dir, out RaycastHit hitInfo, dist + 0.2f, 1 << environmentLayer, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(lastPosition, dir, out RaycastHit hitInfo, dist + 0.2f, envMask, QueryTriggerInteraction.Ignore))
             {
                 normal = hitInfo.normal;
                 transform.position = hitInfo.point + hitInfo.normal * 0.01f;
@@ -241,12 +252,9 @@ namespace _Game.Scripts.Bullet
             Vector3 reflect = Vector3.Reflect(transform.forward, hitNormal);
             transform.forward = reflect.normalized;
             verticalVelocity = 0f;
-            Debug.Log($"Ricochet! Count left: {ricochetCount}");
             return true;
         }
 
-        public void GetInputAxes(List<IInputAxisOwner.AxisDescriptor> axes)
-        {
-        }
+        public void GetInputAxes(List<IInputAxisOwner.AxisDescriptor> axes) {}
     }
 }

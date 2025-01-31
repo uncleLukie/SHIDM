@@ -4,18 +4,6 @@ using Unity.Cinemachine;
 
 namespace _Game.Scripts.Bullet
 {
-    /// <summary>
-    /// An add-on for SimpleBulletController that allows decoupled camera rotation
-    /// (like the sample’s SimplePlayerAimController, but for a bullet).
-    /// 
-    /// Place this as a child object under the bullet root.  The bullet root must have
-    /// SimpleBulletController on it.  This child acts as a "bullet aiming core."
-    /// 
-    /// A CinemachineCamera with ThirdPersonFollow can then Follow this "aim core" transform,
-    /// letting the user rotate camera with HorizontalLook/VerticalLook.  If Coupled,
-    /// that rotation is also applied to the bullet.  If Decoupled, the bullet's motion is
-    /// independent of the camera orientation.
-    /// </summary>
     public class SimpleBulletAimController : MonoBehaviour, IInputAxisOwner
     {
         public enum CouplingMode
@@ -50,9 +38,9 @@ namespace _Game.Scripts.Bullet
             Recentering = InputAxis.RecenteringSettings.Default
         };
 
-        SimpleBulletController m_Bullet;     // The parent bullet controller
-        Transform m_BulletTransform;         // The parent's transform
-        Quaternion m_DesiredWorldRotation;   // We store this to preserve camera orientation
+        SimpleBulletController m_Bullet;
+        Transform m_BulletTransform;
+        Quaternion m_DesiredWorldRotation;
 
         #region IInputAxisOwner Implementation
 
@@ -94,8 +82,7 @@ namespace _Game.Scripts.Bullet
             }
 
             m_BulletTransform = m_Bullet.transform;
-
-            // Subscribe to bullet’s PreUpdate/PostUpdate, like the sample does
+            
             m_Bullet.PreUpdate += UpdateBulletRotation;
             m_Bullet.PostUpdate += PostUpdate;
         }
@@ -112,18 +99,13 @@ namespace _Game.Scripts.Bullet
 
         void UpdateBulletRotation()
         {
-            // Step 1: apply HorizontalLook/VerticalLook to THIS child's local rotation
             transform.localRotation = Quaternion.Euler(VerticalLook.Value, HorizontalLook.Value, 0);
             m_DesiredWorldRotation = transform.rotation;
-
-            // Step 2: Decide how to handle bullet's rotation
+            
             switch (BulletRotation)
             {
                 case CouplingMode.Coupled:
-                    // Force bullet to strafe mode = true if we want side input to be lateral
-                    // or false if we want the bullet to rotate with camera? The sample sets strafe = true
-                    // but your game might want strafe = false. Let's mimic the sample:
-                    RecenterBullet();  // forcibly match parent's yaw to this child's yaw
+                    RecenterBullet();
                     break;
 
                 case CouplingMode.CoupledWhenMoving:
@@ -139,52 +121,33 @@ namespace _Game.Scripts.Bullet
             VerticalLook.UpdateRecentering(Time.deltaTime, VerticalLook.TrackValueChange());
             HorizontalLook.UpdateRecentering(Time.deltaTime, HorizontalLook.TrackValueChange());
         }
-
-        /// <summary>
-        /// Called by bullet controller after it updates velocity/position. 
-        /// If in Decoupled mode, we maintain this child's world rotation,
-        /// ignoring whatever rotation the bullet might have done.
-        /// </summary>
+        
         void PostUpdate(Vector3 vel, float speed)
         {
             if (BulletRotation == CouplingMode.Decoupled)
             {
-                // The bullet may have rotated via velocity or strafe. 
-                // We want to keep this child's world rotation the same as m_DesiredWorldRotation.
                 transform.rotation = m_DesiredWorldRotation;
-
-                // Then we recalculate the difference between bullet parent and me,
-                // so the local HorizontalLook/VerticalLook axes remain correct.
+                
                 Quaternion delta = Quaternion.Inverse(m_BulletTransform.rotation) * m_DesiredWorldRotation;
                 Vector3 eul = delta.eulerAngles;
                 VerticalLook.Value = NormalizeAngle(eul.x);
                 HorizontalLook.Value = NormalizeAngle(eul.y);
             }
         }
-
-        /// <summary>
-        /// Force the bullet's parent transform to match our child's yaw orientation, effectively
-        /// making bullet face the same direction as the camera. The sample calls it RecenterPlayer().
-        /// </summary>
-        /// <param name="damping">If > 0, we do a softened rotation, else instant.</param>
+        
         public void RecenterBullet(float damping = 0f)
         {
             if (m_BulletTransform == null)
                 return;
-
-            // This child's local rotation
+            
             Vector3 rot = transform.localRotation.eulerAngles;
-            // We only care about the Y axis difference 
             float delta = NormalizeAngle(rot.y);
-
-            // apply some damping
+            
             if (damping > 0f)
                 delta = Damper.Damp(delta, damping, Time.deltaTime);
-
-            // rotate the bullet parent by 'delta' around its own up
+            
             m_BulletTransform.rotation = Quaternion.AngleAxis(delta, m_BulletTransform.up) * m_BulletTransform.rotation;
-
-            // offset this child's local rotation by the opposite amount to preserve net orientation
+            
             HorizontalLook.Value -= delta;
             rot.y -= delta;
             transform.localRotation = Quaternion.Euler(rot);
