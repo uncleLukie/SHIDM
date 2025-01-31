@@ -28401,14 +28401,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 8829618241222335911, guid: 6a8eeef3ca6728c469a375658f37fdbe, type: 3}
-      propertyPath: gravity
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8829618241222335911, guid: 6a8eeef3ca6728c469a375658f37fdbe, type: 3}
-      propertyPath: normalSpeed
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 9078677462707040832, guid: 6a8eeef3ca6728c469a375658f37fdbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.04

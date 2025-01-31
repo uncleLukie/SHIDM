@@ -29,6 +29,7 @@ namespace _Game.Scripts.Bullet
         public UnityEvent onBulletEnd;
 
         public GameObject bloodFXPrefab;
+        public GameObject muzzleFlashFX;
 
         public Action PreUpdate;
         public Action<Vector3, float> PostUpdate;
@@ -125,6 +126,13 @@ namespace _Game.Scripts.Bullet
             lastPosition = transform.position;
             verticalVelocity = 0f;
             flightTimer = 0f;
+            
+            if (muzzleFlashFX)
+            {
+                GameObject flash = Instantiate(muzzleFlashFX, transform.position, Quaternion.identity);
+                Destroy(flash, 0.3f);
+            }
+
             onBulletFired?.Invoke();
             AudioManager.instance.PlayBulletFire();
         }
@@ -140,7 +148,6 @@ namespace _Game.Scripts.Bullet
             gameObject.SetActive(false);
         }
 
-        // Called by GameManager when we do a forced end at GameOver or GameWin
         public void ForceEndNow()
         {
             if (!fired) return;
@@ -160,7 +167,7 @@ namespace _Game.Scripts.Bullet
             if (didBounceThisFrame) return;
 
             int layer = other.gameObject.layer;
-            
+
             if (layer == enemyLayer)
             {
                 DoBloodSpurt(other);
@@ -193,7 +200,7 @@ namespace _Game.Scripts.Bullet
                 }
             }
         }
-        
+
         IEnumerator DoBossKillFlow()
         {
             yield return new WaitForSeconds(0.4f);

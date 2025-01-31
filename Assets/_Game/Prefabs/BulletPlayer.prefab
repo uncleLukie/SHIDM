@@ -277,9 +277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a1ae14d10c46778e7b3458b69eb8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 20
+  normalSpeed: 30
   bulletTimeSpeed: 2
-  gravity: 0.4
+  gravity: 0.5
   reduceGravityInBulletTime: 1
   maxDistance: 150
   ricochetCount: 2
@@ -291,6 +291,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   bloodFXPrefab: {fileID: 137874, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+  muzzleFlashFX: {fileID: 158886, guid: 5b4714e95dca00f49a5ce30f464bfdff, type: 3}
 --- !u!135 &6280461592696178890
 SphereCollider:
   m_ObjectHideFlags: 0
