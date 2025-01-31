@@ -92,18 +92,23 @@ namespace _Game.Scripts.Managers
 
             if (isMenuOpen)
             {
-                StopAllCoroutines();
+                // Save previous time scale
                 prePauseTimeScale = Time.timeScale;
 
+                // Check if we were in bullet time
                 wasInBulletTime = (bulletAimCameraRig && bulletAimCameraRig.BulletTime.Value > 0.5f);
+
+                // Force free camera
                 if (bulletAimCameraRig) bulletAimCameraRig.BulletTime.Value = 0f;
                 if (bulletInScene) bulletInScene.ExitBulletTime();
 
+                // Pause
                 Time.timeScale = 0f;
                 LockAndHideCursor(false);
             }
             else
             {
+                // Unpause
                 if (bulletAimCameraRig && wasInBulletTime)
                 {
                     bulletAimCameraRig.BulletTime.Value = 1f;
