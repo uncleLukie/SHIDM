@@ -28311,6 +28311,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804167492606676379, guid: 93e4233f679a2df4986729e418fb107f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804167492606676379, guid: 93e4233f679a2df4986729e418fb107f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804167492606676379, guid: 93e4233f679a2df4986729e418fb107f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 804167492606676379, guid: 93e4233f679a2df4986729e418fb107f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1297.6031
+      objectReference: {fileID: 0}
+    - target: {fileID: 804167492606676379, guid: 93e4233f679a2df4986729e418fb107f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 960
+      objectReference: {fileID: 0}
+    - target: {fileID: 804167492606676379, guid: 93e4233f679a2df4986729e418fb107f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -648.8016
+      objectReference: {fileID: 0}
     - target: {fileID: 3087257990346173542, guid: 93e4233f679a2df4986729e418fb107f, type: 3}
       propertyPath: m_Name
       value: UIController
